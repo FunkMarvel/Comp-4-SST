@@ -288,7 +288,7 @@
 				<aux x="810" y="581.5" width="55" height="38" name="Cotton\npickers"/>
 				<aux x="796.25" y="792.25" width="101" height="18" name="Other workers"/>
 				<aux x="1152.25" y="587.5" width="79" height="38" name="People to\nold to work"/>
-				<aux x="967.25" y="597.5" width="87" height="18" name="Growing old"/>
+				<aux x="993.25" y="591.5" width="87" height="18" name="Growing old"/>
 				<connector uid="1" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="54.4623">
 					<from>Growing_up</from>
 					<to>Traders</to>
@@ -301,27 +301,27 @@
 					<from>Growing_up</from>
 					<to>Cotton_pickers</to>
 				</connector>
-				<connector uid="4" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="163.443">
+				<connector uid="4" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="153.654">
 					<from>Growing_up</from>
 					<to>People_to_young_to_work</to>
 				</connector>
-				<connector uid="5" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="347.764">
+				<connector uid="5" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="345.905">
 					<from>People_to_young_to_work</from>
 					<to>Growing_up</to>
 				</connector>
-				<connector uid="6" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="358.167">
+				<connector uid="6" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="2.74809">
 					<from>Traders</from>
 					<to>Growing_old</to>
 				</connector>
-				<connector uid="7" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="143.704">
+				<connector uid="7" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="145.886">
 					<from>Growing_old</from>
 					<to>Traders</to>
 				</connector>
-				<connector uid="8" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="12.5288">
+				<connector uid="8" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="14.9314">
 					<from>Cotton_pickers</from>
 					<to>Growing_old</to>
 				</connector>
-				<connector uid="9" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="195.396">
+				<connector uid="9" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="198.289">
 					<from>Growing_old</from>
 					<to>Cotton_pickers</to>
 				</connector>
@@ -329,11 +329,11 @@
 					<from>Other_workers</from>
 					<to>Growing_old</to>
 				</connector>
-				<connector uid="11" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="242.403">
+				<connector uid="11" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="229.899">
 					<from>Growing_old</from>
 					<to>Other_workers</to>
 				</connector>
-				<connector uid="12" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
+				<connector uid="12" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="357.783">
 					<from>Growing_old</from>
 					<to>People_to_old_to_work</to>
 				</connector>
@@ -468,7 +468,7 @@
 						<item uid="11"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="clockwise" uid="39" x="920" y="509.5" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="clockwise" uid="39" x="936.25" y="509.5" width="30" height="30">
 					<isee:entities>
 						<entity name="Traders"/>
 						<item uid="7"/>
