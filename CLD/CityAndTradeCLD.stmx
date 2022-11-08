@@ -468,7 +468,7 @@
 						<item uid="11"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="clockwise" uid="39" x="918.75" y="512.5" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="clockwise" uid="39" x="920" y="509.5" width="30" height="30">
 					<isee:entities>
 						<entity name="Traders"/>
 						<item uid="7"/>
