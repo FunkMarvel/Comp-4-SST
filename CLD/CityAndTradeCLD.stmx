@@ -393,7 +393,7 @@
 					<from>Deaths_of_working_people</from>
 					<to>Other_workers</to>
 				</connector>
-				<aux x="1471.5" y="649" width="59" height="58" name="Cost\nof hiring\nescorts"/>
+				<aux x="1547.75" y="728.5" width="59" height="58" name="Cost\nof hiring\nescorts"/>
 				<connector uid="25" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="356.009">
 					<from>Cost_of_hiring_escorts</from>
 					<to>Cottonbog&apos;s_Gold</to>
@@ -460,7 +460,7 @@
 						<item uid="8"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="948.75" y="720" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="926.25" y="742.5" width="30" height="30">
 					<isee:entities>
 						<entity name="Other_workers"/>
 						<entity name="Growing_old"/>
@@ -476,8 +476,8 @@
 						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="224" y="735.25" width="63" height="18" name="Birthrate"/>
-				<connector uid="40" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="87.1376">
+				<aux x="236.5" y="735.25" width="63" height="18" name="Birthrate"/>
+				<connector uid="40" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="92.0736">
 					<from>Birthrate</from>
 					<to>Births</to>
 				</connector>
@@ -507,7 +507,7 @@
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Goldford</to>
 				</connector>
-				<connector uid="47" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="314.341">
+				<connector uid="47" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="304.695">
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Slagtown</to>
 				</connector>
@@ -526,11 +526,11 @@
 					<from>People_to_young_to_work</from>
 					<to>Total_amount_of_citizens</to>
 				</connector>
-				<connector uid="50" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="101.381">
+				<connector uid="50" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="44.1449">
 					<pts>
-						<pt x="1187.93" y="587.5"/>
+						<pt x="1211.33" y="587.5"/>
 						<pt x="1121.25" y="256.25"/>
-						<pt x="603.5" y="174.669"/>
+						<pt x="603.5" y="169.865"/>
 					</pts>
 					<from>People_to_old_to_work</from>
 					<to>Total_amount_of_citizens</to>
@@ -539,12 +539,12 @@
 					<from>Total_amount_of_citizens</from>
 					<to>Purchase_of_food_and_amenities</to>
 				</connector>
-				<connector uid="52" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="325.008">
+				<connector uid="52" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="303.555">
 					<from>Cotton_pickers</from>
 					<to>Cotton_picking_expenses</to>
 				</connector>
 				<aux x="1252.75" y="516" width="62" height="38" name="Hiring of\nescorts"/>
-				<connector uid="53" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="326.646">
+				<connector uid="53" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="322.835">
 					<from>Hiring_of_escorts</from>
 					<to>Cost_of_hiring_escorts</to>
 				</connector>
