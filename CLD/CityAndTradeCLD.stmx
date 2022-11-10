@@ -145,8 +145,8 @@
 				<var name="Deaths">
 					<in>Death_of_old_people</in>
 					<in>Death_of_young_people</in>
-					<in>Deaths_of_working_people</in>
 					<in>Killing_of_traders_in_bandit_raids</in>
+					<in>Deaths_of_working_people</in>
 				</var>
 				<var name="Killing_of_traders_in_bandit_raids">
 					<in>Bandit_raid</in>
@@ -246,7 +246,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" isee:scroll_x="32.5" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -446,33 +446,33 @@
 				</connector>
 				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="36" x="531.25" y="581.5" width="30" height="30">
 					<isee:entities>
-						<entity name="People_to_young_to_work"/>
 						<item uid="5"/>
-						<entity name="Growing_up"/>
 						<item uid="4"/>
+						<entity name="People_to_young_to_work"/>
+						<entity name="Growing_up"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<isee:loop_indicator text="B" orientation="clockwise" uid="37" x="911.25" y="591.5" width="30" height="30">
 					<isee:entities>
-						<entity name="Growing_old"/>
 						<item uid="9"/>
-						<entity name="Cotton_pickers"/>
 						<item uid="8"/>
+						<entity name="Growing_old"/>
+						<entity name="Cotton_pickers"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="926.25" y="742.5" width="30" height="30">
 					<isee:entities>
-						<entity name="Other_workers"/>
-						<entity name="Growing_old"/>
 						<item uid="10"/>
 						<item uid="11"/>
+						<entity name="Other_workers"/>
+						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<isee:loop_indicator text="B" orientation="clockwise" uid="39" x="936.25" y="509.5" width="30" height="30">
 					<isee:entities>
-						<entity name="Traders"/>
 						<item uid="7"/>
 						<item uid="6"/>
+						<entity name="Traders"/>
 						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
@@ -511,13 +511,13 @@
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Slagtown</to>
 				</connector>
-				<aux x="512.5" y="148.5" width="91" height="38" name="Total amount\nof citizens"/>
-				<connector uid="48" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="194.381">
+				<aux x="512.5" y="151.75" width="91" height="38" name="Total amount\nof citizens"/>
+				<connector uid="48" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="194.382">
 					<pts>
 						<pt x="409.5" y="844.167"/>
 						<pt x="128.75" y="742.5"/>
 						<pt x="181.25" y="232.5"/>
-						<pt x="512.5" y="163.055"/>
+						<pt x="512.5" y="165.685"/>
 					</pts>
 					<from>Total_amount_of_fertile_people</from>
 					<to>Total_amount_of_citizens</to>
@@ -526,11 +526,11 @@
 					<from>People_to_young_to_work</from>
 					<to>Total_amount_of_citizens</to>
 				</connector>
-				<connector uid="50" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="44.1449">
+				<connector uid="50" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="44.1387">
 					<pts>
 						<pt x="1211.33" y="587.5"/>
 						<pt x="1121.25" y="256.25"/>
-						<pt x="603.5" y="169.865"/>
+						<pt x="603.5" y="172.237"/>
 					</pts>
 					<from>People_to_old_to_work</from>
 					<to>Total_amount_of_citizens</to>
