@@ -31,7 +31,9 @@
 				<inflow>Money_on_the_way</inflow>
 				<inflow>Gold_from_trade_with_ewrererer</inflow>
 				<inflow>Mony_onwat</inflow>
-				<outflow>Road_toll_expenses</outflow>
+				<outflow>Money_from_Cottonbog_to_pay_toll_expenses</outflow>
+				<outflow>Cotton_picking_expenses</outflow>
+				<outflow>Paying_for_ransoming_of_captives</outflow>
 				<non_negative/>
 				<units>Gold</units>
 			</stock>
@@ -50,7 +52,7 @@
 			<stock name="Gold from trade\nwith Slagtown">
 				<outflow>Money_on_the_way</outflow>
 				<outflow>Money_spent_on_the_way_home_from_Slagtown</outflow>
-				<outflow>Money_spent_on_toll</outflow>
+				<outflow>Money_made_to_pay_for_toll</outflow>
 				<outflow>Stolen_from_bandits_in_Slagtown</outflow>
 				<non_negative/>
 				<units>Gold</units>
@@ -82,36 +84,34 @@
 				<units>Gold/Months</units>
 			</flow>
 			<aux name="Food and commodities\nexpenses?"/>
-			<flow name="Road toll expenses">
+			<flow name="Money from Cottonbog\nto pay toll expenses">
 				<non_negative/>
 				<units>Gold/Months</units>
 			</flow>
-			<flow name="Money spent on toll">
+			<flow name="Money made to pay for toll">
 				<non_negative/>
 				<units>Gold/Months</units>
 			</flow>
-			<aux name="Cost of toll">
-				<eqn>250</eqn>
-				<units>Gold</units>
-			</aux>
 			<stock name="Bandits' gold">
+				<eqn>0</eqn>
 				<inflow>Sale_of_stolen_goods</inflow>
 				<inflow>Bandit_raid</inflow>
 				<inflow>Ransoming_of_captives</inflow>
 				<outflow>Bandit_living_expenses</outflow>
-				<outflow>Equipment_costs</outflow>
+				<outflow>Bandit_equipment_costs</outflow>
 				<non_negative/>
 			</stock>
 			<flow name="Bandit living expenses">
 				<non_negative/>
 			</flow>
-			<flow name="Equipment costs">
+			<flow name="Bandit equipment costs">
 				<non_negative/>
 			</flow>
 			<flow name="Sale of stolen goods">
 				<non_negative/>
 			</flow>
 			<flow name="Bandit raid">
+				<eqn>Total_amount_stolen</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Ransoming\nof captives">
@@ -122,33 +122,40 @@
 				<entity name="Money_spent_on_the_way_home_from_Goldford"/>
 				<entity name="Gold_from_trade_with_Coalpeak"/>
 				<entity name="Gold_from_trade_with_Goldford"/>
-				<entity name="Mony_onwat"/>
 				<entity name="Stolen_from_bandits_in_Goldford"/>
 				<entity name="Stolen_from_bandits_in_Coalpeak"/>
+				<entity name="Mony_onwat"/>
 				<entity name="Cottonbogs'_gold"/>
 				<entity name="Gold_from_trade_with_ewrererer"/>
+				<entity name="Cotton_picking_expenses"/>
 				<entity name='"Food_and_commodities_expenses?"'/>
 				<entity name="Money_spent_on_the_way_home_from_Slagtown"/>
 				<entity name="Gold_from_trade_with_Slagtown"/>
-				<entity name="Money_spent_on_toll"/>
+				<entity name="Money_made_to_pay_for_toll"/>
 				<entity name="Stolen_from_bandits_in_Slagtown"/>
 				<entity name="Money_on_the_way"/>
-				<entity name="Road_toll_expenses"/>
-				<entity name="Cost_of_toll"/>
+				<entity name="Gold_for_toll_to_Slagtown"/>
+				<entity name="Money_from_Cottonbog_to_pay_toll_expenses"/>
+				<entity name="Paying_for_ransoming_of_captives"/>
+				<entity name="cost_per_captive"/>
 			</group>
 			<flow name="Stolen from bandits in Slagtown">
+				<eqn>Gold_from_trade_with_Slagtown</eqn>
 				<non_negative/>
 				<units>Gold/Months</units>
 			</flow>
 			<flow name="Stolen from bandits in Goldford">
+				<eqn>Gold_from_trade_with_Goldford</eqn>
 				<non_negative/>
 				<units>Gold/Months</units>
 			</flow>
 			<flow name="Stolen from bandits in Coalpeak">
+				<eqn>Gold_from_trade_with_Coalpeak</eqn>
 				<non_negative/>
 				<units>Gold/Months</units>
 			</flow>
 			<stock name="Total amount stolen">
+				<eqn>0</eqn>
 				<inflow>Flow_1</inflow>
 				<outflow>Bandit_raid</outflow>
 				<non_negative/>
@@ -157,6 +164,40 @@
 				<eqn>Stolen_from_bandits_in_Coalpeak+Stolen_from_bandits_in_Slagtown+Stolen_from_bandits_in_Goldford</eqn>
 				<non_negative/>
 			</flow>
+			<stock name="Gold for\ntoll to\nSlagtown">
+				<inflow>Money_from_Cottonbog_to_pay_toll_expenses</inflow>
+				<inflow>Money_made_to_pay_for_toll</inflow>
+				<outflow>Paying_for_toll</outflow>
+				<non_negative/>
+				<units>Gold</units>
+			</stock>
+			<flow name="Paying for toll">
+				<non_negative/>
+				<units>Gold/Months</units>
+			</flow>
+			<flow name="Cotton picking\nexpenses">
+				<non_negative/>
+				<units>Gold/Months</units>
+			</flow>
+			<flow name="Paying for\nransoming of captives">
+				<eqn>cost_per_captive*&quot;\&quot;amount_of_captives\&quot;&quot;</eqn>
+				<non_negative/>
+				<units>Gold/Months</units>
+			</flow>
+			<aux name="cost per captive"/>
+			<stock name='"amount of captives"'>
+				<non_negative/>
+			</stock>
+			<group name="Bandits gold section" run="false">
+				<entity name="Bandit_equipment_costs"/>
+				<entity name="Ransoming_of_captives"/>
+				<entity name="Total_amount_stolen"/>
+				<entity name="Bandit_raid"/>
+				<entity name="Flow_1"/>
+				<entity name="Bandit_living_expenses"/>
+				<entity name="Sale_of_stolen_goods"/>
+				<entity name="Bandits'_gold"/>
+			</group>
 			<isee:dependencies>
 				<var name="Money_spent_on_the_way_home_from_Coalpeak">
 					<in>&quot;Food_and_commodities_expenses?&quot;</in>
@@ -167,16 +208,29 @@
 				<var name="Money_spent_on_the_way_home_from_Goldford">
 					<in>&quot;Food_and_commodities_expenses?&quot;</in>
 				</var>
-				<var name="Road_toll_expenses">
-					<in>Cost_of_toll</in>
+				<var name="Bandit_raid">
+					<in>Total_amount_stolen</in>
 				</var>
-				<var name="Money_spent_on_toll">
-					<in>Cost_of_toll</in>
+				<var name="Ransoming_of_captives">
+					<in>Paying_for_ransoming_of_captives</in>
+				</var>
+				<var name="Stolen_from_bandits_in_Slagtown">
+					<in>Gold_from_trade_with_Slagtown</in>
+				</var>
+				<var name="Stolen_from_bandits_in_Goldford">
+					<in>Gold_from_trade_with_Goldford</in>
+				</var>
+				<var name="Stolen_from_bandits_in_Coalpeak">
+					<in>Gold_from_trade_with_Coalpeak</in>
 				</var>
 				<var name="Flow_1">
 					<in>Stolen_from_bandits_in_Goldford</in>
 					<in>Stolen_from_bandits_in_Slagtown</in>
 					<in>Stolen_from_bandits_in_Coalpeak</in>
+				</var>
+				<var name="Paying_for_ransoming_of_captives">
+					<in>cost_per_captive</in>
+					<in>&quot;\&quot;amount_of_captives\&quot;&quot;</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -220,7 +274,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="5" isee:page_rows="5" isee:scroll_y="1118" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="5" isee:page_rows="5" isee:scroll_y="1265" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -309,56 +363,49 @@
 					<from>&quot;Food_and_commodities_expenses?&quot;</from>
 					<to>Money_spent_on_the_way_home_from_Goldford</to>
 				</connector>
-				<flow x="1408.33" y="1377.65" name="Road toll expenses">
+				<flow x="1365.5" y="1447.5" name="Money from Cottonbog\nto pay toll expenses">
 					<pts>
-						<pt x="1408.33" y="1337.13"/>
-						<pt x="1408.33" y="1439.17"/>
+						<pt x="1461.67" y="1337.13"/>
+						<pt x="1461.67" y="1447.5"/>
+						<pt x="1257.33" y="1447.5"/>
 					</pts>
 				</flow>
-				<flow x="1036.08" y="1395.08" name="Money spent on toll">
+				<flow x="1118.21" y="1447.5" name="Money made to pay for toll">
 					<pts>
 						<pt x="1036.08" y="1336.83"/>
-						<pt x="1036.08" y="1474.33"/>
+						<pt x="1036.08" y="1447.5"/>
+						<pt x="1212.33" y="1447.5"/>
 					</pts>
 				</flow>
-				<aux x="1217.4" y="1429.33" name="Cost of toll"/>
-				<connector uid="4" angle="169.303">
-					<from>Cost_of_toll</from>
-					<to>Money_spent_on_toll</to>
-				</connector>
-				<connector uid="5" angle="15.1473">
-					<from>Cost_of_toll</from>
-					<to>Road_toll_expenses</to>
-				</connector>
-				<stock x="1065" y="1671.25" width="105" height="246.25" name="Bandits' gold"/>
-				<flow x="1306.75" y="1710.5" name="Bandit living expenses">
+				<stock x="1068.33" y="1726.71" width="105" height="246.25" name="Bandits' gold"/>
+				<flow x="1318.92" y="1764.5" name="Bandit living expenses">
 					<pts>
-						<pt x="1170" y="1710.5"/>
-						<pt x="1467.5" y="1710.5"/>
+						<pt x="1173.33" y="1764.5"/>
+						<pt x="1488.5" y="1764.5"/>
 					</pts>
 				</flow>
-				<flow label_side="bottom" x="1306.13" y="1788" name="Equipment costs">
+				<flow label_side="bottom" x="1318.29" y="1842" name="Bandit equipment costs">
 					<pts>
-						<pt x="1170" y="1788"/>
-						<pt x="1466.25" y="1788"/>
+						<pt x="1173.33" y="1842"/>
+						<pt x="1487.25" y="1842"/>
 					</pts>
 				</flow>
-				<flow x="961.5" y="1704" name="Sale of stolen goods">
+				<flow x="964.667" y="1749" width="18" height="18" name="Sale of stolen goods">
 					<pts>
-						<pt x="858" y="1704"/>
-						<pt x="1065" y="1704"/>
+						<pt x="879" y="1758"/>
+						<pt x="1068.33" y="1758"/>
 					</pts>
 				</flow>
-				<flow x="954.75" y="1789.5" name="Bandit raid">
+				<flow x="957.917" y="1834.5" width="18" height="18" name="Bandit raid">
 					<pts>
-						<pt x="856.5" y="1789.5"/>
-						<pt x="1065" y="1789.5"/>
+						<pt x="877.5" y="1843.5"/>
+						<pt x="1068.33" y="1843.5"/>
 					</pts>
 				</flow>
-				<flow x="956.25" y="1865.5" name="Ransoming\nof captives">
+				<flow x="959.417" y="1910.5" width="18" height="18" name="Ransoming\nof captives">
 					<pts>
-						<pt x="847.5" y="1865.5"/>
-						<pt x="1065" y="1865.5"/>
+						<pt x="868.5" y="1919.5"/>
+						<pt x="1068.33" y="1919.5"/>
 					</pts>
 				</flow>
 				<group locked="false" x="379" y="704.5" width="1405.17" height="784.5" name="Cottonbogs gold section"/>
@@ -380,41 +427,100 @@
 						<pt x="1041.67" y="721.667"/>
 					</pts>
 				</flow>
-				<stock x="834" y="1794" name="Total amount stolen"/>
-				<alias font_style="italic" label_side="left" uid="6" x="532" y="1780.5" width="18" height="18">
+				<stock x="855" y="1848" name="Total amount stolen"/>
+				<alias font_style="italic" label_side="left" uid="4" x="553" y="1834.5" width="18" height="18">
 					<of>Stolen_from_bandits_in_Goldford</of>
 				</alias>
-				<flow x="726.5" y="1794" name="Flow 1">
+				<flow x="744.25" y="1849.83" name="Flow 1">
 					<pts>
-						<pt x="653.5" y="1780"/>
-						<pt x="653.5" y="1794"/>
-						<pt x="811.5" y="1794"/>
+						<pt x="656" y="1849.83"/>
+						<pt x="832.5" y="1849.83"/>
 					</pts>
 				</flow>
-				<connector uid="7" angle="358.61">
+				<connector uid="5" angle="358.01">
+					<from>
+						<alias uid="4"/>
+					</from>
+					<to>Flow_1</to>
+				</connector>
+				<alias font_style="italic" label_side="left" uid="6" x="553" y="1875" width="18" height="18">
+					<of>Stolen_from_bandits_in_Coalpeak</of>
+				</alias>
+				<alias font_style="italic" label_side="left" uid="7" x="553" y="1792" width="18" height="18">
+					<of>Stolen_from_bandits_in_Slagtown</of>
+				</alias>
+				<connector uid="8" angle="358.363">
+					<from>
+						<alias uid="7"/>
+					</from>
+					<to>Flow_1</to>
+				</connector>
+				<connector uid="9" angle="10.6181">
 					<from>
 						<alias uid="6"/>
 					</from>
 					<to>Flow_1</to>
 				</connector>
-				<alias font_style="italic" label_side="left" uid="8" x="532" y="1821" width="18" height="18">
-					<of>Stolen_from_bandits_in_Coalpeak</of>
-				</alias>
-				<alias font_style="italic" label_side="left" uid="9" x="532" y="1738" width="18" height="18">
-					<of>Stolen_from_bandits_in_Slagtown</of>
-				</alias>
-				<connector uid="10" angle="358.363">
-					<from>
-						<alias uid="9"/>
-					</from>
-					<to>Flow_1</to>
+				<connector uid="10" angle="329.286">
+					<from>Total_amount_stolen</from>
+					<to>Bandit_raid</to>
 				</connector>
-				<connector uid="11" angle="10.9829">
-					<from>
-						<alias uid="8"/>
-					</from>
-					<to>Flow_1</to>
+				<stock x="1234.83" y="1447.5" name="Gold for\ntoll to\nSlagtown"/>
+				<flow x="1235" y="1512.83" name="Paying for toll">
+					<pts>
+						<pt x="1235" y="1465"/>
+						<pt x="1235" y="1581.67"/>
+					</pts>
+				</flow>
+				<connector uid="11" angle="46.9854">
+					<from>Gold_from_trade_with_Slagtown</from>
+					<to>Stolen_from_bandits_in_Slagtown</to>
 				</connector>
+				<connector uid="12" angle="43.1836">
+					<from>Gold_from_trade_with_Goldford</from>
+					<to>Stolen_from_bandits_in_Goldford</to>
+				</connector>
+				<connector uid="13" angle="57.6713">
+					<from>Gold_from_trade_with_Coalpeak</from>
+					<to>Stolen_from_bandits_in_Coalpeak</to>
+				</connector>
+				<flow x="1557.14" y="1022.67" width="18" height="18" name="Cotton picking\nexpenses">
+					<pts>
+						<pt x="1488.78" y="1031.67"/>
+						<pt x="1667.5" y="1031.67"/>
+					</pts>
+				</flow>
+				<flow x="1588.01" y="1230" name="Paying for\nransoming of captives">
+					<pts>
+						<pt x="1488.78" y="1230"/>
+						<pt x="1711.25" y="1230"/>
+					</pts>
+				</flow>
+				<alias font_style="italic" uid="14" x="742" y="1972.96" width="18" height="18">
+					<of>Paying_for_ransoming_of_captives</of>
+				</alias>
+				<connector uid="15" angle="16.028">
+					<from>
+						<alias uid="14"/>
+					</from>
+					<to>Ransoming_of_captives</to>
+				</connector>
+				<aux x="1645" y="1148.75" name="cost per captive"/>
+				<connector uid="16" angle="210.816">
+					<from>cost_per_captive</from>
+					<to>Paying_for_ransoming_of_captives</to>
+				</connector>
+				<stock x="1963.33" y="1131.67" name='"amount of captives"'/>
+				<connector uid="17" angle="192.995">
+					<from>&quot;\&quot;amount_of_captives\&quot;&quot;</from>
+					<to>Paying_for_ransoming_of_captives</to>
+				</connector>
+				<group locked="true" x="265.25" y="1668.67" width="1368" height="453" name="Bandits gold section">
+					<item uid="14"/>
+					<item uid="6"/>
+					<item uid="4"/>
+					<item uid="7"/>
+				</group>
 			</view>
 		</views>
 	</model>
