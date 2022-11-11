@@ -139,8 +139,8 @@
 					<in>Bandit_raid</in>
 				</var>
 				<var name="Gold_from_trade_with_Slagtown">
-					<in>Sale_of_cotton_in_Slagtown</in>
 					<in>Purchase_of_food_and_commodities</in>
+					<in>Sale_of_cotton_in_Slagtown</in>
 					<in>Bandit_raid</in>
 				</var>
 				<var name="Gold_from_trade_with_Coalpeak">
@@ -197,7 +197,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1056" page_height="816" isee:page_cols="2" isee:page_rows="2" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1056" page_height="816" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="172.5" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="red" background="white" font_color="blue" font_size="14pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -398,6 +398,46 @@
 					<from>Road_toll_expenses</from>
 					<to>Gold_for_toll_to_Slagtown</to>
 				</connector>
+				<isee:loop_indicator text="B1" orientation="counter_clockwise" uid="37" x="812.5" y="433.333" width="30" height="30">
+					<isee:entities>
+						<item uid="3"/>
+						<item uid="24"/>
+						<entity name="Traveling_with_cotton_to_SlagTown"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B3" orientation="counter_clockwise" uid="38" x="1038.33" y="433.333" width="30" height="30">
+					<isee:entities>
+						<item uid="6"/>
+						<item uid="26"/>
+						<entity name="Traveling_with_cotton_to_Coalpeak"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B2" orientation="counter_clockwise" uid="39" x="925.833" y="488.334" width="30" height="30">
+					<isee:entities>
+						<entity name="Traveling_with_cotton_to_Goldford"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+						<item uid="8"/>
+						<item uid="25"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B4" orientation="counter_clockwise" uid="40" x="1057.5" y="776.667" width="30" height="30">
+					<isee:entities>
+						<entity name="Sale_of_stolen_cotton"/>
+						<entity name="Cotton_in_bandit_camp"/>
+						<item uid="27"/>
+						<item uid="13"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B5" orientation="counter_clockwise" uid="41" x="934" y="267.857" width="30" height="30">
+					<isee:entities>
+						<entity name="Cotton_grown_in_Cottonbog"/>
+						<item uid="28"/>
+						<item uid="1"/>
+						<entity name="Cotton_picking"/>
+					</isee:entities>
+				</isee:loop_indicator>
 			</view>
 		</views>
 	</model>
