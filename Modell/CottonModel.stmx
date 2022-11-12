@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>CottonModel</name>
+		<uuid>4b00eda0-c27a-4db0-88c8-43f1e519827c</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.115385" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<stock name="Cotton picked in Cottonbog">
+				<eqn>0</eqn>
+				<inflow>Cotton_picking</inflow>
+				<outflow>Amount_of_cotton_to_transport_to_Slagtown</outflow>
+				<outflow>Amount_of_cotton_to_transport_to_Goldford</outflow>
+				<outflow>Amount_of_cotton_to_transport_to_Coalpeak</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Cotton picking">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Cotton grown in Cottonbog">
+				<eqn>0</eqn>
+				<outflow>Cotton_picking</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Amount of\ncotton to transport\nto Slagtown">
+				<non_negative/>
+			</flow>
+			<stock name="Cotton in Slagtown\navailable for sale">
+				<eqn>0</eqn>
+				<inflow>Amount_cotton_left_to_Slagtown</inflow>
+				<outflow>Cotton_sold_in_Slagtown</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Amount of\ncotton to transport\nto Goldford">
+				<non_negative/>
+			</flow>
+			<flow name="Amount of\ncotton to transport\nto Coalpeak">
+				<non_negative/>
+			</flow>
+			<stock name="Sale of cotton in Goldford">
+				<inflow>Amount_cotton_left_to_Goldford</inflow>
+				<outflow>Cotton_sold_in_Goldford</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Amount of cotton\ntransported to Coalpeak">
+				<inflow>Amount_of_cotton_to_transport_to_Coalpeak</inflow>
+				<outflow>Amount_cotton_left_to_Coalpeak</outflow>
+				<outflow>Stolen_cotton_from_Coalpeak_transport</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Cotton in bandit camp">
+				<inflow>Flow_1</inflow>
+				<non_negative/>
+			</stock>
+			<flow name="Flow 1">
+				<non_negative/>
+			</flow>
+			<flow name="Amount cotton left\nto Coalpeak">
+				<non_negative/>
+			</flow>
+			<flow name="Stolen cotton from\nCoalpeak transport">
+				<non_negative/>
+			</flow>
+			<stock name="Cotton in Coalpeak\navailable for sale">
+				<inflow>Amount_cotton_left_to_Coalpeak</inflow>
+				<outflow>Cotton_sold_in_Coalpeak</outflow>
+				<non_negative/>
+			</stock>
+			<stock name="Amount of cotton\ntransported to Goldford">
+				<inflow>Amount_of_cotton_to_transport_to_Goldford</inflow>
+				<outflow>Amount_cotton_left_to_Goldford</outflow>
+				<outflow>Stolen_cotton_from_Goldford_transport</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Amount cotton left\nto Goldford">
+				<non_negative/>
+			</flow>
+			<flow name="Stolen cotton from\nGoldford transport">
+				<non_negative/>
+			</flow>
+			<stock name="Amount of cotton\ntransported to Slagtown">
+				<inflow>Amount_of_cotton_to_transport_to_Slagtown</inflow>
+				<outflow>Amount_cotton_left_to_Slagtown</outflow>
+				<outflow>Stolen_cotton_from_Slagtown_transport</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Amount cotton left\nto Slagtown">
+				<non_negative/>
+			</flow>
+			<flow name="Stolen cotton from\nSlagtown transport">
+				<non_negative/>
+			</flow>
+			<flow name="Cotton sold in Slagtown">
+				<non_negative/>
+			</flow>
+			<flow name="Cotton sold in Goldford">
+				<non_negative/>
+			</flow>
+			<flow name="Cotton sold in Coalpeak">
+				<non_negative/>
+			</flow>
+			<isee:dependencies>
+				<var name="Flow_1">
+					<in>Stolen_cotton_from_Coalpeak_transport</in>
+					<in>Stolen_cotton_from_Goldford_transport</in>
+					<in>Stolen_cotton_from_Slagtown_transport</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="365" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="16pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="16pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock label_side="top" x="811.111" y="686.111" name="Cotton picked in Cottonbog"/>
+				<flow x="802.667" y="568.889" width="18" height="18" name="Cotton picking">
+					<pts>
+						<pt x="811.667" y="499.167"/>
+						<pt x="811.667" y="668.611"/>
+					</pts>
+				</flow>
+				<stock x="811.667" y="481.667" name="Cotton grown in Cottonbog"/>
+				<flow x="697.389" y="688.333" name="Amount of\ncotton to transport\nto Slagtown">
+					<pts>
+						<pt x="788.611" y="688.333"/>
+						<pt x="594.167" y="688.333"/>
+					</pts>
+				</flow>
+				<stock x="373.333" y="686.111" name="Cotton in Slagtown\navailable for sale"/>
+				<flow x="811.111" y="790.944" name="Amount of\ncotton to transport\nto Goldford">
+					<pts>
+						<pt x="811.111" y="703.611"/>
+						<pt x="811.111" y="890.278"/>
+					</pts>
+				</flow>
+				<flow x="929" y="686.111" name="Amount of\ncotton to transport\nto Coalpeak">
+					<pts>
+						<pt x="833.611" y="686.111"/>
+						<pt x="1036.39" y="686.111"/>
+					</pts>
+				</flow>
+				<stock label_side="bottom" x="809.444" y="1091.67" name="Sale of cotton in Goldford"/>
+				<stock x="1058.89" y="686.111" name="Amount of cotton\ntransported to Coalpeak"/>
+				<stock x="1178.89" y="928.333" name="Cotton in bandit camp"/>
+				<flow x="1071.69" y="916" width="18" height="18" name="Flow 1">
+					<pts>
+						<pt x="1005" y="925"/>
+						<pt x="1156.39" y="925"/>
+					</pts>
+				</flow>
+				<flow x="1145.11" y="687.222" name="Amount cotton left\nto Coalpeak">
+					<pts>
+						<pt x="1081.39" y="687.222"/>
+						<pt x="1220.83" y="687.222"/>
+					</pts>
+				</flow>
+				<flow x="1056.11" y="749.361" name="Stolen cotton from\nCoalpeak transport">
+					<pts>
+						<pt x="1056.11" y="703.611"/>
+						<pt x="1056.11" y="816.111"/>
+					</pts>
+				</flow>
+				<connector uid="1" angle="335.416">
+					<from>Stolen_cotton_from_Coalpeak_transport</from>
+					<to>Flow_1</to>
+				</connector>
+				<stock x="1243.33" y="687.222" name="Cotton in Coalpeak\navailable for sale"/>
+				<stock x="811.111" y="907.778" name="Amount of cotton\ntransported to Goldford"/>
+				<flow x="809.444" y="993.722" name="Amount cotton left\nto Goldford">
+					<pts>
+						<pt x="809.444" y="925.278"/>
+						<pt x="809.444" y="1074.17"/>
+					</pts>
+				</flow>
+				<flow x="870.639" y="911.667" name="Stolen cotton from\nGoldford transport">
+					<pts>
+						<pt x="833.611" y="911.667"/>
+						<pt x="931.667" y="911.667"/>
+					</pts>
+				</flow>
+				<connector uid="2" angle="43.5272">
+					<from>Stolen_cotton_from_Goldford_transport</from>
+					<to>Flow_1</to>
+				</connector>
+				<stock label_side="top" x="571.667" y="686.111" name="Amount of cotton\ntransported to Slagtown"/>
+				<flow x="478.5" y="686.111" name="Amount cotton left\nto Slagtown">
+					<pts>
+						<pt x="549.167" y="686.111"/>
+						<pt x="395.833" y="686.111"/>
+					</pts>
+				</flow>
+				<flow x="570.556" y="756.306" name="Stolen cotton from\nSlagtown transport">
+					<pts>
+						<pt x="570.556" y="703.611"/>
+						<pt x="570.556" y="830"/>
+					</pts>
+				</flow>
+				<connector uid="3" angle="294.792">
+					<from>Stolen_cotton_from_Slagtown_transport</from>
+					<to>Flow_1</to>
+				</connector>
+				<flow x="294.917" y="686.667" name="Cotton sold in Slagtown">
+					<pts>
+						<pt x="350.833" y="686.667"/>
+						<pt x="215" y="686.667"/>
+					</pts>
+				</flow>
+				<flow x="814.167" y="1151.17" name="Cotton sold in Goldford">
+					<pts>
+						<pt x="814.167" y="1109.17"/>
+						<pt x="814.167" y="1214.17"/>
+					</pts>
+				</flow>
+				<flow x="1304.67" y="686.667" name="Cotton sold in Coalpeak">
+					<pts>
+						<pt x="1265.83" y="686.667"/>
+						<pt x="1367.5" y="686.667"/>
+					</pts>
+				</flow>
+			</view>
+		</views>
+	</model>
+</xmile>
+
