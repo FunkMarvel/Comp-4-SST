@@ -30,96 +30,92 @@
 				<non_negative/>
 			</stock>
 			<flow name="Cotton picking">
-				<eqn>0</eqn>
+				<eqn>25000</eqn>
 				<non_negative/>
 			</flow>
 			<stock name="Cotton grown in Cottonbog">
-				<eqn>0</eqn>
+				<eqn>25000</eqn>
+				<inflow>Cotton_growing</inflow>
 				<outflow>Cotton_picking</outflow>
 				<non_negative/>
 			</stock>
 			<flow name="Amount of\ncotton to transport\nto Slagtown">
+				<eqn>Amount_of_cotton_to_slagtown</eqn>
 				<non_negative/>
 			</flow>
-			<stock name="Cotton in Slagtown\navailable for sale">
-				<eqn>0</eqn>
-				<inflow>Amount_cotton_left_to_Slagtown</inflow>
-				<outflow>Cotton_sold_in_Slagtown</outflow>
-				<non_negative/>
-			</stock>
 			<flow name="Amount of\ncotton to transport\nto Goldford">
+				<eqn>Amount_of_cotton_to_Goldford</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Amount of\ncotton to transport\nto Coalpeak">
+				<eqn>Amount_of_cotton_to_Coalpeak</eqn>
 				<non_negative/>
 			</flow>
-			<stock name="Sale of cotton in Goldford">
-				<inflow>Amount_cotton_left_to_Goldford</inflow>
-				<outflow>Cotton_sold_in_Goldford</outflow>
-				<non_negative/>
-			</stock>
-			<stock name="Amount of cotton\ntransported to Coalpeak">
-				<inflow>Amount_of_cotton_to_transport_to_Coalpeak</inflow>
-				<outflow>Amount_cotton_left_to_Coalpeak</outflow>
-				<outflow>Stolen_cotton_from_Coalpeak_transport</outflow>
-				<non_negative/>
-			</stock>
 			<stock name="Cotton in bandit camp">
-				<inflow>Flow_1</inflow>
+				<eqn>0</eqn>
+				<inflow>Stolen_cotton</inflow>
 				<non_negative/>
 			</stock>
-			<flow name="Flow 1">
+			<flow name="Stolen cotton">
+				<eqn>Amount_of_cotton_to_slagtown*Successful_raid_slagtown + Amount_of_cotton_to_Coalpeak*Successful_raid_coalpeak + Amount_of_cotton_to_Goldford*Successful_raid_Goldford</eqn>
 				<non_negative/>
 			</flow>
-			<flow name="Amount cotton left\nto Coalpeak">
+			<aux name="Amount of cotton\nto slagtown">
+				<eqn>30</eqn>
+			</aux>
+			<aux name="Successful raid\nslagtown">
+				<eqn>1</eqn>
+			</aux>
+			<aux name="Amount of cotton\nto Coalpeak">
+				<eqn>30</eqn>
+			</aux>
+			<aux name="Successful raid\ncoalpeak">
+				<eqn>1</eqn>
+			</aux>
+			<aux name="Successful raid\nGoldford">
+				<eqn>1</eqn>
+			</aux>
+			<aux name="Amount of cotton\nto Goldford">
+				<eqn>30</eqn>
+			</aux>
+			<flow name="Cotton growing">
+				<eqn>25000</eqn>
 				<non_negative/>
 			</flow>
-			<flow name="Stolen cotton from\nCoalpeak transport">
-				<non_negative/>
-			</flow>
-			<stock name="Cotton in Coalpeak\navailable for sale">
-				<inflow>Amount_cotton_left_to_Coalpeak</inflow>
-				<outflow>Cotton_sold_in_Coalpeak</outflow>
-				<non_negative/>
-			</stock>
-			<stock name="Amount of cotton\ntransported to Goldford">
-				<inflow>Amount_of_cotton_to_transport_to_Goldford</inflow>
-				<outflow>Amount_cotton_left_to_Goldford</outflow>
-				<outflow>Stolen_cotton_from_Goldford_transport</outflow>
-				<non_negative/>
-			</stock>
-			<flow name="Amount cotton left\nto Goldford">
-				<non_negative/>
-			</flow>
-			<flow name="Stolen cotton from\nGoldford transport">
-				<non_negative/>
-			</flow>
-			<stock name="Amount of cotton\ntransported to Slagtown">
-				<inflow>Amount_of_cotton_to_transport_to_Slagtown</inflow>
-				<outflow>Amount_cotton_left_to_Slagtown</outflow>
-				<outflow>Stolen_cotton_from_Slagtown_transport</outflow>
-				<non_negative/>
-			</stock>
-			<flow name="Amount cotton left\nto Slagtown">
-				<non_negative/>
-			</flow>
-			<flow name="Stolen cotton from\nSlagtown transport">
-				<non_negative/>
-			</flow>
-			<flow name="Cotton sold in Slagtown">
-				<non_negative/>
-			</flow>
-			<flow name="Cotton sold in Goldford">
-				<non_negative/>
-			</flow>
-			<flow name="Cotton sold in Coalpeak">
-				<non_negative/>
-			</flow>
+			<group name="Cotton dynamics" run="false">
+				<entity name="Amount_of_cotton_to_Goldford"/>
+				<entity name="Amount_of_cotton_to_transport_to_Goldford"/>
+				<entity name="Amount_of_cotton_to_transport_to_Coalpeak"/>
+				<entity name="Cotton_picking"/>
+				<entity name="Cotton_picked_in_Cottonbog"/>
+				<entity name="Cotton_in_bandit_camp"/>
+				<entity name="Amount_of_cotton_to_slagtown"/>
+				<entity name="Amount_of_cotton_to_Coalpeak"/>
+				<entity name="Amount_of_cotton_to_transport_to_Slagtown"/>
+				<entity name="Successful_raid_coalpeak"/>
+				<entity name="Stolen_cotton"/>
+				<entity name="Successful_raid_Goldford"/>
+				<entity name="Successful_raid_slagtown"/>
+				<entity name="Cotton_grown_in_Cottonbog"/>
+				<entity name="Cotton_growing"/>
+			</group>
 			<isee:dependencies>
-				<var name="Flow_1">
-					<in>Stolen_cotton_from_Coalpeak_transport</in>
-					<in>Stolen_cotton_from_Goldford_transport</in>
-					<in>Stolen_cotton_from_Slagtown_transport</in>
+				<var name="Amount_of_cotton_to_transport_to_Slagtown">
+					<in>Amount_of_cotton_to_slagtown</in>
+				</var>
+				<var name="Amount_of_cotton_to_transport_to_Goldford">
+					<in>Amount_of_cotton_to_Goldford</in>
+				</var>
+				<var name="Amount_of_cotton_to_transport_to_Coalpeak">
+					<in>Amount_of_cotton_to_Coalpeak</in>
+				</var>
+				<var name="Stolen_cotton">
+					<in>Amount_of_cotton_to_slagtown</in>
+					<in>Successful_raid_slagtown</in>
+					<in>Amount_of_cotton_to_Coalpeak</in>
+					<in>Successful_raid_coalpeak</in>
+					<in>Amount_of_cotton_to_Goldford</in>
+					<in>Successful_raid_Goldford</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -163,7 +159,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="365" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="200" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -200,110 +196,87 @@
 					<table color="black" background="#E0E0E0" text_align="right" font_size="16pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="16pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
 				<stock label_side="top" x="811.111" y="686.111" name="Cotton picked in Cottonbog"/>
-				<flow x="802.667" y="568.889" width="18" height="18" name="Cotton picking">
+				<flow x="811.667" y="577.889" name="Cotton picking">
 					<pts>
 						<pt x="811.667" y="499.167"/>
 						<pt x="811.667" y="668.611"/>
 					</pts>
 				</flow>
 				<stock x="811.667" y="481.667" name="Cotton grown in Cottonbog"/>
-				<flow x="697.389" y="688.333" name="Amount of\ncotton to transport\nto Slagtown">
+				<flow x="703.389" y="688.333" name="Amount of\ncotton to transport\nto Slagtown">
 					<pts>
 						<pt x="788.611" y="688.333"/>
 						<pt x="594.167" y="688.333"/>
 					</pts>
 				</flow>
-				<stock x="373.333" y="686.111" name="Cotton in Slagtown\navailable for sale"/>
-				<flow x="811.111" y="790.944" name="Amount of\ncotton to transport\nto Goldford">
+				<flow x="811.111" y="786.445" name="Amount of\ncotton to transport\nto Goldford">
 					<pts>
 						<pt x="811.111" y="703.611"/>
 						<pt x="811.111" y="890.278"/>
 					</pts>
 				</flow>
-				<flow x="929" y="686.111" name="Amount of\ncotton to transport\nto Coalpeak">
+				<flow x="923.001" y="686.111" name="Amount of\ncotton to transport\nto Coalpeak">
 					<pts>
 						<pt x="833.611" y="686.111"/>
 						<pt x="1036.39" y="686.111"/>
 					</pts>
 				</flow>
-				<stock label_side="bottom" x="809.444" y="1091.67" name="Sale of cotton in Goldford"/>
-				<stock x="1058.89" y="686.111" name="Amount of cotton\ntransported to Coalpeak"/>
-				<stock x="1178.89" y="928.333" name="Cotton in bandit camp"/>
-				<flow x="1071.69" y="916" width="18" height="18" name="Flow 1">
+				<stock x="513.057" y="639.166" name="Cotton in bandit camp"/>
+				<flow x="414.862" y="639.166" name="Stolen cotton">
 					<pts>
-						<pt x="1005" y="925"/>
-						<pt x="1156.39" y="925"/>
+						<pt x="339.167" y="639.166"/>
+						<pt x="490.557" y="639.166"/>
 					</pts>
 				</flow>
-				<flow x="1145.11" y="687.222" name="Amount cotton left\nto Coalpeak">
-					<pts>
-						<pt x="1081.39" y="687.222"/>
-						<pt x="1220.83" y="687.222"/>
-					</pts>
-				</flow>
-				<flow x="1056.11" y="749.361" name="Stolen cotton from\nCoalpeak transport">
-					<pts>
-						<pt x="1056.11" y="703.611"/>
-						<pt x="1056.11" y="816.111"/>
-					</pts>
-				</flow>
-				<connector uid="1" angle="335.416">
-					<from>Stolen_cotton_from_Coalpeak_transport</from>
-					<to>Flow_1</to>
+				<aux x="579.167" y="546.667" name="Amount of cotton\nto slagtown"/>
+				<connector uid="1" angle="343.61">
+					<from>Amount_of_cotton_to_slagtown</from>
+					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
 				</connector>
-				<stock x="1243.33" y="687.222" name="Cotton in Coalpeak\navailable for sale"/>
-				<stock x="811.111" y="907.778" name="Amount of cotton\ntransported to Goldford"/>
-				<flow x="809.444" y="993.722" name="Amount cotton left\nto Goldford">
-					<pts>
-						<pt x="809.444" y="925.278"/>
-						<pt x="809.444" y="1074.17"/>
-					</pts>
-				</flow>
-				<flow x="870.639" y="911.667" name="Stolen cotton from\nGoldford transport">
-					<pts>
-						<pt x="833.611" y="911.667"/>
-						<pt x="931.667" y="911.667"/>
-					</pts>
-				</flow>
-				<connector uid="2" angle="43.5272">
-					<from>Stolen_cotton_from_Goldford_transport</from>
-					<to>Flow_1</to>
+				<aux x="284.167" y="577.889" name="Successful raid\nslagtown"/>
+				<connector uid="2" angle="209.378">
+					<from>Amount_of_cotton_to_slagtown</from>
+					<to>Stolen_cotton</to>
 				</connector>
-				<stock label_side="top" x="571.667" y="686.111" name="Amount of cotton\ntransported to Slagtown"/>
-				<flow x="478.5" y="686.111" name="Amount cotton left\nto Slagtown">
-					<pts>
-						<pt x="549.167" y="686.111"/>
-						<pt x="395.833" y="686.111"/>
-					</pts>
-				</flow>
-				<flow x="570.556" y="756.306" name="Stolen cotton from\nSlagtown transport">
-					<pts>
-						<pt x="570.556" y="703.611"/>
-						<pt x="570.556" y="830"/>
-					</pts>
-				</flow>
-				<connector uid="3" angle="294.792">
-					<from>Stolen_cotton_from_Slagtown_transport</from>
-					<to>Flow_1</to>
+				<connector uid="3" angle="334.88">
+					<from>Successful_raid_slagtown</from>
+					<to>Stolen_cotton</to>
 				</connector>
-				<flow x="294.917" y="686.667" name="Cotton sold in Slagtown">
+				<aux label_side="bottom" x="952.167" y="508.667" name="Amount of cotton\nto Coalpeak"/>
+				<connector uid="4" angle="273.382">
+					<from>Amount_of_cotton_to_Coalpeak</from>
+					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
+				</connector>
+				<connector uid="5" angle="104.037">
+					<from>Amount_of_cotton_to_Coalpeak</from>
+					<to>Stolen_cotton</to>
+				</connector>
+				<aux x="355" y="513.333" name="Successful raid\ncoalpeak"/>
+				<connector uid="6" angle="295.442">
+					<from>Successful_raid_coalpeak</from>
+					<to>Stolen_cotton</to>
+				</connector>
+				<aux x="257.667" y="687.667" name="Successful raid\nGoldford"/>
+				<aux x="499.167" y="851.667" name="Amount of cotton\nto Goldford"/>
+				<connector uid="7" angle="96.789">
+					<from>Amount_of_cotton_to_Goldford</from>
+					<to>Stolen_cotton</to>
+				</connector>
+				<connector uid="8" angle="11.8094">
+					<from>Amount_of_cotton_to_Goldford</from>
+					<to>Amount_of_cotton_to_transport_to_Goldford</to>
+				</connector>
+				<connector uid="9" angle="17.0427">
+					<from>Successful_raid_Goldford</from>
+					<to>Stolen_cotton</to>
+				</connector>
+				<flow x="811.667" y="409.167" name="Cotton growing">
 					<pts>
-						<pt x="350.833" y="686.667"/>
-						<pt x="215" y="686.667"/>
+						<pt x="811.667" y="354.167"/>
+						<pt x="811.667" y="464.167"/>
 					</pts>
 				</flow>
-				<flow x="814.167" y="1151.17" name="Cotton sold in Goldford">
-					<pts>
-						<pt x="814.167" y="1109.17"/>
-						<pt x="814.167" y="1214.17"/>
-					</pts>
-				</flow>
-				<flow x="1304.67" y="686.667" name="Cotton sold in Coalpeak">
-					<pts>
-						<pt x="1265.83" y="686.667"/>
-						<pt x="1367.5" y="686.667"/>
-					</pts>
-				</flow>
+				<group locked="true" x="165" y="268.5" width="1011.67" height="668.167" name="Cotton dynamics"/>
 			</view>
 		</views>
 	</model>
