@@ -329,7 +329,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="3" isee:scroll_y="1431" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="49" isee:scroll_y="1431" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -386,13 +386,13 @@
 					<from>Traveling_with_cotton_to_SlagTown</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<connector uid="5" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="230.917">
+				<connector uid="5" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="230.917">
 					<from>Traveling_with_cotton_to_SlagTown</from>
 					<to>Sale_of_cotton_in_Slagtown</to>
 				</connector>
 				<aux x="2578.42" y="1119" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
 				<aux x="2556.42" y="1337.5" width="187" height="18" name="Sale of cotton in Coalpeak"/>
-				<connector uid="6" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="270">
+				<connector uid="6" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="270">
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Sale_of_cotton_in_Coalpeak</to>
 				</connector>
@@ -406,7 +406,7 @@
 				</connector>
 				<aux x="2372.08" y="1106.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
 				<aux x="2221.42" y="1337.5" width="179" height="18" name="Sale of cotton in Goldford"/>
-				<connector uid="9" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="239.004">
+				<connector uid="9" font_size="14pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="239.004">
 					<from>Traveling_with_cotton_to_Goldford</from>
 					<to>Sale_of_cotton_in_Goldford</to>
 				</connector>
