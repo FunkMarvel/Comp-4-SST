@@ -204,7 +204,6 @@
 				<entity name="young'uns_growing_older"/>
 				<entity name="Other_workers"/>
 				<entity name="People_too_young_to_work"/>
-				<entity name="Carts_out_trading"/>
 				<entity name="People_too_old_to_work"/>
 				<entity name="Death_of_traders"/>
 				<entity name="trader_growing_old"/>
@@ -218,7 +217,6 @@
 				<entity name="Death_from_all"/>
 				<entity name="Capture_of_traders_in_bandit_raid"/>
 				<entity name="other_workers_growing_old"/>
-				<entity name="Stock_1"/>
 				<entity name="Recruiting_from_captives"/>
 				<entity name="Sum_of_yearly_deaths"/>
 				<entity name="Traders_killed_in_bandits_raid"/>
@@ -495,14 +493,186 @@
 			<aux name="Number of\ncarvans">
 				<eqn>Traders/Carts_per_caravan*Traders_per_cart</eqn>
 			</aux>
-			<stock name="Carts out trading">
-				<conveyor>
+			<flow name="Caravans to\nGoldford">
+				<eqn>INT(Caravans_in_Cottonbog)*(Caravans_in_Cottonbog&gt;=1)*0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Caravans to\nCoalpeak">
+				<eqn>INT(Caravans_in_Cottonbog)*(Caravans_in_Cottonbog&gt;=1)*0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Caravans to\nSlagtown">
+				<eqn>INT(Caravans_in_Cottonbog)*(Caravans_in_Cottonbog&gt;=1)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Returning caravans">
+				<eqn>INT(Total_safe_return)</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Caravans travling to\nGoldford">
+				<eqn>0</eqn>
+				<inflow>Caravans_to_Goldford</inflow>
+				<outflow>Finished_trading_in_Goldford</outflow>
+				<outflow>Killed_in_raid_to_Goldford</outflow>
+				<conveyor discrete="true">
+					<len>2</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Caravans travling to\nSlagtown">
+				<eqn>0</eqn>
+				<inflow>Caravans_to_Slagtown</inflow>
+				<outflow>Finished_trading_in_Slagtown</outflow>
+				<outflow>Killed_in_raid_to_slagtown</outflow>
+				<conveyor discrete="true">
 					<len>1</len>
 				</conveyor>
+				<units/>
 			</stock>
-			<stock name="Stock 1">
+			<stock name="Caravans in Cottonbog">
+				<eqn>INT(3.5)</eqn>
+				<inflow>Returning_caravans</inflow>
+				<inflow>New_caravans</inflow>
+				<outflow>Caravans_to_Slagtown</outflow>
+				<outflow>Caravans_to_Goldford</outflow>
+				<outflow>Caravans_to_Coalpeak</outflow>
 				<non_negative/>
+				<units/>
 			</stock>
+			<stock name="Caravans travling to\nCoalpeak">
+				<eqn>0</eqn>
+				<inflow>Caravans_to_Coalpeak</inflow>
+				<outflow>Finished_trading_in_Coalpeak</outflow>
+				<outflow>Killed_in_raid_to_Coalpeak</outflow>
+				<conveyor discrete="true">
+					<len>4</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Returning to Cottonbog\nfrom Slagtown">
+				<eqn>0</eqn>
+				<inflow>Finished_trading_in_Slagtown</inflow>
+				<outflow>Safe_return_from_Slagtown</outflow>
+				<outflow>Killed_in_raid_from_Slagtown</outflow>
+				<conveyor discrete="true">
+					<len>1</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Returning to Cottonbog\nfrom Coalpeak">
+				<eqn>0</eqn>
+				<inflow>Finished_trading_in_Coalpeak</inflow>
+				<outflow>Safe_return_from_Coalpeak</outflow>
+				<outflow>Killed_in_raid_from_Coalpeak</outflow>
+				<conveyor discrete="true">
+					<len>4</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<stock name="Returning to Cottonbog\nfrom Goldford">
+				<eqn>0</eqn>
+				<inflow>Finished_trading_in_Goldford</inflow>
+				<outflow>Safe_return_from_Goldford</outflow>
+				<outflow>Killed_in_raid_from_Goldford</outflow>
+				<conveyor discrete="true">
+					<len>2</len>
+				</conveyor>
+				<units/>
+			</stock>
+			<flow name="Finished trading\nin Slagtown">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Finished trading\nin Coalpeak">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Finished trading\nin Goldford">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Safe return from\nSlagtown">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Safe return from\nCoalpeak">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Safe return from\nGoldford">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Total safe return">
+				<eqn>Safe_return_from_Coalpeak + Safe_return_from_Goldford + Safe_return_from_Slagtown</eqn>
+				<isee:summing/>
+			</aux>
+			<flow name="Killed in raid to slagtown">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Killed in raid to Coalpeak">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Killed in raid from Coalpeak">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Killed in raid to Goldford">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Killed in raid from Slagtown">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="Killed in raid from Goldford">
+				<eqn>0</eqn>
+				<non_negative/>
+				<leak/>
+			</flow>
+			<flow name="New caravans">
+				<eqn>INT(MIN(MAX(0, Number_of_carvans-Total_current_caravans), Number_of_carvans))</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Total current caravans">
+				<eqn>Caravans_in_Cottonbog + Caravans_travling_to_Coalpeak + Caravans_travling_to_Goldford + Caravans_travling_to_Slagtown + Returning_to_Cottonbog_from_Coalpeak + Returning_to_Cottonbog_from_Goldford + Returning_to_Cottonbog_from_Slagtown</eqn>
+				<isee:summing/>
+			</aux>
+			<group name="Trade dynamic" run="false">
+				<entity name="Killed_in_raid_from_Goldford"/>
+				<entity name="Killed_in_raid_to_Goldford"/>
+				<entity name="Safe_return_from_Coalpeak"/>
+				<entity name="Killed_in_raid_from_Coalpeak"/>
+				<entity name="Returning_to_Cottonbog_from_Goldford"/>
+				<entity name="New_caravans"/>
+				<entity name="Safe_return_from_Goldford"/>
+				<entity name="Killed_in_raid_to_slagtown"/>
+				<entity name="Returning_caravans"/>
+				<entity name="Caravans_to_Coalpeak"/>
+				<entity name="Total_current_caravans"/>
+				<entity name="Total_safe_return"/>
+				<entity name="Killed_in_raid_from_Slagtown"/>
+				<entity name="Caravans_travling_to_Goldford"/>
+				<entity name="Safe_return_from_Slagtown"/>
+				<entity name="Finished_trading_in_Slagtown"/>
+				<entity name="Finished_trading_in_Coalpeak"/>
+				<entity name="Returning_to_Cottonbog_from_Slagtown"/>
+				<entity name="Caravans_travling_to_Coalpeak"/>
+				<entity name="Caravans_travling_to_Slagtown"/>
+				<entity name="Killed_in_raid_to_Coalpeak"/>
+				<entity name="Finished_trading_in_Goldford"/>
+				<entity name="Caravans_to_Goldford"/>
+				<entity name="Caravans_to_Slagtown"/>
+				<entity name="Returning_to_Cottonbog_from_Coalpeak"/>
+				<entity name="Caravans_in_Cottonbog"/>
+			</group>
 			<isee:dependencies>
 				<var name="Births">
 					<in>Sum_of_working_people</in>
@@ -657,6 +827,36 @@
 					<in>Carts_per_caravan</in>
 					<in>Traders</in>
 				</var>
+				<var name="Caravans_to_Goldford">
+					<in>Caravans_in_Cottonbog</in>
+				</var>
+				<var name="Caravans_to_Coalpeak">
+					<in>Caravans_in_Cottonbog</in>
+				</var>
+				<var name="Caravans_to_Slagtown">
+					<in>Caravans_in_Cottonbog</in>
+				</var>
+				<var name="Returning_caravans">
+					<in>Total_safe_return</in>
+				</var>
+				<var name="Total_safe_return">
+					<in>Safe_return_from_Coalpeak</in>
+					<in>Safe_return_from_Goldford</in>
+					<in>Safe_return_from_Slagtown</in>
+				</var>
+				<var name="New_caravans">
+					<in>Number_of_carvans</in>
+					<in>Total_current_caravans</in>
+				</var>
+				<var name="Total_current_caravans">
+					<in>Caravans_in_Cottonbog</in>
+					<in>Caravans_travling_to_Coalpeak</in>
+					<in>Caravans_travling_to_Goldford</in>
+					<in>Caravans_travling_to_Slagtown</in>
+					<in>Returning_to_Cottonbog_from_Coalpeak</in>
+					<in>Returning_to_Cottonbog_from_Goldford</in>
+					<in>Returning_to_Cottonbog_from_Slagtown</in>
+				</var>
 			</isee:dependencies>
 		</variables>
 		<views>
@@ -699,7 +899,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="722.857" isee:scroll_y="17.8571" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_x="1125" isee:scroll_y="2254" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1324,8 +1524,150 @@
 					<from>Tons_to_send</from>
 					<to>Sending_caravans</to>
 				</connector>
-				<stock x="1792.14" y="184.297" name="Carts out trading"/>
-				<stock x="1617.86" y="173.583" name="Stock 1"/>
+				<flow x="1691.62" y="2832.25" name="Caravans to\nGoldford">
+					<pts>
+						<pt x="1597.22" y="2832.25"/>
+						<pt x="1798.01" y="2832.25"/>
+					</pts>
+				</flow>
+				<flow x="1702.33" y="2641.82" name="Caravans to\nCoalpeak">
+					<pts>
+						<pt x="1597.22" y="2641.82"/>
+						<pt x="1819.44" y="2641.82"/>
+					</pts>
+				</flow>
+				<flow x="1694.47" y="2449.52" name="Caravans to\nSlagtown">
+					<pts>
+						<pt x="1597.22" y="2449.52"/>
+						<pt x="1803.73" y="2449.52"/>
+					</pts>
+				</flow>
+				<flow x="1448.47" y="2495.95" name="Returning caravans">
+					<pts>
+						<pt x="1351.86" y="2495.95"/>
+						<pt x="1545.08" y="2495.95"/>
+					</pts>
+				</flow>
+				<stock x="1820.51" y="2832.25" name="Caravans travling to\nGoldford"/>
+				<stock x="1826.23" y="2449.52" name="Caravans travling to\nSlagtown"/>
+				<stock x="1545.08" y="2424.18" width="52.1429" height="427.143" name="Caravans in Cottonbog"/>
+				<stock x="1841.94" y="2641.82" name="Caravans travling to\nCoalpeak"/>
+				<alias color="blue" background="white" font_style="italic" uid="72" x="1302.43" y="2701.52" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Number_of_carvans</of>
+				</alias>
+				<stock x="2116.43" y="2457.38" name="Returning to Cottonbog\nfrom Slagtown"/>
+				<stock x="2132.14" y="2649.68" name="Returning to Cottonbog\nfrom Coalpeak"/>
+				<stock x="2114.29" y="2840.11" name="Returning to Cottonbog\nfrom Goldford"/>
+				<flow x="1965.33" y="2449.52" name="Finished trading\nin Slagtown">
+					<pts>
+						<pt x="1848.73" y="2449.52"/>
+						<pt x="2093.93" y="2449.52"/>
+					</pts>
+				</flow>
+				<flow x="1981.04" y="2645.75" name="Finished trading\nin Coalpeak">
+					<pts>
+						<pt x="1864.44" y="2645.75"/>
+						<pt x="2109.64" y="2645.75"/>
+					</pts>
+				</flow>
+				<flow x="1961.4" y="2836.18" name="Finished trading\nin Goldford">
+					<pts>
+						<pt x="1843.01" y="2836.18"/>
+						<pt x="2091.79" y="2836.18"/>
+					</pts>
+				</flow>
+				<flow x="2239.61" y="2445" name="Safe return from\nSlagtown">
+					<pts>
+						<pt x="2138.93" y="2445"/>
+						<pt x="2364.29" y="2445"/>
+					</pts>
+				</flow>
+				<flow x="2267.82" y="2645" name="Safe return from\nCoalpeak">
+					<pts>
+						<pt x="2154.64" y="2645"/>
+						<pt x="2405" y="2645"/>
+					</pts>
+				</flow>
+				<flow x="2246.75" y="2837.14" name="Safe return from\nGoldford">
+					<pts>
+						<pt x="2136.79" y="2837.14"/>
+						<pt x="2380.71" y="2837.14"/>
+					</pts>
+				</flow>
+				<aux x="1424.29" y="2564.04" name="Total safe return"/>
+				<connector uid="73" angle="70.4472">
+					<from>Total_safe_return</from>
+					<to>Returning_caravans</to>
+				</connector>
+				<connector uid="74" angle="68.6782">
+					<from>Caravans_in_Cottonbog</from>
+					<to>Caravans_to_Slagtown</to>
+				</connector>
+				<connector uid="75" angle="27.8571">
+					<from>Caravans_in_Cottonbog</from>
+					<to>Caravans_to_Coalpeak</to>
+				</connector>
+				<connector uid="76" angle="287.298">
+					<from>Caravans_in_Cottonbog</from>
+					<to>Caravans_to_Goldford</to>
+				</connector>
+				<flow x="1823.57" y="2497.3" name="Killed in raid to slagtown">
+					<pts>
+						<pt x="1823.57" y="2467.02"/>
+						<pt x="1823.57" y="2548.57"/>
+					</pts>
+				</flow>
+				<flow x="1841.94" y="2692.52" name="Killed in raid to Coalpeak">
+					<pts>
+						<pt x="1841.94" y="2659.32"/>
+						<pt x="1841.94" y="2746.71"/>
+					</pts>
+				</flow>
+				<flow x="2132.14" y="2700.23" name="Killed in raid from Coalpeak">
+					<pts>
+						<pt x="2132.14" y="2667.18"/>
+						<pt x="2132.14" y="2754.28"/>
+					</pts>
+				</flow>
+				<flow x="1820.51" y="2883.66" name="Killed in raid to Goldford">
+					<pts>
+						<pt x="1820.51" y="2849.75"/>
+						<pt x="1820.51" y="2938.57"/>
+					</pts>
+				</flow>
+				<flow x="2114.14" y="2503.51" name="Killed in raid from Slagtown">
+					<pts>
+						<pt x="2114.14" y="2474.88"/>
+						<pt x="2114.14" y="2553.14"/>
+					</pts>
+				</flow>
+				<flow x="2116.43" y="2893.66" name="Killed in raid from Goldford">
+					<pts>
+						<pt x="2116.43" y="2857.61"/>
+						<pt x="2116.43" y="2950.71"/>
+					</pts>
+				</flow>
+				<flow x="1455.4" y="2779.29" name="New caravans">
+					<pts>
+						<pt x="1365.71" y="2779.29"/>
+						<pt x="1545.08" y="2779.29"/>
+					</pts>
+				</flow>
+				<connector uid="77" angle="339.291">
+					<from>
+						<alias uid="72"/>
+					</from>
+					<to>New_caravans</to>
+				</connector>
+				<aux x="1424.29" y="2641.82" name="Total current caravans"/>
+				<connector uid="78" angle="286.439">
+					<from>Total_current_caravans</from>
+					<to>New_caravans</to>
+				</connector>
+				<group locked="true" x="1250" y="2353" width="1204" height="643" name="Trade dynamic">
+					<item uid="72"/>
+				</group>
 			</view>
 		</views>
 	</model>
