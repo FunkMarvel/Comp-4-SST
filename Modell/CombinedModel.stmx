@@ -127,7 +127,7 @@
 				<non_negative/>
 			</stock>
 			<flow name="Recruiting from\ncaptives">
-				<eqn>INT(Captives_in_bandit_camp*0.2)</eqn>
+				<eqn>INT(Captives_in_bandit_camp*Percentage_of_captives_that_join)</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Ransoming of captured\ntraders">
@@ -135,7 +135,7 @@
 				<non_negative/>
 			</flow>
 			<flow name="Traders killed in bandits raid">
-				<eqn>0.3*Success_or_fail</eqn>
+				<eqn>0.5*Success_or_fail</eqn>
 				<non_negative/>
 				<leak/>
 			</flow>
@@ -191,6 +191,7 @@
 				<eqn>young&apos;uns_growing_older*0.4</eqn>
 			</aux>
 			<group name="Cottonbog population dynamics" run="false">
+				<entity name="Percentage_of_captives_that_join"/>
 				<entity name="Extra_death_of_old_people"/>
 				<entity name="Births"/>
 				<entity name="Ransoming_of_captured_traders"/>
@@ -248,25 +249,25 @@
 				<non_negative/>
 			</stock>
 			<flow name="Amount of\ncotton to transport\nto Slagtown">
-				<eqn>Amount_of_cotton_to_slagtown*Sending_caravans*Send_to_slagtown</eqn>
+				<eqn>Amount_of_cotton_to_slagtown*Sending_caravans</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Amount of\ncotton to transport\nto Goldford">
-				<eqn>Amount_of_cotton_to_Goldford*Sending_caravans*Send_to_Goldford</eqn>
+				<eqn>Amount_of_cotton_to_Goldford*Sending_caravans</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Amount of\ncotton to transport\nto Coalpeak">
-				<eqn>Amount_of_cotton_to_Coalpeak*Sending_caravans*Send_to_coalpeak</eqn>
+				<eqn>Amount_of_cotton_to_Coalpeak*Sending_caravans</eqn>
 				<non_negative/>
 			</flow>
 			<aux name="Amount of cotton\nto slagtown">
-				<eqn>Tons_to_send</eqn>
+				<eqn>Tons_to_send*Send_to_slagtown</eqn>
 			</aux>
 			<aux name="Amount of cotton\nto Coalpeak">
-				<eqn>Tons_to_send</eqn>
+				<eqn>Tons_to_send*Send_to_coalpeak</eqn>
 			</aux>
 			<aux name="Amount of cotton\nto Goldford">
-				<eqn>Tons_to_send</eqn>
+				<eqn>Tons_to_send*Send_to_Goldford</eqn>
 			</aux>
 			<flow name="Cotton growing">
 				<eqn>PULSE(25000, 0.75, 1)</eqn>
@@ -310,7 +311,7 @@
 				<non_negative/>
 			</flow>
 			<flow name="Bandit equipment costs">
-				<eqn>Per_bandit_equipment_cost*Total_amount_of_bandits</eqn>
+				<eqn>Per_bandit_equipment_cost*Bandits_who_need_new_equipment</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Sale of stolen goods">
@@ -334,6 +335,7 @@
 				<entity name="Paying_for_ransoming_of_captives"/>
 				<entity name="Total_amount_of_bandits"/>
 				<entity name="Ransoming_of_captives"/>
+				<entity name="Bandits_who_need_new_equipment"/>
 				<entity name="Stolen_from_trade_with_Slagtown"/>
 				<entity name="Bandits'_gold"/>
 				<entity name="Bandit_equipment_costs"/>
@@ -353,7 +355,7 @@
 				<eqn>0</eqn>
 			</aux>
 			<stock name="Cottonbogs' gold">
-				<eqn>0</eqn>
+				<eqn>500000</eqn>
 				<inflow>Gold_from_trade</inflow>
 				<outflow>Money_from_Cottonbog_to_pay_toll_expenses</outflow>
 				<outflow>Cotton_picking_expenses</outflow>
@@ -432,8 +434,8 @@
 				<eqn>Cotton_grown_in_Cottonbog</eqn>
 				<gf>
 					<xscale min="0" max="2000000"/>
-					<yscale min="100" max="1000"/>
-					<ypts>1000,1000,991.3,978.3,956.6,934.9,917.5,900.1,887.1,865.4,848,839.3,826.3,795.9,774.2,752.5,726.4,704.7,683,657,635.3,622.2,604.9,578.8,565.8,544.1,535.4,526.7,509.3,496.3,487.6,487.6,474.6,470.3,461.6,448.6,435.5,431.2,422.5,413.8,405.1,396.4,383.4,379.1,374.7,361.7,357.4,353,342.2,335.7,335.7,322.6,318.3,309.6,300.9,296.6,287.9,279.2,274.9,266.2,261.8,257.5,244.5,240.1,231.45,227.1,214.05,209.7,201.1,194.55,188,183.7,179.3,170.7,153.3,151.1,148.9,140.3,131.6,127.2,118.6,114.2,105.5,101.2,96.8,88.2,79.5,75.1,66.4,57.8,53.4,40.4,36.1,18.7,14.3,14.3,10,10,10,10,10</ypts>
+					<yscale min="50" max="500"/>
+					<ypts>500,338.2,318.4,294.7,275,261.2,247.4,235.5,229.6,221.7,211.8,205.9,202,196.05,194.1,186.2,180.3,174.3,172.4,168.4,164.5,160.5,156.6,152.6,149.7,148.7,144.7,144.7,142.8,140.8,138.8,134.9,128.9,127,127,125,123,121.1,119.1,119.1,117.1,117.1,117.1,116.1,115.1,114.15,113.2,111.2,111.2,109.2,107.2,105.3,105.3,103.3,101.3,101.3,101.3,99.3,99.3,97.4,97.4,95.4,95.4,93.4,91.4,91.4,89.5,89.5,87.5,85.5,83.6,82.6,81.6,79.6,77.6,75.7,73.7,73.7,71.7,71.7,69.7,67.8,65.8,65.8,63.8,63.8,61.8,59.9,59.9,55.9,55.9,53.9,53.9,53.9,53.9,52,52,50,50,50,50</ypts>
 				</gf>
 			</aux>
 			<aux name="Traders per cart">
@@ -461,11 +463,11 @@
 				<non_negative/>
 			</stock>
 			<flow name="Bandits that leave">
-				<eqn>0</eqn>
+				<eqn>0.2*Bandits_Idle_in_camp</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="New bandits joining">
-				<eqn>0</eqn>
+				<eqn>10</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="recruited captives">
@@ -484,14 +486,14 @@
 				<non_negative/>
 			</stock>
 			<aux name="Num bandits per raid">
-				<eqn>5</eqn>
+				<eqn>15</eqn>
 			</aux>
 			<flow name="Bandits killed\nin raid">
-				<eqn>(1-Success_or_fail)*Active_bandits*(Raid_occuring&gt;0)</eqn>
+				<eqn>(1-Success_or_fail)*Active_bandits*(Success_or_fail&gt;0)</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Bandits returning from raid">
-				<eqn>Success_or_fail*Active_bandits*(Raid_occuring&gt;0)</eqn>
+				<eqn>Success_or_fail*Active_bandits*(Success_or_fail&gt;0)</eqn>
 				<non_negative/>
 			</flow>
 			<stock name="Recovering">
@@ -514,7 +516,7 @@
 				<eqn>PULSE(RANDOM(0, 1), 2, 3)*Sending_caravans*(Bandits&apos;_gold&lt;500)</eqn>
 			</aux>
 			<aux name="Success or fail">
-				<eqn>Raid_occuring &gt; 0.5</eqn>
+				<eqn>Raid_occuring &gt;= Chance_of_succesful_raid</eqn>
 			</aux>
 			<aux name="Send to slagtown">
 				<eqn>1</eqn>
@@ -530,7 +532,7 @@
 				<isee:summing/>
 			</aux>
 			<aux name="Living cost per\nBandit">
-				<eqn>(Bandits&apos;_gold-Per_bandit_equipment_cost)/Total_amount_of_bandits</eqn>
+				<eqn>(0.5*Bandits&apos;_gold-Bandit_equipment_costs)/Total_amount_of_bandits</eqn>
 			</aux>
 			<aux name="Per bandit equipment\ncost">
 				<eqn>25</eqn>
@@ -550,6 +552,44 @@
 				<non_negative/>
 				<leak/>
 			</flow>
+			<aux name="Percentage of captives that join">
+				<eqn>0.3</eqn>
+			</aux>
+			<group name="Bandit and raid dynamic" run="false">
+				<entity name="Finished_recovering"/>
+				<entity name="Recovering"/>
+				<entity name="Success_or_fail"/>
+				<entity name="Raid_occuring"/>
+				<entity name="Bandits_returning_from_raid"/>
+				<entity name="Bandits_becoming_active"/>
+				<entity name="Active_bandits"/>
+				<entity name="Returning_from_raid"/>
+				<entity name="Num_bandits_per_raid"/>
+				<entity name="recruited_captives"/>
+				<entity name="Bandits_killed_in_raid"/>
+				<entity name="New_bandits_joining"/>
+				<entity name="Chance_of_succesful_raid"/>
+				<entity name="Bandits_that_leave"/>
+				<entity name="Bandits_Idle_in_camp"/>
+			</group>
+			<group name="Trade dynamics" run="false">
+				<entity name="Send_to_Goldford"/>
+				<entity name="Sending_caravans"/>
+				<entity name="Send_to_coalpeak"/>
+				<entity name="Send_to_slagtown"/>
+				<entity name="Tons_to_send"/>
+				<entity name="Tons_per_cart"/>
+				<entity name="Number_of_carvans"/>
+				<entity name="Carts_per_caravan"/>
+				<entity name="Traders_per_cart"/>
+			</group>
+			<aux name="Chance of succesful raid">
+				<eqn>0.1*Send_to_slagtown+0.3*Send_to_coalpeak+0.8*Send_to_Goldford</eqn>
+			</aux>
+			<aux name="Bandits who need new\nequipment">
+				<eqn>New_bandits_joining + Returning_from_raid + recruited_captives</eqn>
+				<isee:summing/>
+			</aux>
 			<isee:dependencies>
 				<var name="Births">
 					<in>Sum_of_working_people</in>
@@ -572,6 +612,7 @@
 				</var>
 				<var name="Recruiting_from_captives">
 					<in>Captives_in_bandit_camp</in>
+					<in>Percentage_of_captives_that_join</in>
 				</var>
 				<var name="Ransoming_of_captured_traders">
 					<in>Captives_in_bandit_camp</in>
@@ -627,26 +668,26 @@
 				<var name="Amount_of_cotton_to_transport_to_Slagtown">
 					<in>Amount_of_cotton_to_slagtown</in>
 					<in>Sending_caravans</in>
-					<in>Send_to_slagtown</in>
 				</var>
 				<var name="Amount_of_cotton_to_transport_to_Goldford">
 					<in>Amount_of_cotton_to_Goldford</in>
 					<in>Sending_caravans</in>
-					<in>Send_to_Goldford</in>
 				</var>
 				<var name="Amount_of_cotton_to_transport_to_Coalpeak">
 					<in>Amount_of_cotton_to_Coalpeak</in>
 					<in>Sending_caravans</in>
-					<in>Send_to_coalpeak</in>
 				</var>
 				<var name="Amount_of_cotton_to_slagtown">
 					<in>Tons_to_send</in>
+					<in>Send_to_slagtown</in>
 				</var>
 				<var name="Amount_of_cotton_to_Coalpeak">
 					<in>Tons_to_send</in>
+					<in>Send_to_coalpeak</in>
 				</var>
 				<var name="Amount_of_cotton_to_Goldford">
 					<in>Tons_to_send</in>
+					<in>Send_to_Goldford</in>
 				</var>
 				<var name="Number_of_cotton_pickers">
 					<in>Cotton_pickers</in>
@@ -657,7 +698,7 @@
 				</var>
 				<var name="Bandit_equipment_costs">
 					<in>Per_bandit_equipment_cost</in>
-					<in>Total_amount_of_bandits</in>
+					<in>Bandits_who_need_new_equipment</in>
 				</var>
 				<var name="Ransoming_of_captives">
 					<in>Paying_for_ransoming_of_captives</in>
@@ -737,23 +778,24 @@
 					<in>Carts_per_caravan</in>
 					<in>Traders</in>
 				</var>
+				<var name="Bandits_that_leave">
+					<in>Bandits_Idle_in_camp</in>
+				</var>
 				<var name="recruited_captives">
 					<in>Recruiting_from_captives</in>
 				</var>
 				<var name="Bandits_becoming_active">
-					<in>Bandits_Idle_in_camp</in>
 					<in>Num_bandits_per_raid</in>
 					<in>Bandits&apos;_gold</in>
+					<in>Bandits_Idle_in_camp</in>
 				</var>
 				<var name="Bandits_killed_in_raid">
 					<in>Success_or_fail</in>
 					<in>Active_bandits</in>
-					<in>Raid_occuring</in>
 				</var>
 				<var name="Bandits_returning_from_raid">
 					<in>Success_or_fail</in>
 					<in>Active_bandits</in>
-					<in>Raid_occuring</in>
 				</var>
 				<var name="Returning_from_raid">
 					<in>Finished_recovering</in>
@@ -764,6 +806,7 @@
 				</var>
 				<var name="Success_or_fail">
 					<in>Raid_occuring</in>
+					<in>Chance_of_succesful_raid</in>
 				</var>
 				<var name="Total_amount_of_bandits">
 					<in>Active_bandits</in>
@@ -773,7 +816,7 @@
 				<var name="Living_cost_per_Bandit">
 					<in>Bandits&apos;_gold</in>
 					<in>Total_amount_of_bandits</in>
-					<in>Per_bandit_equipment_cost</in>
+					<in>Bandit_equipment_costs</in>
 				</var>
 				<var name="Total_amount_of_people">
 					<in>Cotton_pickers</in>
@@ -787,6 +830,16 @@
 				</var>
 				<var name="Extra_death_of_old_people">
 					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="Chance_of_succesful_raid">
+					<in>Send_to_slagtown</in>
+					<in>Send_to_coalpeak</in>
+					<in>Send_to_Goldford</in>
+				</var>
+				<var name="Bandits_who_need_new_equipment">
+					<in>New_bandits_joining</in>
+					<in>Returning_from_raid</in>
+					<in>recruited_captives</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -830,7 +883,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_y="598.75" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_x="2906.67" isee:scroll_y="1550" zoom="120" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1137,14 +1190,15 @@
 					<item uid="28"/>
 					<item uid="29"/>
 					<item uid="30"/>
+					<item uid="31"/>
 				</group>
 				<aux x="571.832" y="1811.75" name="Cotton picked per\nworker"/>
-				<connector uid="31" angle="327.937">
+				<connector uid="32" angle="327.937">
 					<from>Cotton_picked_per_worker</from>
 					<to>Cotton_picking</to>
 				</connector>
 				<aux x="600.75" y="1723.75" name="Number of\ncotton pickers"/>
-				<connector uid="32" angle="332.784">
+				<connector uid="33" angle="332.784">
 					<from>Number_of_cotton_pickers</from>
 					<to>Cotton_picking</to>
 				</connector>
@@ -1179,28 +1233,28 @@
 						<pt x="2193" y="1895"/>
 					</pts>
 				</flow>
-				<connector uid="33" angle="354.427">
+				<connector uid="34" angle="354.427">
 					<from>Stolen_from_trade_with_Goldford</from>
 					<to>Bandit_theft</to>
 				</connector>
-				<connector uid="34" angle="339.444">
+				<connector uid="35" angle="339.444">
 					<from>Stolen_from_trade_with_Slagtown</from>
 					<to>Bandit_theft</to>
 				</connector>
-				<connector uid="35" angle="2.86435">
+				<connector uid="36" angle="2.86435">
 					<from>Stolen_from_trade_with_Coalpeak</from>
 					<to>Bandit_theft</to>
 				</connector>
-				<connector uid="36" angle="16.0285">
+				<connector uid="37" angle="16.0285">
 					<from>Paying_for_ransoming_of_captives</from>
 					<to>Ransoming_of_captives</to>
 				</connector>
 				<group locked="true" x="1389.92" y="1715.67" width="1368" height="453" name="Bandits gold section">
-					<item uid="37"/>
 					<item uid="38"/>
 					<item uid="39"/>
 					<item uid="40"/>
 					<item uid="41"/>
+					<item uid="42"/>
 				</group>
 				<aux label_side="left" x="1686.67" y="1856.33" name="Stolen from trade with Goldford"/>
 				<aux label_side="left" x="1686.67" y="1914.83" name="Stolen from trade with Coalpeak"/>
@@ -1221,12 +1275,12 @@
 					</pts>
 				</flow>
 				<group locked="true" x="2277.75" y="693.5" width="1805.17" height="944.5" name="Cottonbogs gold section">
-					<item uid="42"/>
 					<item uid="43"/>
 					<item uid="44"/>
 					<item uid="45"/>
 					<item uid="46"/>
 					<item uid="47"/>
+					<item uid="48"/>
 				</group>
 				<flow x="3455.89" y="1011.67" width="18" height="18" name="Cotton picking\nexpenses">
 					<pts>
@@ -1241,145 +1295,145 @@
 					</pts>
 				</flow>
 				<aux x="3543.75" y="1137.75" name="cost per captive"/>
-				<connector uid="48" angle="210.816">
+				<connector uid="49" angle="210.816">
 					<from>cost_per_captive</from>
 					<to>Paying_for_ransoming_of_captives_1</to>
 				</connector>
 				<aux x="316.082" y="1775.21" name="Cotton sold\nin Slagtown"/>
-				<connector uid="49" angle="127.75">
+				<connector uid="50" angle="127.75">
 					<from>Amount_of_cotton_to_slagtown</from>
 					<to>Cotton_sold_in_Slagtown</to>
 				</connector>
 				<aux x="144.832" y="1944.17" name="Cotton sold\nin Coalpeak"/>
-				<connector uid="50" angle="110.772">
+				<connector uid="51" angle="110.772">
 					<from>Amount_of_cotton_to_Coalpeak</from>
 					<to>Cotton_sold_in_Coalpeak</to>
 				</connector>
 				<aux x="209.999" y="2225" name="Cotton sold\nGoldford"/>
-				<connector uid="51" angle="170.761">
+				<connector uid="52" angle="170.761">
 					<from>Amount_of_cotton_to_Goldford</from>
 					<to>Cotton_sold_Goldford</to>
 				</connector>
 				<aux x="2588" y="928.625" name="Gold from selling cotton\nin Slagtown"/>
 				<aux x="2595" y="1057" name="Gold from selling cotton\nin Coalpeak"/>
 				<aux x="2596" y="1189" name="Gold from selling cotton\nin Goldford"/>
-				<connector uid="52" angle="0">
-					<from>
-						<alias uid="44"/>
-					</from>
-					<to>Gold_from_selling_cotton_in_Slagtown</to>
-				</connector>
 				<connector uid="53" angle="0">
 					<from>
 						<alias uid="45"/>
 					</from>
-					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
 				</connector>
 				<connector uid="54" angle="0">
 					<from>
 						<alias uid="46"/>
 					</from>
+					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="55" angle="0">
+					<from>
+						<alias uid="47"/>
+					</from>
 					<to>Gold_from_selling_cotton_in_Goldford</to>
 				</connector>
 				<aux x="2400.5" y="837.857" name="Gold for toll\non return"/>
-				<connector uid="55" angle="346.908">
+				<connector uid="56" angle="346.908">
 					<from>Gold_for_toll_on_return</from>
 					<to>Gold_from_selling_cotton_in_Slagtown</to>
 				</connector>
 				<aux x="2880.71" y="772.901" name="Sum of gold\nfrom trade"/>
-				<connector uid="56" angle="14.9259">
+				<connector uid="57" angle="14.9259">
 					<from>Sum_of_gold_from_trade</from>
 					<to>Gold_from_trade</to>
 				</connector>
-				<aux x="539.736" y="2520" name="Sending caravans"/>
+				<aux x="620.986" y="2553.75" name="Sending caravans"/>
 				<aux x="2596" y="1380" name="Nominal Cotton price"/>
-				<connector uid="57" angle="0">
+				<connector uid="58" angle="0">
 					<from>
-						<alias uid="47"/>
+						<alias uid="48"/>
 					</from>
 					<to>Nominal_Cotton_price</to>
 				</connector>
-				<connector uid="58" angle="30.3956">
+				<connector uid="59" angle="30.3956">
 					<from>Nominal_Cotton_price</from>
 					<to>Gold_from_selling_cotton_in_Goldford</to>
 				</connector>
-				<connector uid="59" angle="19.8407">
+				<connector uid="60" angle="19.8407">
 					<from>Nominal_Cotton_price</from>
 					<to>Gold_from_selling_cotton_in_Coalpeak</to>
 				</connector>
-				<connector uid="60" angle="351.634">
+				<connector uid="61" angle="351.634">
 					<from>Nominal_Cotton_price</from>
 					<to>Gold_from_selling_cotton_in_Slagtown</to>
 				</connector>
-				<aux x="247" y="2418.17" name="Traders per cart"/>
-				<aux x="225.35" y="2491.43" name="Carts per caravan"/>
-				<aux x="157.35" y="2572" name="Tons per cart"/>
-				<aux label_side="left" label_angle="225" x="265" y="2607.94" name="Tons to send"/>
-				<connector uid="61" angle="275.374">
+				<aux x="350.75" y="2429.42" name="Traders per cart"/>
+				<aux x="329.1" y="2502.68" name="Carts per caravan"/>
+				<aux x="261.1" y="2583.25" name="Tons per cart"/>
+				<aux label_side="left" label_angle="225" x="368.75" y="2619.19" name="Tons to send"/>
+				<connector uid="62" angle="275.374">
 					<from>Traders_per_cart</from>
 					<to>Number_of_carvans</to>
 				</connector>
-				<connector uid="62" angle="315.497">
+				<connector uid="63" angle="315.497">
 					<from>Carts_per_caravan</from>
 					<to>Number_of_carvans</to>
 				</connector>
-				<connector uid="63" angle="341.538">
+				<connector uid="64" angle="341.538">
 					<from>Tons_per_cart</from>
 					<to>Tons_to_send</to>
 				</connector>
-				<connector uid="64" angle="78.1248">
+				<connector uid="65" angle="78.1248">
 					<from>
-						<alias uid="65"/>
+						<alias uid="66"/>
 					</from>
 					<to>Number_of_carvans</to>
 				</connector>
-				<connector uid="66" angle="238.827">
-					<from>
-						<alias uid="29"/>
-					</from>
-					<to>Amount_of_cotton_to_Goldford</to>
-				</connector>
-				<aux x="349.14" y="2538" name="Number of\ncarvans"/>
-				<connector uid="67" angle="288.794">
-					<from>Carts_per_caravan</from>
-					<to>Tons_to_send</to>
-				</connector>
-				<connector uid="68" angle="203.145">
+				<connector uid="67" angle="39.5265">
 					<from>
 						<alias uid="30"/>
 					</from>
+					<to>Amount_of_cotton_to_Goldford</to>
+				</connector>
+				<aux x="452.89" y="2549.25" name="Number of\ncarvans"/>
+				<connector uid="68" angle="288.794">
+					<from>Carts_per_caravan</from>
+					<to>Tons_to_send</to>
+				</connector>
+				<connector uid="69" angle="203.145">
+					<from>
+						<alias uid="31"/>
+					</from>
 					<to>Amount_of_cotton_to_slagtown</to>
 				</connector>
-				<connector uid="69" angle="197.401">
+				<connector uid="70" angle="197.401">
 					<from>
-						<alias uid="28"/>
+						<alias uid="29"/>
 					</from>
 					<to>Amount_of_cotton_to_Coalpeak</to>
 				</connector>
-				<alias color="blue" background="white" font_style="italic" uid="44" x="2383.13" y="919.625" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="45" x="2383.13" y="919.625" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Cotton_sold_in_Slagtown</of>
 				</alias>
-				<alias font_style="italic" uid="45" x="2373.5" y="1048" width="18" height="18">
+				<alias font_style="italic" uid="46" x="2373.5" y="1048" width="18" height="18">
 					<of>Cotton_sold_in_Coalpeak</of>
 				</alias>
-				<alias color="blue" background="white" font_style="italic" uid="46" x="2373.5" y="1180" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="47" x="2373.5" y="1180" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Cotton_sold_Goldford</of>
 				</alias>
-				<alias font_style="italic" uid="47" x="2379.17" y="1362.5" width="45" height="35">
+				<alias font_style="italic" uid="48" x="2379.17" y="1362.5" width="45" height="35">
 					<of>Cotton_grown_in_Cottonbog</of>
 				</alias>
-				<alias font_style="italic" uid="65" x="28.35" y="2467" width="114.167" height="80">
+				<alias font_style="italic" uid="66" x="112.1" y="2494.25" width="114.167" height="80">
 					<of>Traders</of>
 				</alias>
-				<alias font_style="italic" uid="28" x="1101" y="1859.57" width="18" height="18">
+				<alias font_style="italic" uid="29" x="1101" y="1859.57" width="18" height="18">
 					<of>Tons_to_send</of>
 				</alias>
-				<alias font_style="italic" uid="29" x="526.29" y="2167.71" width="18" height="18">
+				<alias font_style="italic" uid="30" x="417.54" y="2276.04" width="18" height="18">
 					<of>Tons_to_send</of>
 				</alias>
-				<alias font_style="italic" uid="30" x="638.75" y="1884.71" width="18" height="18">
+				<alias font_style="italic" uid="31" x="638.75" y="1884.71" width="18" height="18">
 					<of>Tons_to_send</of>
 				</alias>
 				<stock x="3483.75" y="1858.75" width="51.6667" height="227.5" name="Bandits Idle in camp"/>
@@ -1401,15 +1455,15 @@
 						<pt x="3483.75" y="2032.92"/>
 					</pts>
 				</flow>
-				<alias font_style="italic" uid="70" x="2946.75" y="1836.28" width="96.5" height="59.75">
+				<alias font_style="italic" uid="71" x="2946.75" y="1836.28" width="96.5" height="59.75">
 					<of>Captives_in_bandit_camp</of>
 				</alias>
-				<alias font_style="italic" uid="71" x="3041.5" y="2015.92" width="18" height="18">
+				<alias font_style="italic" uid="72" x="3041.5" y="2015.92" width="18" height="18">
 					<of>Recruiting_from_captives</of>
 				</alias>
-				<connector uid="72" angle="329.919">
+				<connector uid="73" angle="329.919">
 					<from>
-						<alias uid="71"/>
+						<alias uid="72"/>
 					</from>
 					<to>recruited_captives</to>
 				</connector>
@@ -1420,10 +1474,6 @@
 					</pts>
 				</flow>
 				<stock label_side="top" x="3798.25" y="1978.13" width="181.25" height="113.75" name="Active bandits"/>
-				<connector uid="73" angle="290.548">
-					<from>Bandits_Idle_in_camp</from>
-					<to>Bandits_becoming_active</to>
-				</connector>
 				<aux x="3660.83" y="2234" name="Num bandits per raid"/>
 				<connector uid="74" angle="73.0092">
 					<from>Num_bandits_per_raid</from>
@@ -1432,12 +1482,6 @@
 				<alias font_style="italic" uid="75" x="3502.25" y="2278.5" width="34" height="37.25">
 					<of>Bandits&apos;_gold</of>
 				</alias>
-				<connector uid="76" angle="61.6249">
-					<from>
-						<alias uid="75"/>
-					</from>
-					<to>Bandits_becoming_active</to>
-				</connector>
 				<flow x="3952" y="1885.56" name="Bandits killed\nin raid">
 					<pts>
 						<pt x="3952" y="1978.13"/>
@@ -1463,243 +1507,181 @@
 						<pt x="3483.75" y="1969.13"/>
 					</pts>
 				</flow>
-				<alias color="blue" background="white" font_style="italic" uid="77" x="3135" y="1935" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="76" x="3135" y="1935" width="18" height="18">
 					<of>Finished_recovering</of>
 				</alias>
-				<connector uid="78" angle="27.2553">
+				<connector uid="77" angle="27.2553">
 					<from>
-						<alias uid="77"/>
+						<alias uid="76"/>
 					</from>
 					<to>Returning_from_raid</to>
 				</connector>
 				<aux x="4184" y="2035" name="Raid occuring"/>
 				<aux x="4059" y="2039" name="Success or fail"/>
-				<connector uid="79" angle="167.661">
+				<connector uid="78" angle="167.661">
 					<from>Raid_occuring</from>
 					<to>Success_or_fail</to>
 				</connector>
-				<connector uid="80" angle="294.146">
-					<from>Success_or_fail</from>
-					<to>Bandits_returning_from_raid</to>
-				</connector>
-				<connector uid="81" angle="106.699">
-					<from>Success_or_fail</from>
-					<to>Bandits_killed_in_raid</to>
-				</connector>
-				<connector uid="82" angle="39.9403">
-					<from>Active_bandits</from>
-					<to>Bandits_killed_in_raid</to>
-				</connector>
-				<connector uid="83" angle="320.342">
-					<from>Active_bandits</from>
-					<to>Bandits_returning_from_raid</to>
-				</connector>
-				<connector uid="84" angle="235.709">
+				<connector uid="79" angle="235.709">
 					<from>Number_of_carvans</from>
 					<to>Tons_to_send</to>
 				</connector>
-				<alias font_style="italic" uid="85" x="4174" y="1948" width="18" height="18">
+				<alias font_style="italic" uid="80" x="4174" y="1948" width="18" height="18">
 					<of>Sending_caravans</of>
 				</alias>
-				<connector uid="86" angle="297.255">
+				<connector uid="81" angle="297.255">
 					<from>
-						<alias uid="85"/>
+						<alias uid="80"/>
 					</from>
 					<to>Raid_occuring</to>
 				</connector>
-				<connector uid="87" angle="139.157">
-					<from>Raid_occuring</from>
-					<to>Bandits_killed_in_raid</to>
-				</connector>
-				<connector uid="88" angle="237.819">
-					<from>Raid_occuring</from>
-					<to>Bandits_returning_from_raid</to>
-				</connector>
-				<connector uid="89" angle="70.9294">
-					<from>Sending_caravans</from>
-					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
-				</connector>
-				<connector uid="90" angle="51.1726">
-					<from>Sending_caravans</from>
-					<to>Amount_of_cotton_to_transport_to_Goldford</to>
-				</connector>
-				<connector uid="91" angle="20.8118">
-					<from>Sending_caravans</from>
-					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
-				</connector>
-				<aux x="202.262" y="2700" name="Send to slagtown"/>
-				<aux x="202.262" y="2770.83" name="Send to coalpeak"/>
-				<aux x="202.262" y="2835" name="Send to Goldford"/>
-				<alias color="blue" background="white" font_style="italic" uid="26" x="516.833" y="2010.29" width="18" height="18">
+				<aux x="306.012" y="2711.25" name="Send to slagtown"/>
+				<aux x="306.012" y="2782.08" name="Send to coalpeak"/>
+				<aux x="306.012" y="2846.25" name="Send to Goldford"/>
+				<alias color="blue" background="white" font_style="italic" uid="27" x="516.833" y="2010.29" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Send_to_slagtown</of>
 				</alias>
-				<connector uid="92" angle="29.0546">
-					<from>
-						<alias uid="26"/>
-					</from>
-					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
-				</connector>
-				<alias color="blue" background="white" font_style="italic" uid="25" x="1028.83" y="2128" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="26" x="911.833" y="1902.71" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Send_to_coalpeak</of>
 				</alias>
-				<connector uid="93" angle="127.349">
-					<from>
-						<alias uid="25"/>
-					</from>
-					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
-				</connector>
-				<alias color="blue" background="white" font_style="italic" uid="24" x="911.833" y="2241" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="25" x="651" y="2240.17" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Send_to_Goldford</of>
 				</alias>
-				<connector uid="94" angle="118.61">
-					<from>
-						<alias uid="24"/>
-					</from>
-					<to>Amount_of_cotton_to_transport_to_Goldford</to>
-				</connector>
-				<alias color="blue" background="white" font_style="italic" uid="27" x="307.082" y="2010.29" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="28" x="307.082" y="2010.29" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Success_or_fail</of>
 				</alias>
-				<connector uid="95" angle="146.659">
+				<connector uid="82" angle="146.659">
 					<from>
-						<alias uid="27"/>
+						<alias uid="28"/>
 					</from>
 					<to>Cotton_sold_in_Slagtown</to>
 				</connector>
-				<connector uid="96" angle="156.316">
+				<connector uid="83" angle="156.316">
 					<from>
-						<alias uid="27"/>
+						<alias uid="28"/>
 					</from>
 					<to>Cotton_sold_in_Coalpeak</to>
 				</connector>
-				<connector uid="97" angle="248.199">
+				<connector uid="84" angle="248.199">
 					<from>
-						<alias uid="27"/>
+						<alias uid="28"/>
 					</from>
 					<to>Cotton_sold_Goldford</to>
 				</connector>
-				<alias font_style="italic" uid="39" x="1507.5" y="1717.83" width="18" height="18">
+				<alias font_style="italic" uid="40" x="1507.5" y="1717.83" width="18" height="18">
 					<of>Amount_of_cotton_to_slagtown</of>
 				</alias>
-				<alias font_style="italic" uid="40" x="1848.67" y="1735.83" width="18" height="18">
+				<alias font_style="italic" uid="41" x="1848.67" y="1735.83" width="18" height="18">
 					<of>Amount_of_cotton_to_Goldford</of>
 				</alias>
-				<alias font_style="italic" uid="41" x="1727.5" y="2034.66" width="18" height="18">
+				<alias font_style="italic" uid="42" x="1727.5" y="2034.66" width="18" height="18">
 					<of>Amount_of_cotton_to_Coalpeak</of>
 				</alias>
-				<connector uid="98" angle="109.203">
+				<connector uid="85" angle="109.203">
 					<from>
-						<alias uid="41"/>
+						<alias uid="42"/>
 					</from>
 					<to>Stolen_from_trade_with_Coalpeak</to>
 				</connector>
-				<connector uid="99" angle="336.35">
+				<connector uid="86" angle="336.35">
+					<from>
+						<alias uid="40"/>
+					</from>
+					<to>Stolen_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="87" angle="213.106">
+					<from>
+						<alias uid="41"/>
+					</from>
+					<to>Stolen_from_trade_with_Goldford</to>
+				</connector>
+				<alias font_style="italic" uid="39" x="1405.17" y="1847.33" width="18" height="18">
+					<of>Nominal_Cotton_price</of>
+				</alias>
+				<connector uid="88" angle="336.107">
+					<from>
+						<alias uid="39"/>
+					</from>
+					<to>Stolen_from_trade_with_Coalpeak</to>
+				</connector>
+				<connector uid="89" angle="26.0757">
+					<from>
+						<alias uid="39"/>
+					</from>
+					<to>Stolen_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="90" angle="36.9536">
 					<from>
 						<alias uid="39"/>
 					</from>
 					<to>Stolen_from_trade_with_Slagtown</to>
 				</connector>
-				<connector uid="100" angle="213.106">
-					<from>
-						<alias uid="40"/>
-					</from>
-					<to>Stolen_from_trade_with_Goldford</to>
-				</connector>
-				<alias font_style="italic" uid="38" x="1405.17" y="1847.33" width="18" height="18">
-					<of>Nominal_Cotton_price</of>
-				</alias>
-				<connector uid="101" angle="336.107">
-					<from>
-						<alias uid="38"/>
-					</from>
-					<to>Stolen_from_trade_with_Coalpeak</to>
-				</connector>
-				<connector uid="102" angle="26.0757">
-					<from>
-						<alias uid="38"/>
-					</from>
-					<to>Stolen_from_trade_with_Goldford</to>
-				</connector>
-				<connector uid="103" angle="36.9536">
-					<from>
-						<alias uid="38"/>
-					</from>
-					<to>Stolen_from_trade_with_Slagtown</to>
-				</connector>
-				<alias color="blue" background="white" font_style="italic" uid="37" x="1491" y="2021" width="18" height="18">
+				<alias color="blue" background="white" font_style="italic" uid="38" x="1491" y="2021" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Success_or_fail</of>
 				</alias>
-				<connector uid="104" angle="47.1747">
+				<connector uid="91" angle="47.1747">
 					<from>
-						<alias uid="37"/>
+						<alias uid="38"/>
 					</from>
 					<to>Stolen_from_trade_with_Coalpeak</to>
 				</connector>
-				<connector uid="105" angle="70.641">
+				<connector uid="92" angle="70.641">
 					<from>
-						<alias uid="37"/>
+						<alias uid="38"/>
 					</from>
 					<to>Stolen_from_trade_with_Goldford</to>
 				</connector>
-				<connector uid="106" angle="90">
+				<connector uid="93" angle="90">
 					<from>
-						<alias uid="37"/>
+						<alias uid="38"/>
 					</from>
 					<to>Stolen_from_trade_with_Slagtown</to>
 				</connector>
-				<connector uid="107" angle="301.159">
+				<connector uid="94" angle="301.159">
 					<from>
 						<alias uid="75"/>
 					</from>
 					<to>Raid_occuring</to>
 				</connector>
 				<aux x="2642.5" y="1762.83" name="Total amount of bandits"/>
-				<connector uid="108" angle="166.638">
+				<connector uid="95" angle="166.638">
 					<from>Total_amount_of_bandits</from>
 					<to>Bandit_living_expenses</to>
 				</connector>
 				<aux x="2385" y="1732.5" name="Living cost per\nBandit"/>
-				<connector uid="109" angle="63.8717">
+				<connector uid="96" angle="63.8717">
 					<from>Bandits&apos;_gold</from>
 					<to>Living_cost_per_Bandit</to>
 				</connector>
-				<connector uid="110" angle="140.491">
+				<connector uid="97" angle="140.491">
 					<from>Total_amount_of_bandits</from>
 					<to>Living_cost_per_Bandit</to>
 				</connector>
 				<aux x="2442.96" y="1988.75" name="Per bandit equipment\ncost"/>
-				<connector uid="111" angle="148.577">
-					<from>Per_bandit_equipment_cost</from>
-					<to>Living_cost_per_Bandit</to>
-				</connector>
-				<connector uid="112" angle="340.201">
+				<connector uid="98" angle="340.201">
 					<from>Living_cost_per_Bandit</from>
 					<to>Bandit_living_expenses</to>
 				</connector>
-				<connector uid="113" angle="78.9265">
+				<connector uid="99" angle="78.9265">
 					<from>Per_bandit_equipment_cost</from>
-					<to>Bandit_equipment_costs</to>
-				</connector>
-				<connector uid="114" angle="242.858">
-					<from>Total_amount_of_bandits</from>
 					<to>Bandit_equipment_costs</to>
 				</connector>
 				<alias color="blue" background="white" font_style="italic" uid="19" x="1028.5" y="356.854" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>Success_or_fail</of>
 				</alias>
-				<connector uid="115" angle="351.269">
+				<connector uid="100" angle="351.269">
 					<from>
 						<alias uid="19"/>
 					</from>
 					<to>Capture_of_traders_in_bandit_raid</to>
 				</connector>
-				<connector uid="116" angle="303.382">
+				<connector uid="101" angle="303.382">
 					<from>
 						<alias uid="19"/>
 					</from>
@@ -1707,34 +1689,34 @@
 				</connector>
 				<aux x="2627.5" y="761.294" name="Total amount\nof people"/>
 				<aux x="2736.59" y="825.167" width="18" height="18" name="Per person living\ncost"/>
-				<connector uid="117" angle="238.184">
+				<connector uid="102" angle="238.184">
 					<from>Total_amount_of_people</from>
 					<to>Gold_from_selling_cotton_in_Slagtown</to>
 				</connector>
-				<connector uid="118" angle="195.12">
+				<connector uid="103" angle="195.12">
 					<from>Per_person_living_cost</from>
 					<to>Gold_from_selling_cotton_in_Slagtown</to>
 				</connector>
-				<alias font_style="italic" uid="43" x="3770.42" y="826.667" width="70.0003" height="49.1667">
+				<alias font_style="italic" uid="44" x="3770.42" y="826.667" width="70.0003" height="49.1667">
 					<of>Cotton_pickers</of>
 				</alias>
-				<connector uid="119" angle="192.4">
+				<connector uid="104" angle="192.4">
 					<from>
-						<alias uid="43"/>
+						<alias uid="44"/>
 					</from>
 					<to>Cotton_picking_expenses</to>
 				</connector>
 				<alias font_style="italic" uid="18" x="115.139" y="1072.92" width="69.7227" height="47.4997">
 					<of>Cottonbogs&apos;_gold</of>
 				</alias>
-				<connector uid="120" angle="65.2249">
+				<connector uid="105" angle="65.2249">
 					<from>
 						<alias uid="18"/>
 					</from>
 					<to>Birthrate</to>
 				</connector>
 				<aux x="309" y="1169.24" name="Death rate due\nto poverty"/>
-				<connector uid="121" angle="328.65">
+				<connector uid="106" angle="328.65">
 					<from>
 						<alias uid="18"/>
 					</from>
@@ -1748,25 +1730,25 @@
 					<shape type="circle" radius="18"/>
 					<of>Death_rate_due_to_poverty</of>
 				</alias>
-				<connector uid="122" angle="96.4025">
+				<connector uid="107" angle="96.4025">
 					<from>
 						<alias uid="16"/>
 					</from>
 					<to>Death_of_traders</to>
 				</connector>
-				<connector uid="123" angle="163.766">
+				<connector uid="108" angle="163.766">
 					<from>
 						<alias uid="16"/>
 					</from>
 					<to>Death_of_working_people</to>
 				</connector>
-				<connector uid="124" angle="239.734">
+				<connector uid="109" angle="239.734">
 					<from>
 						<alias uid="16"/>
 					</from>
 					<to>Death_of_cotton_pickers</to>
 				</connector>
-				<connector uid="125" angle="157.068">
+				<connector uid="110" angle="157.068">
 					<from>
 						<alias uid="17"/>
 					</from>
@@ -1778,29 +1760,167 @@
 						<pt x="1631" y="1452"/>
 					</pts>
 				</flow>
-				<connector uid="126" angle="318.132">
+				<connector uid="111" angle="318.132">
 					<from>
 						<alias uid="16"/>
 					</from>
 					<to>Extra_death_of_old_people</to>
 				</connector>
-				<alias font_style="italic" uid="42" x="3796" y="1067.25" width="18" height="18">
+				<alias font_style="italic" uid="43" x="3796" y="1067.25" width="18" height="18">
 					<of>Ransoming_of_captured_traders</of>
 				</alias>
-				<connector uid="127" angle="172.569">
+				<connector uid="112" angle="172.569">
 					<from>
-						<alias uid="42"/>
+						<alias uid="43"/>
 					</from>
 					<to>Paying_for_ransoming_of_captives_1</to>
 				</connector>
 				<alias font_style="italic" uid="15" x="707.25" y="159.75" width="18" height="18">
 					<of>cost_per_captive</of>
 				</alias>
-				<connector uid="128" angle="34.992">
+				<connector uid="113" angle="34.992">
 					<from>
 						<alias uid="15"/>
 					</from>
 					<to>Ransoming_of_captured_traders</to>
+				</connector>
+				<aux x="1537" y="179.63" name="Percentage of captives that join"/>
+				<connector uid="114" angle="203.57">
+					<from>Percentage_of_captives_that_join</from>
+					<to>Recruiting_from_captives</to>
+				</connector>
+				<group locked="true" x="2887.5" y="1751" width="1472.5" height="775.25" name="Bandit and raid dynamic">
+					<item uid="115"/>
+					<item uid="116"/>
+					<item uid="117"/>
+					<item uid="75"/>
+					<item uid="80"/>
+					<item uid="72"/>
+					<item uid="118"/>
+					<item uid="76"/>
+					<item uid="71"/>
+				</group>
+				<group locked="true" x="88.75" y="2376" width="657.5" height="514" name="Trade dynamics">
+					<item uid="66"/>
+				</group>
+				<alias font_style="italic" uid="24" x="562.832" y="2128" width="18" height="18">
+					<of>Sending_caravans</of>
+				</alias>
+				<connector uid="119" angle="54.4623">
+					<from>
+						<alias uid="24"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
+				</connector>
+				<connector uid="120" angle="11.7297">
+					<from>
+						<alias uid="24"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
+				</connector>
+				<connector uid="121" angle="352.888">
+					<from>
+						<alias uid="24"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Goldford</to>
+				</connector>
+				<connector uid="122" angle="157.209">
+					<from>
+						<alias uid="27"/>
+					</from>
+					<to>Amount_of_cotton_to_slagtown</to>
+				</connector>
+				<connector uid="123" angle="203.429">
+					<from>
+						<alias uid="25"/>
+					</from>
+					<to>Amount_of_cotton_to_Goldford</to>
+				</connector>
+				<connector uid="124" angle="35.1915">
+					<from>
+						<alias uid="26"/>
+					</from>
+					<to>Amount_of_cotton_to_Coalpeak</to>
+				</connector>
+				<aux x="3381.38" y="2398.75" name="Chance of succesful raid"/>
+				<alias color="blue" background="white" font_style="italic" uid="116" x="3131" y="2214.75" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_slagtown</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="115" x="3129.75" y="2287.25" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_coalpeak</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="117" x="3129.75" y="2352.25" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_Goldford</of>
+				</alias>
+				<connector uid="125" angle="331.39">
+					<from>
+						<alias uid="116"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="126" angle="319.399">
+					<from>
+						<alias uid="115"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="127" angle="321.34">
+					<from>
+						<alias uid="117"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<alias color="blue" background="white" font_style="italic" uid="118" x="4149.75" y="2191" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Chance_of_succesful_raid</of>
+				</alias>
+				<connector uid="128" angle="94.3987">
+					<from>
+						<alias uid="118"/>
+					</from>
+					<to>Success_or_fail</to>
+				</connector>
+				<connector uid="129" angle="294.146">
+					<from>Success_or_fail</from>
+					<to>Bandits_returning_from_raid</to>
+				</connector>
+				<connector uid="130" angle="106.699">
+					<from>Success_or_fail</from>
+					<to>Bandits_killed_in_raid</to>
+				</connector>
+				<connector uid="131" angle="320.342">
+					<from>Active_bandits</from>
+					<to>Bandits_returning_from_raid</to>
+				</connector>
+				<connector uid="132" angle="39.9403">
+					<from>Active_bandits</from>
+					<to>Bandits_killed_in_raid</to>
+				</connector>
+				<connector uid="133" angle="61.6249">
+					<from>
+						<alias uid="75"/>
+					</from>
+					<to>Bandits_becoming_active</to>
+				</connector>
+				<connector uid="134" angle="290.548">
+					<from>Bandits_Idle_in_camp</from>
+					<to>Bandits_becoming_active</to>
+				</connector>
+				<aux x="2625.17" y="1953" width="18" height="18" name="Bandits who need new\nequipment"/>
+				<connector uid="135" angle="170.44">
+					<from>Bandits_who_need_new_equipment</from>
+					<to>Bandit_equipment_costs</to>
+				</connector>
+				<connector uid="136" angle="115.604">
+					<from>Bandit_equipment_costs</from>
+					<to>Living_cost_per_Bandit</to>
+				</connector>
+				<connector uid="137" angle="45.3696">
+					<from>Bandits_Idle_in_camp</from>
+					<to>Bandits_that_leave</to>
 				</connector>
 			</view>
 		</views>
