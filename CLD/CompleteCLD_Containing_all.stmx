@@ -480,7 +480,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="852.5" isee:scroll_y="1462.5" zoom="160" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="2011.25" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -516,9 +516,9 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux x="2649.25" y="103.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
-				<aux x="2653.25" y="210.5" width="104" height="18" name="Cotton picking"/>
-				<aux x="2646.75" y="284.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
+				<aux x="2649.96" y="48.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
+				<aux x="2653.96" y="155.5" width="104" height="18" name="Cotton picking"/>
+				<aux x="2647.46" y="229.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
 				<connector uid="1" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="219.039">
 					<from>Cotton_grown_in_Cottonbog</from>
 					<to>Cotton_picking</to>
@@ -529,11 +529,11 @@
 				</connector>
 				<aux x="2361.46" y="391.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
 				<aux x="2340.08" y="537.857" width="183" height="18" name="Sale of cotton in Slagtown"/>
-				<connector uid="3" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="201.499">
+				<connector uid="3" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="178.065">
 					<from>Cotton_picked_in_Cottonbog</from>
 					<to>Traveling_with_cotton_to_SlagTown</to>
 				</connector>
-				<connector uid="4" font_size="14pt" polarity="-" isee:polarity_placement="outside" angle="21.4992">
+				<connector uid="4" font_size="14pt" polarity="-" isee:polarity_placement="inside" angle="17.2711">
 					<from>Traveling_with_cotton_to_SlagTown</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
@@ -547,11 +547,11 @@
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Sale_of_cotton_in_Coalpeak</to>
 				</connector>
-				<connector uid="7" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="339.722">
+				<connector uid="7" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="358.444">
 					<from>Cotton_picked_in_Cottonbog</from>
 					<to>Traveling_with_cotton_to_Coalpeak</to>
 				</connector>
-				<connector uid="8" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="159.722">
+				<connector uid="8" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="165.154">
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
@@ -561,11 +561,11 @@
 					<from>Traveling_with_cotton_to_Goldford</from>
 					<to>Sale_of_cotton_in_Goldford</to>
 				</connector>
-				<connector uid="10" font_size="14pt" polarity="-" isee:polarity_placement="outside" angle="90">
+				<connector uid="10" font_size="14pt" polarity="-" isee:polarity_placement="inside" angle="112.685">
 					<from>Traveling_with_cotton_to_Goldford</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<connector uid="11" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<connector uid="11" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="298.214">
 					<from>Cotton_picked_in_Cottonbog</from>
 					<to>Traveling_with_cotton_to_Goldford</to>
 				</connector>
@@ -1175,12 +1175,36 @@
 						<entity name="Cotton_in_bandit_camp"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="138" x="2690.25" y="156.667" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="138" x="2690.96" y="101.667" width="30" height="30">
 					<isee:entities>
 						<entity name="Cotton_grown_in_Cottonbog"/>
 						<item uid="13"/>
 						<entity name="Cotton_picking"/>
 						<item uid="1"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="139" x="2541.43" y="292.857" width="30" height="30">
+					<isee:entities>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+						<item uid="3"/>
+						<item uid="4"/>
+						<entity name="Traveling_with_cotton_to_SlagTown"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="140" x="2835" y="299.003" width="30" height="30">
+					<isee:entities>
+						<entity name="Traveling_with_cotton_to_Coalpeak"/>
+						<item uid="7"/>
+						<item uid="8"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="141" x="2690.96" y="310.714" width="30" height="30">
+					<isee:entities>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+						<item uid="11"/>
+						<entity name="Traveling_with_cotton_to_Goldford"/>
+						<item uid="10"/>
 					</isee:entities>
 				</isee:loop_indicator>
 			</view>
