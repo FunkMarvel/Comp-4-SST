@@ -246,7 +246,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="3" isee:page_rows="2" isee:scroll_x="455" isee:scroll_y="322.857" zoom="140" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -309,7 +309,7 @@
 					<from>People_to_young_to_work</from>
 					<to>Growing_up</to>
 				</connector>
-				<connector uid="6" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="2.74809">
+				<connector uid="6" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="2.74809">
 					<from>Traders</from>
 					<to>Growing_old</to>
 				</connector>
@@ -325,7 +325,7 @@
 					<from>Growing_old</from>
 					<to>Cotton_pickers</to>
 				</connector>
-				<connector uid="10" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="2.5676">
+				<connector uid="10" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="2.5676">
 					<from>Other_workers</from>
 					<to>Growing_old</to>
 				</connector>
@@ -517,7 +517,7 @@
 						<pt x="409.5" y="844.167"/>
 						<pt x="128.75" y="742.5"/>
 						<pt x="181.25" y="232.5"/>
-						<pt x="512.5" y="165.685"/>
+						<pt x="512.5" y="165.966"/>
 					</pts>
 					<from>Total_amount_of_fertile_people</from>
 					<to>Total_amount_of_citizens</to>
@@ -530,7 +530,7 @@
 					<pts>
 						<pt x="1211.33" y="587.5"/>
 						<pt x="1121.25" y="256.25"/>
-						<pt x="603.5" y="172.237"/>
+						<pt x="603.5" y="172.446"/>
 					</pts>
 					<from>People_to_old_to_work</from>
 					<to>Total_amount_of_citizens</to>
