@@ -24,9 +24,6 @@
 			<aux name="Active bandits">
 				<isee:delay_aux/>
 			</aux>
-			<aux name="recruiting from capatives">
-				<isee:delay_aux/>
-			</aux>
 			<aux name="New bandits joining">
 				<isee:delay_aux/>
 			</aux>
@@ -54,12 +51,6 @@
 			<aux name="Retrieved gold from raid">
 				<isee:delay_aux/>
 			</aux>
-			<aux name="Retrieved people from raid">
-				<isee:delay_aux/>
-			</aux>
-			<aux name="Ransoming/selling capatives from raid">
-				<isee:delay_aux/>
-			</aux>
 			<aux name="Bandits gold\nStorage">
 				<isee:delay_aux/>
 			</aux>
@@ -70,12 +61,6 @@
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Bandits idle in camp">
-				<isee:delay_aux/>
-			</aux>
-			<aux name="Bandits living quality">
-				<isee:delay_aux/>
-			</aux>
-			<aux name="Loot">
 				<isee:delay_aux/>
 			</aux>
 			<aux name="Guards on road">
@@ -94,11 +79,8 @@
 				<var name="Active_bandits">
 					<in>Becoming_active</in>
 				</var>
-				<var name="recruiting_from_capatives">
-					<in>Bandits_living_quality</in>
-				</var>
 				<var name="New_bandits_joining">
-					<in>Bandits_living_quality</in>
+					<in>Bandits_gold_Storage</in>
 				</var>
 				<var name="Bandits_out_raiding_road_to_Goldford">
 					<in>Active_bandits</in>
@@ -126,21 +108,11 @@
 				</var>
 				<var name="Recovering">
 					<in>Returning_from_a_successful_raid</in>
-					<in>Bandits_living_quality</in>
 				</var>
 				<var name="Retrieved_gold_from_raid">
-					<in>Bandits_gold_Storage</in>
-					<in>Loot</in>
-				</var>
-				<var name="Retrieved_people_from_raid">
-					<in>&quot;Ransoming/selling_capatives_from_raid&quot;</in>
-					<in>Loot</in>
-				</var>
-				<var name='"Ransoming/selling_capatives_from_raid"'>
-					<in>Retrieved_people_from_raid</in>
+					<in>Returning_from_a_successful_raid</in>
 				</var>
 				<var name="Bandits_gold_Storage">
-					<in>&quot;Ransoming/selling_capatives_from_raid&quot;</in>
 					<in>Retrieved_gold_from_raid</in>
 					<in>Living_expenses</in>
 					<in>Buying_equipment</in>
@@ -152,17 +124,10 @@
 					<in>Bandits_gold_Storage</in>
 				</var>
 				<var name="Bandits_idle_in_camp">
-					<in>recruiting_from_capatives</in>
 					<in>New_bandits_joining</in>
 					<in>bandits_that_are_leaving</in>
 					<in>Recovering</in>
 					<in>Becoming_active</in>
-				</var>
-				<var name="Bandits_living_quality">
-					<in>Living_expenses</in>
-				</var>
-				<var name="Loot">
-					<in>Returning_from_a_successful_raid</in>
 				</var>
 				<var name="Guards_on_road">
 					<in>Active_bandits</in>
@@ -219,7 +184,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" zoom="20" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="106.667" isee:scroll_y="300" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -255,13 +220,12 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux color="blue" x="673.16" y="341.607" width="102" height="18" name="Active bandits"/>
-				<aux color="blue" x="1618.72" y="825.58" width="174" height="18" name="recruiting from capatives"/>
-				<aux color="blue" x="1391.72" y="825.58" width="139" height="18" name="New bandits joining"/>
-				<aux color="blue" x="1513.87" y="228.083" width="164" height="18" name="bandits that are leaving"/>
-				<aux color="blue" x="926.24" y="717.666" width="134" height="38" name="Bandits out raiding road to Goldford"/>
-				<aux color="blue" x="410.95" y="717.666" width="134" height="38" name="Bandits out raiding\nroad to Coalpeak"/>
-				<aux color="blue" x="657.16" y="717.666" width="134" height="38" name="Bandits out raiding\nroad to Slagtown"/>
+				<aux color="blue" x="737.66" y="380.857" width="102" height="18" name="Active bandits"/>
+				<aux color="blue" x="1590.39" y="976.55" width="139" height="18" name="New bandits joining"/>
+				<aux color="blue" x="1578.37" y="267.333" width="164" height="18" name="bandits that are leaving"/>
+				<aux color="blue" x="990.74" y="756.916" width="134" height="38" name="Bandits out raiding road to Goldford"/>
+				<aux color="blue" x="475.45" y="756.916" width="134" height="38" name="Bandits out raiding\nroad to Coalpeak"/>
+				<aux color="blue" x="721.66" y="756.916" width="134" height="38" name="Bandits out raiding\nroad to Slagtown"/>
 				<connector uid="1" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="237.473">
 					<from>Active_bandits</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
@@ -274,8 +238,8 @@
 					<from>Active_bandits</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<aux color="blue" x="124.79" y="926.46" width="144" height="18" name="Bandits killed in raid"/>
-				<aux color="blue" x="665.16" y="916.46" width="118" height="38" name="Returning from a\nsuccessful raid"/>
+				<aux color="blue" x="189.29" y="965.71" width="144" height="18" name="Bandits killed in raid"/>
+				<aux color="blue" x="729.66" y="955.71" width="118" height="38" name="Returning from a\nsuccessful raid"/>
 				<connector uid="4" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="298.994">
 					<from>Bandits_out_raiding_road_to_Coalpeak</from>
 					<to>Returning_from_a_successful_raid</to>
@@ -296,212 +260,175 @@
 					<from>Bandits_killed_in_raid</from>
 					<to>Returning_from_a_successful_raid</to>
 				</connector>
-				<aux color="blue" x="1158.37" y="930.63" width="83" height="18" name="Recovering"/>
-				<aux color="blue" x="637.83" y="1221.42" width="171" height="18" name="Retrieved gold from raid"/>
-				<aux color="blue" x="339.99" y="1217.92" width="189" height="18" name="Retrieved people from raid"/>
+				<aux color="blue" x="1222.87" y="969.88" width="83" height="18" name="Recovering"/>
+				<aux color="blue" x="702.33" y="1260.67" width="171" height="18" name="Retrieved gold from raid"/>
 				<connector uid="9" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="269.569">
 					<from>Returning_from_a_successful_raid</from>
-					<to>Loot</to>
+					<to>Retrieved_gold_from_raid</to>
 				</connector>
-				<aux color="blue" x="365.99" y="1382.58" width="137" height="38" name="Ransoming/selling capatives from raid"/>
+				<aux color="blue" x="742.33" y="1421.83" width="91" height="38" name="Bandits gold\nStorage"/>
 				<connector uid="10" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
-					<from>Retrieved_people_from_raid</from>
-					<to>&quot;Ransoming/selling_capatives_from_raid&quot;</to>
-				</connector>
-				<aux color="blue" x="677.83" y="1382.58" width="91" height="38" name="Bandits gold\nStorage"/>
-				<connector uid="11" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="0">
-					<from>&quot;Ransoming/selling_capatives_from_raid&quot;</from>
-					<to>Bandits_gold_Storage</to>
-				</connector>
-				<connector uid="12" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Retrieved_gold_from_raid</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<aux color="blue" x="659.33" y="140.917" width="128" height="18" name="Buying equipment"/>
-				<aux color="blue" x="1537.87" y="1392.58" width="116" height="18" name="Living expenses"/>
-				<connector uid="13" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="193.368">
+				<aux color="blue" x="723.83" y="180.167" width="128" height="18" name="Buying equipment"/>
+				<aux color="blue" x="1602.37" y="1431.83" width="116" height="18" name="Living expenses"/>
+				<connector uid="11" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="193.368">
 					<from>Living_expenses</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<aux color="blue" x="1523.37" y="341.607" width="145" height="18" name="Bandits idle in camp"/>
-				<connector uid="14" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="102.789">
-					<from>recruiting_from_capatives</from>
-					<to>Bandits_idle_in_camp</to>
-				</connector>
-				<connector uid="15" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="74.4534">
+				<aux color="blue" x="1587.87" y="380.857" width="145" height="18" name="Bandits idle in camp"/>
+				<connector uid="12" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="89.9535">
 					<from>New_bandits_joining</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<connector uid="16" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="270">
+				<connector uid="13" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="270">
 					<from>bandits_that_are_leaving</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<aux color="blue" x="1523.87" y="930.63" width="144" height="18" name="Bandits living quality"/>
-				<connector uid="17" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="90">
-					<from>Living_expenses</from>
-					<to>Bandits_living_quality</to>
-				</connector>
-				<connector uid="18" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
-					<from>Bandits_living_quality</from>
-					<to>Recovering</to>
-				</connector>
-				<connector uid="19" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="142.04">
-					<from>Bandits_living_quality</from>
-					<to>New_bandits_joining</to>
-				</connector>
-				<connector uid="20" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="43.7163">
-					<from>Bandits_living_quality</from>
-					<to>recruiting_from_capatives</to>
-				</connector>
-				<connector uid="21" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="12.2048">
+				<connector uid="14" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="12.2048">
 					<from>Bandits_gold_Storage</from>
 					<to>Living_expenses</to>
 				</connector>
-				<connector uid="22" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="59.943">
+				<connector uid="15" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="59.943">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Goldford</to>
 				</connector>
-				<connector uid="23" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="115.869">
+				<connector uid="16" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="115.869">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<connector uid="24" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="120.99">
+				<connector uid="17" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="120.99">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
 				</connector>
-				<connector uid="25" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="0.248217">
-					<from>&quot;Ransoming/selling_capatives_from_raid&quot;</from>
-					<to>Retrieved_people_from_raid</to>
-				</connector>
-				<connector uid="26" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="1.24147">
-					<from>Bandits_gold_Storage</from>
-					<to>Retrieved_gold_from_raid</to>
-				</connector>
-				<aux color="blue" x="705.83" y="1037.17" width="35" height="18" name="Loot"/>
-				<connector uid="27" angle="270">
-					<from>Loot</from>
-					<to>Retrieved_gold_from_raid</to>
-				</connector>
-				<connector uid="28" angle="192.995">
-					<from>Loot</from>
-					<to>Retrieved_people_from_raid</to>
-				</connector>
-				<connector uid="29" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="56.0874">
+				<connector uid="18" font_size="16pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="86.3668">
 					<from>Recovering</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<aux color="blue" x="140.79" y="727.666" width="112" height="18" name="Guards on road"/>
-				<connector uid="30" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="18.7368">
+				<aux color="blue" x="205.29" y="766.916" width="112" height="18" name="Guards on road"/>
+				<connector uid="19" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="18.7368">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
 				</connector>
-				<connector uid="31" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.8572">
+				<connector uid="20" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.8572">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<connector uid="32" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.5311">
+				<connector uid="21" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.5311">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Goldford</to>
 				</connector>
-				<connector uid="33" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="216.206">
+				<connector uid="22" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="216.206">
 					<from>Active_bandits</from>
 					<to>Guards_on_road</to>
 				</connector>
-				<connector uid="34" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<connector uid="23" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Guards_on_road</from>
 					<to>Bandits_killed_in_raid</to>
 				</connector>
-				<aux color="blue" x="814.33" y="263.75" width="167" height="18" name="Bandit equipment stock"/>
-				<aux color="blue" x="470.83" y="263.75" width="163" height="18" name="Demand for equipment"/>
-				<connector uid="35" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="324.858">
+				<aux color="blue" x="878.83" y="303" width="167" height="18" name="Bandit equipment stock"/>
+				<aux color="blue" x="535.33" y="303" width="163" height="18" name="Demand for equipment"/>
+				<connector uid="24" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="324.858">
 					<from>Buying_equipment</from>
 					<to>Bandit_equipment_stock</to>
 				</connector>
-				<connector uid="36" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="35.6905">
+				<connector uid="25" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="35.6905">
 					<from>Demand_for_equipment</from>
 					<to>Buying_equipment</to>
 				</connector>
-				<connector uid="37" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="155.625">
+				<connector uid="26" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="155.625">
 					<from>Active_bandits</from>
 					<to>Demand_for_equipment</to>
 				</connector>
-				<connector uid="38" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="24.1474">
+				<connector uid="27" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="24.1474">
 					<from>Active_bandits</from>
 					<to>Bandit_equipment_stock</to>
 				</connector>
-				<aux color="blue" x="1294.17" y="341.607" width="120" height="18" name="Becoming active"/>
-				<connector uid="39" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
+				<aux color="blue" x="1358.67" y="380.857" width="120" height="18" name="Becoming active"/>
+				<connector uid="28" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
 					<from>Becoming_active</from>
 					<to>Active_bandits</to>
 				</connector>
-				<connector uid="40" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
+				<connector uid="29" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
 					<from>Becoming_active</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<connector uid="41" font_size="16pt" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="270">
+				<connector uid="30" font_size="16pt" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="270">
 					<from>
-						<alias uid="42"/>
+						<alias uid="31"/>
 					</from>
 					<to>Becoming_active</to>
 				</connector>
-				<connector uid="43" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90.4026">
+				<connector uid="32" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90.4026">
 					<from>
-						<alias uid="44"/>
+						<alias uid="33"/>
 					</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="45" x="485.67" y="1292.92" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="34" x="648.5" y="860.5" width="30" height="30">
 					<isee:entities>
-						<item uid="10"/>
-						<item uid="25"/>
-						<entity name='"Ransoming/selling_capatives_from_raid"'/>
-						<entity name="Retrieved_people_from_raid"/>
-					</isee:entities>
-				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="46" x="768.83" y="1298.75" width="30" height="30">
-					<isee:entities>
-						<item uid="26"/>
-						<item uid="12"/>
-						<entity name="Retrieved_gold_from_raid"/>
-						<entity name="Bandits_gold_Storage"/>
-					</isee:entities>
-				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="47" x="584" y="821.25" width="30" height="30">
-					<isee:entities>
-						<item uid="24"/>
+						<item uid="17"/>
 						<item uid="4"/>
 						<entity name="Bandits_out_raiding_road_to_Coalpeak"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="48" x="709.16" y="811.25" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="35" x="773.66" y="850.5" width="30" height="30">
 					<isee:entities>
-						<item uid="23"/>
+						<item uid="16"/>
 						<item uid="6"/>
 						<entity name="Bandits_out_raiding_road_to_Slagtown"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="49" x="844" y="821.25" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="36" x="908.5" y="860.5" width="30" height="30">
 					<isee:entities>
-						<item uid="22"/>
+						<item uid="15"/>
 						<item uid="5"/>
 						<entity name="Bandits_out_raiding_road_to_Goldford"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="50" x="1123.17" y="1386.58" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="37" x="1187.67" y="1425.83" width="30" height="30">
 					<isee:entities>
-						<item uid="21"/>
-						<item uid="13"/>
+						<item uid="14"/>
+						<item uid="11"/>
 						<entity name="Living_expenses"/>
 						<entity name="Bandits_gold_Storage"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<alias color="blue" font_style="italic" uid="42" x="1307.67" y="236.083" width="93" height="40">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="1105.37" y="533.833" width="30" height="30">
+					<isee:entities>
+						<item uid="31"/>
+						<item uid="30"/>
+						<item uid="28"/>
+						<item uid="2"/>
+						<item uid="3"/>
+						<item uid="1"/>
+						<item uid="4"/>
+						<item uid="6"/>
+						<item uid="5"/>
+						<item uid="9"/>
+						<item uid="10"/>
+						<entity name="Becoming_active"/>
+						<entity name="Active_bandits"/>
+						<entity name="Bandits_out_raiding_road_to_Goldford"/>
+						<entity name="Bandits_out_raiding_road_to_Slagtown"/>
+						<entity name="Bandits_out_raiding_road_to_Coalpeak"/>
+						<entity name="Returning_from_a_successful_raid"/>
+						<entity name="Retrieved_gold_from_raid"/>
+						<entity name="Bandits_gold_Storage"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<connector uid="39" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="27.5682">
+					<from>Bandits_gold_Storage</from>
+					<to>New_bandits_joining</to>
+				</connector>
+				<alias color="blue" font_style="italic" uid="31" x="1372.17" y="271.166" width="93" height="40">
 					<of>Bandits_gold_Storage</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="44" x="657.16" y="1510.67" width="134" height="19">
+				<alias color="blue" font_style="italic" uid="33" x="721.66" y="1549.92" width="134" height="19">
 					<of>Buying_equipment</of>
 				</alias>
 			</view>
