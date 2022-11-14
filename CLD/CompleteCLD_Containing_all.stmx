@@ -198,6 +198,9 @@
 			<aux name="Becoming active">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Deathrate">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Cotton_grown_in_Cottonbog">
 					<in>Cotton_picking</in>
@@ -273,6 +276,7 @@
 					<in>Death_of_young_people</in>
 					<in>Killing_of_traders_in_bandit_raids</in>
 					<in>Deaths_of_working_people</in>
+					<in>Deathrate</in>
 				</var>
 				<var name="Killing_of_traders_in_bandit_raids">
 					<in>Bandit_raid</in>
@@ -321,6 +325,7 @@
 				</var>
 				<var name="Birthrate">
 					<in>Total_amount_of_fertile_people</in>
+					<in>Cottonbog&apos;s_Gold</in>
 				</var>
 				<var name="Total_amount_of_fertile_people">
 					<in>Other_workers</in>
@@ -425,6 +430,9 @@
 				<var name="Becoming_active">
 					<in>Bandits_gold_Storage</in>
 				</var>
+				<var name="Deathrate">
+					<in>Cottonbog&apos;s_Gold</in>
+				</var>
 			</isee:dependencies>
 		</variables>
 		<views>
@@ -467,7 +475,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="604" isee:scroll_y="1139" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" zoom="20" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -565,7 +573,7 @@
 				<aux x="1392.25" y="1347" width="57" height="18" name="Traders"/>
 				<aux x="1393.25" y="1499" width="55" height="38" name="Cotton\npickers"/>
 				<aux x="1370.25" y="1174.75" width="101" height="18" name="Other workers"/>
-				<aux x="976.458" y="891.75" width="79" height="38" name="People to\nold to work"/>
+				<aux x="971.458" y="905.753" width="79" height="38" name="People to\nold to work"/>
 				<aux x="967.458" y="1347" width="87" height="18" name="Growing old"/>
 				<connector uid="13" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270.507">
 					<from>Growing_up</from>
@@ -611,14 +619,14 @@
 					<from>Growing_old</from>
 					<to>Other_workers</to>
 				</connector>
-				<connector uid="24" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="89.3566">
+				<connector uid="24" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90">
 					<from>Growing_old</from>
 					<to>People_to_old_to_work</to>
 				</connector>
-				<aux x="1398.75" y="1924.75" width="44" height="18" name="Births"/>
+				<aux x="2322" y="1727.5" width="44" height="18" name="Births"/>
 				<aux x="1717.96" y="1017" width="54" height="18" name="Deaths"/>
 				<aux x="1706.46" y="905.753" width="77" height="38" name="Death of\nold people"/>
-				<connector uid="25" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="178.9">
+				<connector uid="25" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180">
 					<from>Death_of_old_people</from>
 					<to>People_to_old_to_work</to>
 				</connector>
@@ -741,8 +749,8 @@
 						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="1389.25" y="1840.92" width="63" height="18" name="Birthrate"/>
-				<connector uid="49" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<aux x="1995.5" y="1727.5" width="63" height="18" name="Birthrate"/>
+				<connector uid="49" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
 					<from>Birthrate</from>
 					<to>Births</to>
 				</connector>
@@ -750,16 +758,16 @@
 					<from>Other_workers</from>
 					<to>Total_amount_of_fertile_people</to>
 				</connector>
-				<connector uid="51" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="351.071">
+				<connector uid="51" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="273.997">
 					<from>Cotton_pickers</from>
 					<to>Total_amount_of_fertile_people</to>
 				</connector>
 				<aux x="1375.25" y="1707.5" width="91" height="58" name="Total amount\nof fertile\npeople"/>
-				<connector uid="52" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="348.959">
+				<connector uid="52" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="349.333">
 					<from>Traders</from>
 					<to>Total_amount_of_fertile_people</to>
 				</connector>
-				<connector uid="53" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<connector uid="53" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
 					<from>Total_amount_of_fertile_people</from>
 					<to>Birthrate</to>
 				</connector>
@@ -776,16 +784,16 @@
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<aux x="977.917" y="648" width="91" height="38" name="Total amount\nof citizens"/>
+				<aux x="965.458" y="648.714" width="91" height="38" name="Total amount\nof citizens"/>
 				<connector uid="57" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="135.69">
 					<from>People_to_young_to_work</from>
 					<to>Total_amount_of_citizens</to>
 				</connector>
-				<connector uid="58" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="88.2474">
+				<connector uid="58" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90">
 					<from>People_to_old_to_work</from>
 					<to>Total_amount_of_citizens</to>
 				</connector>
-				<connector uid="59" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="359.808">
+				<connector uid="59" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="359.846">
 					<from>Total_amount_of_citizens</from>
 					<to>Purchase_of_food_and_amenities</to>
 				</connector>
@@ -841,7 +849,7 @@
 					</from>
 					<to>People_to_young_to_work</to>
 				</connector>
-				<connector uid="73" color="#5500FF" font_color="#5500FF" angle="273.295">
+				<connector uid="73" color="#5500FF" font_color="#5500FF" angle="270">
 					<from>
 						<alias uid="74"/>
 					</from>
@@ -1157,7 +1165,7 @@
 				<alias font_style="italic" uid="72" x="1398.25" y="704.5" width="45" height="19">
 					<of>Births</of>
 				</alias>
-				<alias font_style="italic" uid="74" x="974.917" y="474.5" width="97" height="61">
+				<alias font_style="italic" uid="74" x="962.458" y="476.643" width="97" height="61">
 					<of>Total_amount_of_fertile_people</of>
 				</alias>
 				<alias color="blue" font_style="italic" uid="116" x="4771.17" y="432.333" width="93" height="40">
@@ -1180,6 +1188,26 @@
 						<item uid="87"/>
 					</isee:entities>
 				</isee:loop_indicator>
+				<aux x="1990.5" y="1416.33" width="73" height="18" name="Deathrate"/>
+				<connector uid="139" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="97.9453">
+					<from>Deathrate</from>
+					<to>Deaths</to>
+				</connector>
+				<alias font_style="italic" font_size="28pt" uid="140" x="1948.5" y="1567" width="157" height="64">
+					<of>Cottonbog&apos;s_Gold</of>
+				</alias>
+				<connector uid="141" color="#FFAA00" font_color="#FFAA00" font_size="16pt" angle="90">
+					<from>
+						<alias uid="140"/>
+					</from>
+					<to>Deathrate</to>
+				</connector>
+				<connector uid="142" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>
+						<alias uid="140"/>
+					</from>
+					<to>Birthrate</to>
+				</connector>
 			</view>
 		</views>
 	</model>

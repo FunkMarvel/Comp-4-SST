@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>Cotton_and_Gold_CLD_Reworked</name>
+		<uuid>633cae8f-6942-4ddf-b169-a198a33a4e27</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.115385" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="cld" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="Cotton grown in\nCottonbog">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Cotton picking">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Cotton picked in\nCottonbog">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Traveling with cotton\nto SlagTown">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Sale of cotton in Slagtown">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Traveling with cotton\nto Coalpeak">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Sale of cotton in Coalpeak">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Traveling with cotton\nto Goldford">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Sale of cotton in Goldford">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Cottonbog's\nGold">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Cotton\npicking\nexpenses">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gold for\ntoll to Slagtown">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Road toll\nExpenses">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gold from\ntrade with\nCoalpeak">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gold from\ntrade with\nGoldford">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Gold from\ntrade with\nSlagtown">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Bandit\nraid">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Purchase of\nfood and\namenities">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Hiring of\nescorts">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Guards on\nroad to\nSlagtown">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Returning from a\nsuccessful raid">
+				<isee:delay_aux/>
+			</aux>
+			<isee:dependencies>
+				<var name="Cotton_grown_in_Cottonbog">
+					<in>Cotton_picking</in>
+				</var>
+				<var name="Cotton_picking">
+					<in>Cotton_grown_in_Cottonbog</in>
+				</var>
+				<var name="Cotton_picked_in_Cottonbog">
+					<in>Cotton_picking</in>
+					<in>Traveling_with_cotton_to_SlagTown</in>
+					<in>Traveling_with_cotton_to_Coalpeak</in>
+					<in>Traveling_with_cotton_to_Goldford</in>
+				</var>
+				<var name="Traveling_with_cotton_to_SlagTown">
+					<in>Cotton_picked_in_Cottonbog</in>
+					<in>Bandit_raid</in>
+				</var>
+				<var name="Sale_of_cotton_in_Slagtown">
+					<in>Traveling_with_cotton_to_SlagTown</in>
+				</var>
+				<var name="Traveling_with_cotton_to_Coalpeak">
+					<in>Cotton_picked_in_Cottonbog</in>
+					<in>Bandit_raid</in>
+				</var>
+				<var name="Sale_of_cotton_in_Coalpeak">
+					<in>Traveling_with_cotton_to_Coalpeak</in>
+				</var>
+				<var name="Traveling_with_cotton_to_Goldford">
+					<in>Cotton_picked_in_Cottonbog</in>
+					<in>Bandit_raid</in>
+				</var>
+				<var name="Sale_of_cotton_in_Goldford">
+					<in>Traveling_with_cotton_to_Goldford</in>
+				</var>
+				<var name="Cottonbog's_Gold">
+					<in>Cotton_picking_expenses</in>
+					<in>Gold_for_toll_to_Slagtown</in>
+					<in>Gold_from_trade_with_Coalpeak</in>
+					<in>Gold_from_trade_with_Goldford</in>
+					<in>Gold_from_trade_with_Slagtown</in>
+					<in>Hiring_of_escorts</in>
+				</var>
+				<var name="Gold_for_toll_to_Slagtown">
+					<in>Road_toll_Expenses</in>
+				</var>
+				<var name="Road_toll_Expenses">
+					<in>Guards_on_road_to_Slagtown</in>
+				</var>
+				<var name="Gold_from_trade_with_Coalpeak">
+					<in>Bandit_raid</in>
+					<in>Purchase_of_food_and_amenities</in>
+					<in>Sale_of_cotton_in_Coalpeak</in>
+					<in>Returning_from_a_successful_raid</in>
+				</var>
+				<var name="Gold_from_trade_with_Goldford">
+					<in>Bandit_raid</in>
+					<in>Purchase_of_food_and_amenities</in>
+					<in>Sale_of_cotton_in_Goldford</in>
+					<in>Returning_from_a_successful_raid</in>
+				</var>
+				<var name="Gold_from_trade_with_Slagtown">
+					<in>Road_toll_Expenses</in>
+					<in>Bandit_raid</in>
+					<in>Purchase_of_food_and_amenities</in>
+					<in>Sale_of_cotton_in_Slagtown</in>
+					<in>Returning_from_a_successful_raid</in>
+				</var>
+				<var name="Bandit_raid">
+					<in>Guards_on_road_to_Slagtown</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="416.25" isee:scroll_y="561.25" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom">
+						<shape type="name_only"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux x="1219.96" y="571.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
+				<aux x="1223.96" y="678.5" width="104" height="18" name="Cotton picking"/>
+				<aux x="1217.46" y="752.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
+				<connector uid="1" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="219.039">
+					<from>Cotton_grown_in_Cottonbog</from>
+					<to>Cotton_picking</to>
+				</connector>
+				<connector uid="2" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Cotton_picking</from>
+					<to>Cotton_picked_in_Cottonbog</to>
+				</connector>
+				<aux x="931.46" y="914.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
+				<aux x="910.08" y="1060.86" width="183" height="18" name="Sale of cotton in Slagtown"/>
+				<connector uid="3" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="178.065">
+					<from>Cotton_picked_in_Cottonbog</from>
+					<to>Traveling_with_cotton_to_SlagTown</to>
+				</connector>
+				<connector uid="4" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="-" isee:polarity_placement="inside" angle="17.2711">
+					<from>Traveling_with_cotton_to_SlagTown</from>
+					<to>Cotton_picked_in_Cottonbog</to>
+				</connector>
+				<connector uid="5" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="269.422">
+					<from>Traveling_with_cotton_to_SlagTown</from>
+					<to>Sale_of_cotton_in_Slagtown</to>
+				</connector>
+				<aux x="1494.05" y="914.67" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
+				<aux x="1472.05" y="1065.86" width="187" height="18" name="Sale of cotton in Coalpeak"/>
+				<connector uid="6" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="270">
+					<from>Traveling_with_cotton_to_Coalpeak</from>
+					<to>Sale_of_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="7" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="358.444">
+					<from>Cotton_picked_in_Cottonbog</from>
+					<to>Traveling_with_cotton_to_Coalpeak</to>
+				</connector>
+				<connector uid="8" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="165.154">
+					<from>Traveling_with_cotton_to_Coalpeak</from>
+					<to>Cotton_picked_in_Cottonbog</to>
+				</connector>
+				<aux x="1203.75" y="914.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
+				<aux x="1185.75" y="1065.86" width="179" height="18" name="Sale of cotton in Goldford"/>
+				<connector uid="9" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="270">
+					<from>Traveling_with_cotton_to_Goldford</from>
+					<to>Sale_of_cotton_in_Goldford</to>
+				</connector>
+				<connector uid="10" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="-" isee:polarity_placement="inside" angle="112.685">
+					<from>Traveling_with_cotton_to_Goldford</from>
+					<to>Cotton_picked_in_Cottonbog</to>
+				</connector>
+				<connector uid="11" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="298.214">
+					<from>Cotton_picked_in_Cottonbog</from>
+					<to>Traveling_with_cotton_to_Goldford</to>
+				</connector>
+				<connector uid="12" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="29.4488">
+					<from>Cotton_picking</from>
+					<to>Cotton_grown_in_Cottonbog</to>
+				</connector>
+				<aux font_size="28pt" x="1197.75" y="1426.75" width="155" height="66" name="Cottonbog's\nGold"/>
+				<aux x="1236" y="1600.5" width="71" height="58" name="Cotton\npicking\nexpenses"/>
+				<connector uid="13" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="88.7344">
+					<from>Cotton_picking_expenses</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<aux x="948.96" y="1440.75" width="108" height="38" name="Gold for\ntoll to Slagtown"/>
+				<connector uid="14" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
+					<from>Gold_for_toll_to_Slagtown</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<aux x="966.46" y="1327.33" width="73" height="38" name="Road toll\nExpenses"/>
+				<connector uid="15" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Road_toll_Expenses</from>
+					<to>Gold_for_toll_to_Slagtown</to>
+				</connector>
+				<aux x="1529.55" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nCoalpeak"/>
+				<connector uid="16" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="222.491">
+					<from>Gold_from_trade_with_Coalpeak</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<connector uid="17" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90.5166">
+					<from>Road_toll_Expenses</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<aux x="1239.25" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nGoldford"/>
+				<connector uid="18" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Gold_from_trade_with_Goldford</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<aux x="965.58" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nSlagtown"/>
+				<connector uid="19" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="315.823">
+					<from>Gold_from_trade_with_Slagtown</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<aux x="1820.33" y="1050.86" width="49" height="38" name="Bandit\nraid"/>
+				<connector uid="20" color="#FF8B3D" font_color="#FF8B3D" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="183.832">
+					<from>Bandit_raid</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="21" color="#FF8B3D" font_color="#FF8B3D" font_size="18pt" polarity="-" isee:polarity_placement="outside" angle="184.546">
+					<from>Bandit_raid</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="22" color="#FF8B3D" font_color="#FF8B3D" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="185.613">
+					<from>Bandit_raid</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
+				<aux x="695" y="1164.83" width="87" height="58" name="Purchase of\nfood and\namenities"/>
+				<connector uid="23" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="335.761">
+					<from>Purchase_of_food_and_amenities</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="24" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="338.259">
+					<from>Purchase_of_food_and_amenities</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="25" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="337.78">
+					<from>Purchase_of_food_and_amenities</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
+				<aux x="1813.83" y="1436.25" width="62" height="38" name="Hiring of\nescorts"/>
+				<aux x="1806.83" y="1317.33" width="76" height="58" name="Guards on\nroad to\nSlagtown"/>
+				<connector uid="26" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90">
+					<from>Guards_on_road_to_Slagtown</from>
+					<to>Bandit_raid</to>
+				</connector>
+				<connector uid="27" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
+					<from>Guards_on_road_to_Slagtown</from>
+					<to>Road_toll_Expenses</to>
+				</connector>
+				<connector uid="28" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Sale_of_cotton_in_Slagtown</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="29" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Sale_of_cotton_in_Goldford</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="30" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="164.266">
+					<from>Bandit_raid</from>
+					<to>Traveling_with_cotton_to_SlagTown</to>
+				</connector>
+				<connector uid="31" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="166.553">
+					<from>Bandit_raid</from>
+					<to>Traveling_with_cotton_to_Goldford</to>
+				</connector>
+				<connector uid="32" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="166.48">
+					<from>Bandit_raid</from>
+					<to>Traveling_with_cotton_to_Coalpeak</to>
+				</connector>
+				<connector uid="33" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Sale_of_cotton_in_Coalpeak</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
+				<connector uid="34" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180.453">
+					<from>Hiring_of_escorts</from>
+					<to>Cottonbog&apos;s_Gold</to>
+				</connector>
+				<connector uid="35" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.639">
+					<from>Returning_from_a_successful_raid</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="36" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.919">
+					<from>Returning_from_a_successful_raid</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="37" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.612">
+					<from>Returning_from_a_successful_raid</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="1260.96" y="624.667" width="30" height="30">
+					<isee:entities>
+						<item uid="12"/>
+						<item uid="1"/>
+						<entity name="Cotton_grown_in_Cottonbog"/>
+						<entity name="Cotton_picking"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="39" x="1111.43" y="815.857" width="30" height="30">
+					<isee:entities>
+						<item uid="3"/>
+						<item uid="4"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+						<entity name="Traveling_with_cotton_to_SlagTown"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="40" x="1405" y="822.003" width="30" height="30">
+					<isee:entities>
+						<item uid="7"/>
+						<item uid="8"/>
+						<entity name="Traveling_with_cotton_to_Coalpeak"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="41" x="1260.96" y="833.714" width="30" height="30">
+					<isee:entities>
+						<item uid="11"/>
+						<item uid="10"/>
+						<entity name="Cotton_picked_in_Cottonbog"/>
+						<entity name="Traveling_with_cotton_to_Goldford"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<aux x="1925.75" y="1174.83" width="118" height="38" name="Returning from a\nsuccessful raid"/>
+			</view>
+		</views>
+	</model>
+</xmile>
+
