@@ -37,7 +37,7 @@
 				</conveyor>
 			</stock>
 			<flow name="Births">
-				<eqn>Sum_of_working_people*Birthrate/52</eqn>
+				<eqn>ROUND(Sum_of_working_people*Birthrate/52)</eqn>
 				<non_negative/>
 			</flow>
 			<flow name="Death of young'uns">
@@ -478,13 +478,13 @@
 				<eqn>(Raid_occurs &lt;= Chance_of_succesful_raid)*(Raid_occurs&gt;0)</eqn>
 			</aux>
 			<aux name="Send to slagtown">
-				<eqn>1</eqn>
+				<eqn>0</eqn>
 			</aux>
 			<aux name="Send to coalpeak">
 				<eqn>0</eqn>
 			</aux>
 			<aux name="Send to Goldford">
-				<eqn>0</eqn>
+				<eqn>1</eqn>
 			</aux>
 			<aux name="Total amount of bandits">
 				<eqn>Active_bandits + Bandits_Idle_in_camp + Recovering</eqn>
@@ -501,7 +501,7 @@
 				<isee:summing/>
 			</aux>
 			<aux name="Per person living\ncost">
-				<eqn>250/52</eqn>
+				<eqn>200/52</eqn>
 			</aux>
 			<aux name="Death rate due\nto poverty">
 				<eqn>1-MIN(1,  MAX(0,  Gold_per_citizen/(Gold_per_citizen+1)))</eqn>
@@ -916,7 +916,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_x="2362" isee:scroll_y="1218" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_y="1350" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1472,7 +1472,7 @@
 					<to>Raid_occuring</to>
 				</connector>
 				<aux x="239.012" y="2665.25" name="Send to slagtown"/>
-				<aux x="239.012" y="2736.08" name="Send to coalpeak"/>
+				<aux x="244.1" y="2737.33" name="Send to coalpeak"/>
 				<aux x="239.012" y="2800.25" name="Send to Goldford"/>
 				<connector uid="78" angle="146.659">
 					<from>
