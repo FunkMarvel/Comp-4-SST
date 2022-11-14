@@ -184,7 +184,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_y="582.5" zoom="40" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_y="635" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -430,13 +430,13 @@
 						<entity name="Growing_up"/>
 					</isee:entities>
 				</isee:loop_indicator>
+				<aux x="1148.59" y="1405" width="102" height="58" name="Killing of\ntraders\nin bandit raids"/>
 				<alias font_style="italic" uid="34" x="958.167" y="929.167" width="45" height="19">
 					<of>Births</of>
 				</alias>
 				<alias font_style="italic" uid="36" x="522.377" y="701.31" width="97" height="61">
 					<of>Total_amount_of_fertile_people</of>
 				</alias>
-				<aux x="1148.59" y="1405" width="102" height="58" name="Killing of\ntraders\nin bandit raids"/>
 			</view>
 		</views>
 	</model>

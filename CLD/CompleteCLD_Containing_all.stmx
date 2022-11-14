@@ -123,9 +123,6 @@
 			<aux name="Total amount\nof citizens">
 				<isee:delay_aux/>
 			</aux>
-			<aux name="Hiring of\nescorts">
-				<isee:delay_aux/>
-			</aux>
 			<aux name="Guards on\nroad to\nSlagtown">
 				<isee:delay_aux/>
 			</aux>
@@ -270,7 +267,6 @@
 				</var>
 				<var name="Killing_of_traders_in_bandit_raids">
 					<in>Bandit_raid</in>
-					<in>Hiring_of_escorts</in>
 					<in>Active_bandits</in>
 				</var>
 				<var name="Cottonbog's_Gold">
@@ -279,7 +275,6 @@
 					<in>Gold_from_trade_with_Coalpeak</in>
 					<in>Gold_from_trade_with_Goldford</in>
 					<in>Gold_from_trade_with_Slagtown</in>
-					<in>Hiring_of_escorts</in>
 				</var>
 				<var name="Cotton_picking_expenses">
 					<in>Cotton_pickers</in>
@@ -332,9 +327,6 @@
 					<in>People_to_young_to_work</in>
 					<in>People_to_old_to_work</in>
 					<in>Total_amount_of_fertile_people</in>
-				</var>
-				<var name="Hiring_of_escorts">
-					<in>Active_bandits</in>
 				</var>
 				<var name="Active_bandits">
 					<in>Becoming_active</in>
@@ -391,7 +383,6 @@
 				</var>
 				<var name="Guards_on_road">
 					<in>Active_bandits</in>
-					<in>Hiring_of_escorts</in>
 				</var>
 				<var name="Bandit_equipment_stock">
 					<in>Buying_equipment</in>
@@ -448,7 +439,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="212.5" zoom="40" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="2078" isee:scroll_y="597" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -484,9 +475,9 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux x="2649.96" y="48.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
-				<aux x="2653.96" y="155.5" width="104" height="18" name="Cotton picking"/>
-				<aux x="2647.46" y="229.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
+				<aux x="2659.96" y="288.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
+				<aux x="2663.96" y="395.5" width="104" height="18" name="Cotton picking"/>
+				<aux x="2657.46" y="469.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
 				<connector uid="1" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="219.039">
 					<from>Cotton_grown_in_Cottonbog</from>
 					<to>Cotton_picking</to>
@@ -495,8 +486,8 @@
 					<from>Cotton_picking</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<aux x="2361.46" y="391.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
-				<aux x="2340.08" y="537.857" width="183" height="18" name="Sale of cotton in Slagtown"/>
+				<aux x="2371.46" y="631.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
+				<aux x="2350.08" y="777.857" width="183" height="18" name="Sale of cotton in Slagtown"/>
 				<connector uid="3" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="178.065">
 					<from>Cotton_picked_in_Cottonbog</from>
 					<to>Traveling_with_cotton_to_SlagTown</to>
@@ -509,8 +500,8 @@
 					<from>Traveling_with_cotton_to_SlagTown</from>
 					<to>Sale_of_cotton_in_Slagtown</to>
 				</connector>
-				<aux x="2924.05" y="391.67" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
-				<aux x="2902.05" y="542.857" width="187" height="18" name="Sale of cotton in Coalpeak"/>
+				<aux x="2934.05" y="631.67" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
+				<aux x="2912.05" y="782.857" width="187" height="18" name="Sale of cotton in Coalpeak"/>
 				<connector uid="6" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="270">
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Sale_of_cotton_in_Coalpeak</to>
@@ -523,8 +514,8 @@
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<aux x="2633.75" y="391.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
-				<aux x="2615.75" y="542.857" width="179" height="18" name="Sale of cotton in Goldford"/>
+				<aux x="2643.75" y="631.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
+				<aux x="2625.75" y="782.857" width="179" height="18" name="Sale of cotton in Goldford"/>
 				<connector uid="9" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="270">
 					<from>Traveling_with_cotton_to_Goldford</from>
 					<to>Sale_of_cotton_in_Goldford</to>
@@ -541,13 +532,13 @@
 					<from>Cotton_picking</from>
 					<to>Cotton_grown_in_Cottonbog</to>
 				</connector>
-				<aux x="1362.75" y="804.333" width="116" height="38" name="People to young\nto work"/>
-				<aux x="1379.25" y="1013.25" width="83" height="18" name="Growing up"/>
-				<aux x="1392.25" y="1347" width="57" height="18" name="Traders"/>
-				<aux x="1393.25" y="1499" width="55" height="38" name="Cotton\npickers"/>
-				<aux x="1370.25" y="1174.75" width="101" height="18" name="Other workers"/>
-				<aux x="971.458" y="905.753" width="79" height="38" name="People to\nold to work"/>
-				<aux x="967.458" y="1347" width="87" height="18" name="Growing old"/>
+				<aux x="1372.75" y="1044.33" width="116" height="38" name="People to young\nto work"/>
+				<aux x="1389.25" y="1253.25" width="83" height="18" name="Growing up"/>
+				<aux x="1402.25" y="1587" width="57" height="18" name="Traders"/>
+				<aux x="1403.25" y="1739" width="55" height="38" name="Cotton\npickers"/>
+				<aux x="1380.25" y="1414.75" width="101" height="18" name="Other workers"/>
+				<aux x="981.458" y="1145.75" width="79" height="38" name="People to\nold to work"/>
+				<aux x="977.458" y="1587" width="87" height="18" name="Growing old"/>
 				<connector uid="13" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270.507">
 					<from>Growing_up</from>
 					<to>Traders</to>
@@ -596,9 +587,9 @@
 					<from>Growing_old</from>
 					<to>People_to_old_to_work</to>
 				</connector>
-				<aux x="2322" y="1727.5" width="44" height="18" name="Births"/>
-				<aux x="1717.96" y="1017" width="54" height="18" name="Deaths"/>
-				<aux x="1706.46" y="905.753" width="77" height="38" name="Death of\nold people"/>
+				<aux x="2332" y="1967.5" width="44" height="18" name="Births"/>
+				<aux x="1727.96" y="1257" width="54" height="18" name="Deaths"/>
+				<aux x="1716.46" y="1145.75" width="77" height="38" name="Death of\nold people"/>
 				<connector uid="25" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180">
 					<from>Death_of_old_people</from>
 					<to>People_to_old_to_work</to>
@@ -607,7 +598,7 @@
 					<from>Death_of_old_people</from>
 					<to>Deaths</to>
 				</connector>
-				<aux x="1696.46" y="804.333" width="97" height="38" name="Death of\nyoung people"/>
+				<aux x="1706.46" y="1044.33" width="97" height="38" name="Death of\nyoung people"/>
 				<connector uid="27" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180">
 					<from>Death_of_young_people</from>
 					<to>People_to_young_to_work</to>
@@ -616,18 +607,18 @@
 					<from>Death_of_young_people</from>
 					<to>Deaths</to>
 				</connector>
-				<aux x="3223.83" y="998.25" width="102" height="58" name="Killing of\ntraders\nin bandit raids"/>
+				<aux x="3233.83" y="1238.25" width="102" height="58" name="Killing of\ntraders\nin bandit raids"/>
 				<connector uid="29" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="179.953">
 					<from>Killing_of_traders_in_bandit_raids</from>
 					<to>Deaths</to>
 				</connector>
-				<aux font_size="28pt" x="2627.75" y="903.753" width="155" height="66" name="Cottonbog's\nGold"/>
-				<aux x="2666" y="1476.25" width="71" height="58" name="Cotton\npicking\nexpenses"/>
+				<aux font_size="28pt" x="2637.75" y="1143.75" width="155" height="66" name="Cottonbog's\nGold"/>
+				<aux x="2676" y="1716.25" width="71" height="58" name="Cotton\npicking\nexpenses"/>
 				<connector uid="30" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="89.6221">
 					<from>Cotton_picking_expenses</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="1710.5" y="1315.75" width="71" height="58" name="Deaths of\nworking\npeople"/>
+				<aux x="1720.5" y="1555.75" width="71" height="58" name="Deaths of\nworking\npeople"/>
 				<connector uid="31" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90.1872">
 					<from>Deaths_of_working_people</from>
 					<to>Deaths</to>
@@ -644,17 +635,17 @@
 					<from>Deaths_of_working_people</from>
 					<to>Other_workers</to>
 				</connector>
-				<aux x="2378.96" y="917.753" width="108" height="38" name="Gold for\ntoll to Slagtown"/>
+				<aux x="2388.96" y="1157.75" width="108" height="38" name="Gold for\ntoll to Slagtown"/>
 				<connector uid="35" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
 					<from>Gold_for_toll_to_Slagtown</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="2396.46" y="804.333" width="73" height="38" name="Road toll\nExpenses"/>
+				<aux x="2406.46" y="1044.33" width="73" height="38" name="Road toll\nExpenses"/>
 				<connector uid="36" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Road_toll_Expenses</from>
 					<to>Gold_for_toll_to_Slagtown</to>
 				</connector>
-				<aux x="2959.55" y="641.833" width="72" height="58" name="Gold from\ntrade with\nCoalpeak"/>
+				<aux x="2969.55" y="881.833" width="72" height="58" name="Gold from\ntrade with\nCoalpeak"/>
 				<connector uid="37" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="222.491">
 					<from>Gold_from_trade_with_Coalpeak</from>
 					<to>Cottonbog&apos;s_Gold</to>
@@ -663,17 +654,17 @@
 					<from>Road_toll_Expenses</from>
 					<to>Gold_from_trade_with_Slagtown</to>
 				</connector>
-				<aux x="2669.25" y="641.833" width="72" height="58" name="Gold from\ntrade with\nGoldford"/>
+				<aux x="2679.25" y="881.833" width="72" height="58" name="Gold from\ntrade with\nGoldford"/>
 				<connector uid="39" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Gold_from_trade_with_Goldford</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="2395.58" y="641.833" width="72" height="58" name="Gold from\ntrade with\nSlagtown"/>
+				<aux x="2405.58" y="881.833" width="72" height="58" name="Gold from\ntrade with\nSlagtown"/>
 				<connector uid="40" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="315.823">
 					<from>Gold_from_trade_with_Slagtown</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="3250.33" y="527.857" width="49" height="38" name="Bandit\nraid"/>
+				<aux x="3260.33" y="767.857" width="49" height="38" name="Bandit\nraid"/>
 				<connector uid="41" color="#FF8B3D" font_color="#FF8B3D" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="183.832">
 					<from>Bandit_raid</from>
 					<to>Gold_from_trade_with_Slagtown</to>
@@ -690,7 +681,7 @@
 					<from>Bandit_raid</from>
 					<to>Killing_of_traders_in_bandit_raids</to>
 				</connector>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="45" x="1449.25" y="929.75" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="45" x="1459.25" y="1169.75" width="30" height="30">
 					<isee:entities>
 						<item uid="17"/>
 						<item uid="16"/>
@@ -698,7 +689,7 @@
 						<entity name="Growing_up"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="clockwise" uid="46" x="1187.75" y="1430.5" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="clockwise" uid="46" x="1197.75" y="1670.5" width="30" height="30">
 					<isee:entities>
 						<item uid="21"/>
 						<item uid="20"/>
@@ -706,7 +697,7 @@
 						<entity name="Cotton_pickers"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="47" x="1187.75" y="1260.5" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="47" x="1197.75" y="1500.5" width="30" height="30">
 					<isee:entities>
 						<item uid="22"/>
 						<item uid="23"/>
@@ -714,7 +705,7 @@
 						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="48" x="1287.75" y="1341" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="48" x="1297.75" y="1581" width="30" height="30">
 					<isee:entities>
 						<item uid="19"/>
 						<item uid="18"/>
@@ -722,7 +713,7 @@
 						<entity name="Growing_old"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="1995.5" y="1727.5" width="63" height="18" name="Birthrate"/>
+				<aux x="2005.5" y="1967.5" width="63" height="18" name="Birthrate"/>
 				<connector uid="49" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
 					<from>Birthrate</from>
 					<to>Births</to>
@@ -735,7 +726,7 @@
 					<from>Cotton_pickers</from>
 					<to>Total_amount_of_fertile_people</to>
 				</connector>
-				<aux x="1375.25" y="1707.5" width="91" height="58" name="Total amount\nof fertile\npeople"/>
+				<aux x="1385.25" y="1947.5" width="91" height="58" name="Total amount\nof fertile\npeople"/>
 				<connector uid="52" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="349.333">
 					<from>Traders</from>
 					<to>Total_amount_of_fertile_people</to>
@@ -744,7 +735,7 @@
 					<from>Total_amount_of_fertile_people</from>
 					<to>Birthrate</to>
 				</connector>
-				<aux x="2125" y="641.833" width="87" height="58" name="Purchase of\nfood and\namenities"/>
+				<aux x="2135" y="881.833" width="87" height="58" name="Purchase of\nfood and\namenities"/>
 				<connector uid="54" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="335.761">
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Slagtown</to>
@@ -757,7 +748,7 @@
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<aux x="965.458" y="648.714" width="91" height="38" name="Total amount\nof citizens"/>
+				<aux x="975.458" y="888.714" width="91" height="38" name="Total amount\nof citizens"/>
 				<connector uid="57" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="135.69">
 					<from>People_to_young_to_work</from>
 					<to>Total_amount_of_citizens</to>
@@ -774,8 +765,7 @@
 					<from>Cotton_pickers</from>
 					<to>Cotton_picking_expenses</to>
 				</connector>
-				<aux x="3243.83" y="913.25" width="62" height="38" name="Hiring of\nescorts"/>
-				<aux x="3236.83" y="794.333" width="76" height="58" name="Guards on\nroad to\nSlagtown"/>
+				<aux x="3246.83" y="1034.33" width="76" height="58" name="Guards on\nroad to\nSlagtown"/>
 				<connector uid="61" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90">
 					<from>Guards_on_road_to_Slagtown</from>
 					<to>Bandit_raid</to>
@@ -808,237 +798,221 @@
 					<from>Sale_of_cotton_in_Coalpeak</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<connector uid="69" color="red" font_color="red" font_size="22pt" polarity="-" isee:polarity_placement="outside" angle="270">
-					<from>Hiring_of_escorts</from>
-					<to>Killing_of_traders_in_bandit_raids</to>
-				</connector>
-				<connector uid="70" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180.453">
-					<from>Hiring_of_escorts</from>
-					<to>Cottonbog&apos;s_Gold</to>
-				</connector>
-				<connector uid="71" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="272.386">
+				<connector uid="69" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="272.386">
 					<from>
-						<alias uid="72"/>
+						<alias uid="70"/>
 					</from>
 					<to>People_to_young_to_work</to>
 				</connector>
-				<connector uid="73" color="#5500FF" font_color="#5500FF" angle="270">
+				<connector uid="71" color="#5500FF" font_color="#5500FF" angle="270">
 					<from>
-						<alias uid="74"/>
+						<alias uid="72"/>
 					</from>
 					<to>Total_amount_of_citizens</to>
 				</connector>
-				<aux color="blue" x="4136.66" y="537.857" width="102" height="18" name="Active bandits"/>
-				<aux color="blue" x="4989.39" y="1133.55" width="139" height="18" name="New bandits joining"/>
-				<aux color="blue" x="4977.37" y="424.333" width="164" height="18" name="bandits that are leaving"/>
-				<aux color="blue" x="4389.74" y="913.916" width="134" height="38" name="Bandits out raiding road to Goldford"/>
-				<aux color="blue" x="3874.45" y="913.916" width="134" height="38" name="Bandits out raiding\nroad to Coalpeak"/>
-				<aux color="blue" x="4120.66" y="913.916" width="134" height="38" name="Bandits out raiding\nroad to Slagtown"/>
-				<connector uid="75" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="237.473">
+				<aux color="blue" x="4146.66" y="777.857" width="102" height="18" name="Active bandits"/>
+				<aux color="blue" x="4999.39" y="1373.55" width="139" height="18" name="New bandits joining"/>
+				<aux color="blue" x="4987.37" y="664.333" width="164" height="18" name="bandits that are leaving"/>
+				<aux color="blue" x="4399.74" y="1153.92" width="134" height="38" name="Bandits out raiding road to Goldford"/>
+				<aux color="blue" x="3884.45" y="1153.92" width="134" height="38" name="Bandits out raiding\nroad to Coalpeak"/>
+				<aux color="blue" x="4130.66" y="1153.92" width="134" height="38" name="Bandits out raiding\nroad to Slagtown"/>
+				<connector uid="73" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="237.473">
 					<from>Active_bandits</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
 				</connector>
-				<connector uid="76" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="304.877">
+				<connector uid="74" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="304.877">
 					<from>Active_bandits</from>
 					<to>Bandits_out_raiding_road_to_Goldford</to>
 				</connector>
-				<connector uid="77" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<connector uid="75" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Active_bandits</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<aux color="blue" x="3588.29" y="1122.71" width="144" height="18" name="Bandits killed in raid"/>
-				<aux color="blue" x="4128.66" y="1112.71" width="118" height="38" name="Returning from a\nsuccessful raid"/>
-				<connector uid="78" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="298.994">
+				<aux color="blue" x="3598.29" y="1362.71" width="144" height="18" name="Bandits killed in raid"/>
+				<aux color="blue" x="4138.66" y="1352.71" width="118" height="38" name="Returning from a\nsuccessful raid"/>
+				<connector uid="76" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="298.994">
 					<from>Bandits_out_raiding_road_to_Coalpeak</from>
 					<to>Returning_from_a_successful_raid</to>
 				</connector>
-				<connector uid="79" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="241.655">
+				<connector uid="77" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="241.655">
 					<from>Bandits_out_raiding_road_to_Goldford</from>
 					<to>Returning_from_a_successful_raid</to>
 				</connector>
-				<connector uid="80" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="301.117">
+				<connector uid="78" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="301.117">
 					<from>Bandits_out_raiding_road_to_Slagtown</from>
 					<to>Returning_from_a_successful_raid</to>
 				</connector>
-				<connector uid="81" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="359.498">
+				<connector uid="79" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="359.498">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Recovering</to>
 				</connector>
-				<connector uid="82" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="0">
+				<connector uid="80" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="0">
 					<from>Bandits_killed_in_raid</from>
 					<to>Returning_from_a_successful_raid</to>
 				</connector>
-				<aux color="blue" x="4621.87" y="1126.88" width="83" height="18" name="Recovering"/>
-				<aux color="blue" x="4101.33" y="1417.67" width="171" height="18" name="Retrieved gold from raid"/>
-				<connector uid="83" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="269.569">
+				<aux color="blue" x="4631.87" y="1366.88" width="83" height="18" name="Recovering"/>
+				<aux color="blue" x="4111.33" y="1657.67" width="171" height="18" name="Retrieved gold from raid"/>
+				<connector uid="81" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="269.569">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Retrieved_gold_from_raid</to>
 				</connector>
-				<aux color="blue" x="4141.33" y="1578.83" width="91" height="38" name="Bandits gold\nStorage"/>
-				<connector uid="84" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<aux color="blue" x="4151.33" y="1818.83" width="91" height="38" name="Bandits gold\nStorage"/>
+				<connector uid="82" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Retrieved_gold_from_raid</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<aux color="blue" x="4122.83" y="337.167" width="128" height="18" name="Buying equipment"/>
-				<aux color="blue" x="5001.37" y="1588.83" width="116" height="18" name="Living expenses"/>
-				<connector uid="85" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="193.368">
+				<aux color="blue" x="4132.83" y="577.167" width="128" height="18" name="Buying equipment"/>
+				<aux color="blue" x="5011.37" y="1828.83" width="116" height="18" name="Living expenses"/>
+				<connector uid="83" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="193.368">
 					<from>Living_expenses</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<aux color="blue" x="4986.87" y="537.857" width="145" height="18" name="Bandits idle in camp"/>
-				<connector uid="86" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="89.9535">
+				<aux color="blue" x="4996.87" y="777.857" width="145" height="18" name="Bandits idle in camp"/>
+				<connector uid="84" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="89.9535">
 					<from>New_bandits_joining</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<connector uid="87" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="270">
+				<connector uid="85" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="270">
 					<from>bandits_that_are_leaving</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<connector uid="88" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="12.2048">
+				<connector uid="86" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="12.2048">
 					<from>Bandits_gold_Storage</from>
 					<to>Living_expenses</to>
 				</connector>
-				<connector uid="89" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="59.943">
+				<connector uid="87" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="59.943">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Goldford</to>
 				</connector>
-				<connector uid="90" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="115.869">
+				<connector uid="88" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="115.869">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<connector uid="91" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="120.99">
+				<connector uid="89" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="120.99">
 					<from>Returning_from_a_successful_raid</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
 				</connector>
-				<connector uid="92" font_size="16pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="86.3668">
+				<connector uid="90" font_size="16pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="86.3668">
 					<from>Recovering</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<aux color="blue" x="3604.29" y="923.916" width="112" height="18" name="Guards on road"/>
-				<connector uid="93" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="18.7368">
+				<aux color="blue" x="3614.29" y="1163.92" width="112" height="18" name="Guards on road"/>
+				<connector uid="91" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="18.7368">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Coalpeak</to>
 				</connector>
-				<connector uid="94" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.8572">
+				<connector uid="92" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.8572">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Slagtown</to>
 				</connector>
-				<connector uid="95" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.5311">
+				<connector uid="93" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="17.5311">
 					<from>Guards_on_road</from>
 					<to>Bandits_out_raiding_road_to_Goldford</to>
 				</connector>
-				<connector uid="96" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="216.206">
+				<connector uid="94" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="216.206">
 					<from>Active_bandits</from>
 					<to>Guards_on_road</to>
 				</connector>
-				<connector uid="97" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+				<connector uid="95" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Guards_on_road</from>
 					<to>Bandits_killed_in_raid</to>
 				</connector>
-				<aux color="blue" x="4277.83" y="460" width="167" height="18" name="Bandit equipment stock"/>
-				<aux color="blue" x="3934.33" y="460" width="163" height="18" name="Demand for equipment"/>
-				<connector uid="98" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="324.858">
+				<aux color="blue" x="4287.83" y="700" width="167" height="18" name="Bandit equipment stock"/>
+				<aux color="blue" x="3944.33" y="700" width="163" height="18" name="Demand for equipment"/>
+				<connector uid="96" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="324.858">
 					<from>Buying_equipment</from>
 					<to>Bandit_equipment_stock</to>
 				</connector>
-				<connector uid="99" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="35.6905">
+				<connector uid="97" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="35.6905">
 					<from>Demand_for_equipment</from>
 					<to>Buying_equipment</to>
 				</connector>
-				<connector uid="100" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="155.625">
+				<connector uid="98" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="155.625">
 					<from>Active_bandits</from>
 					<to>Demand_for_equipment</to>
 				</connector>
-				<connector uid="101" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="24.1474">
+				<connector uid="99" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="24.1474">
 					<from>Active_bandits</from>
 					<to>Bandit_equipment_stock</to>
 				</connector>
-				<aux color="blue" x="4757.67" y="537.857" width="120" height="18" name="Becoming active"/>
-				<connector uid="102" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
+				<aux color="blue" x="4767.67" y="777.857" width="120" height="18" name="Becoming active"/>
+				<connector uid="100" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
 					<from>Becoming_active</from>
 					<to>Active_bandits</to>
 				</connector>
-				<connector uid="103" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
+				<connector uid="101" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
 					<from>Becoming_active</from>
 					<to>Bandits_idle_in_camp</to>
 				</connector>
-				<connector uid="104" font_size="16pt" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="270">
+				<connector uid="102" font_size="16pt" polarity="-" isee:polarity_placement="outside" delay_mark="true" angle="270">
 					<from>
-						<alias uid="105"/>
+						<alias uid="103"/>
 					</from>
 					<to>Becoming_active</to>
 				</connector>
-				<connector uid="106" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
+				<connector uid="104" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="180">
 					<from>Active_bandits</from>
 					<to>Bandit_raid</to>
 				</connector>
-				<connector uid="107" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="199.783">
+				<connector uid="105" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="199.783">
 					<from>Active_bandits</from>
 					<to>Killing_of_traders_in_bandit_raids</to>
 				</connector>
-				<connector uid="108" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="359.901">
-					<from>Hiring_of_escorts</from>
-					<to>Guards_on_road</to>
-				</connector>
-				<connector uid="109" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90.4026">
+				<connector uid="106" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90.4026">
 					<from>
-						<alias uid="110"/>
+						<alias uid="107"/>
 					</from>
 					<to>Bandits_gold_Storage</to>
 				</connector>
-				<connector uid="111" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="200.427">
-					<from>Active_bandits</from>
-					<to>Hiring_of_escorts</to>
-				</connector>
-				<connector uid="112" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.639">
+				<connector uid="108" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.639">
 					<from>
-						<alias uid="113"/>
+						<alias uid="109"/>
 					</from>
 					<to>Gold_from_trade_with_Slagtown</to>
 				</connector>
-				<connector uid="114" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.919">
+				<connector uid="110" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.919">
 					<from>
-						<alias uid="113"/>
+						<alias uid="109"/>
 					</from>
 					<to>Gold_from_trade_with_Goldford</to>
 				</connector>
-				<connector uid="115" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.612">
+				<connector uid="111" color="#FF007F" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="201.612">
 					<from>
-						<alias uid="113"/>
+						<alias uid="109"/>
 					</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<connector uid="116" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="213.821">
+				<connector uid="112" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="213.821">
 					<from>
-						<alias uid="117"/>
+						<alias uid="113"/>
 					</from>
 					<to>Traders</to>
 				</connector>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="118" x="4047.5" y="1017.5" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="114" x="4057.5" y="1257.5" width="30" height="30">
 					<isee:entities>
-						<item uid="91"/>
-						<item uid="78"/>
+						<item uid="89"/>
+						<item uid="76"/>
 						<entity name="Bandits_out_raiding_road_to_Coalpeak"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="119" x="4172.66" y="1007.5" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="115" x="4182.66" y="1247.5" width="30" height="30">
 					<isee:entities>
-						<item uid="90"/>
-						<item uid="80"/>
+						<item uid="88"/>
+						<item uid="78"/>
 						<entity name="Bandits_out_raiding_road_to_Slagtown"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="120" x="4307.5" y="1017.5" width="30" height="30">
+				<isee:loop_indicator color="black" text="B" orientation="counter_clockwise" uid="116" x="4317.5" y="1257.5" width="30" height="30">
 					<isee:entities>
-						<item uid="89"/>
-						<item uid="79"/>
+						<item uid="87"/>
+						<item uid="77"/>
 						<entity name="Bandits_out_raiding_road_to_Goldford"/>
 						<entity name="Returning_from_a_successful_raid"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="121" x="2690.96" y="101.667" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="117" x="2700.96" y="341.667" width="30" height="30">
 					<isee:entities>
 						<item uid="12"/>
 						<item uid="1"/>
@@ -1046,7 +1020,7 @@
 						<entity name="Cotton_picking"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="122" x="2541.43" y="292.857" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="118" x="2551.43" y="532.857" width="30" height="30">
 					<isee:entities>
 						<item uid="3"/>
 						<item uid="4"/>
@@ -1054,7 +1028,7 @@
 						<entity name="Traveling_with_cotton_to_SlagTown"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="123" x="2835" y="299.003" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="119" x="2845" y="539.003" width="30" height="30">
 					<isee:entities>
 						<item uid="7"/>
 						<item uid="8"/>
@@ -1062,7 +1036,7 @@
 						<entity name="Cotton_picked_in_Cottonbog"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="124" x="2690.96" y="310.714" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="120" x="2700.96" y="550.714" width="30" height="30">
 					<isee:entities>
 						<item uid="11"/>
 						<item uid="10"/>
@@ -1070,28 +1044,28 @@
 						<entity name="Traveling_with_cotton_to_Goldford"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="125" x="4586.67" y="1582.83" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="121" x="4596.67" y="1822.83" width="30" height="30">
 					<isee:entities>
-						<item uid="88"/>
-						<item uid="85"/>
+						<item uid="86"/>
+						<item uid="83"/>
 						<entity name="Living_expenses"/>
 						<entity name="Bandits_gold_Storage"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="1989.5" y="1329" width="73" height="18" name="Deathrate"/>
-				<connector uid="126" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="181.381">
+				<aux x="1999.5" y="1569" width="73" height="18" name="Deathrate"/>
+				<connector uid="122" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="181.381">
 					<from>Deathrate</from>
 					<to>Deaths_of_working_people</to>
 				</connector>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="127" x="2200.58" y="1611" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="123" x="2210.58" y="1851" width="30" height="30">
 					<isee:entities>
 						<item uid="49"/>
-						<item uid="72"/>
-						<item uid="71"/>
+						<item uid="70"/>
+						<item uid="69"/>
 						<item uid="57"/>
 						<item uid="59"/>
 						<item uid="54"/>
-						<item uid="128"/>
+						<item uid="124"/>
 						<item uid="55"/>
 						<item uid="56"/>
 						<item uid="37"/>
@@ -1108,18 +1082,18 @@
 						<entity name="Gold_from_trade_with_Coalpeak"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<connector uid="129" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="210.571">
+				<connector uid="125" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="210.571">
 					<from>Cottonbog&apos;s_Gold</from>
 					<to>Deathrate</to>
 				</connector>
-				<connector uid="128" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="231.349">
+				<connector uid="124" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="231.349">
 					<from>Cottonbog&apos;s_Gold</from>
 					<to>Birthrate</to>
 				</connector>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="130" x="2317.96" y="1604.08" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="126" x="2327.96" y="1844.08" width="30" height="30">
 					<isee:entities>
 						<item uid="51"/>
-						<item uid="128"/>
+						<item uid="124"/>
 						<item uid="55"/>
 						<item uid="56"/>
 						<item uid="37"/>
@@ -1143,7 +1117,7 @@
 						<entity name="Traders"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="131" x="2227.75" y="1669.08" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="127" x="2237.75" y="1909.08" width="30" height="30">
 					<isee:entities>
 						<item uid="39"/>
 						<item uid="40"/>
@@ -1156,7 +1130,7 @@
 						<item uid="14"/>
 						<item uid="13"/>
 						<item uid="15"/>
-						<item uid="128"/>
+						<item uid="124"/>
 						<entity name="Purchase_of_food_and_amenities"/>
 						<entity name="Total_amount_of_citizens"/>
 						<entity name="People_to_young_to_work"/>
@@ -1174,10 +1148,10 @@
 						<entity name="Other_workers"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="132" x="2197.08" y="1118.92" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="128" x="2207.08" y="1358.92" width="30" height="30">
 					<isee:entities>
+						<item uid="125"/>
 						<item uid="129"/>
-						<item uid="133"/>
 						<item uid="51"/>
 						<item uid="59"/>
 						<item uid="54"/>
@@ -1199,20 +1173,20 @@
 						<entity name="Gold_from_trade_with_Coalpeak"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<connector uid="134" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="67.3801">
+				<connector uid="130" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="67.3801">
 					<from>Deathrate</from>
 					<to>Death_of_old_people</to>
 				</connector>
-				<connector uid="133" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="57.3808">
+				<connector uid="129" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="57.3808">
 					<from>Deathrate</from>
 					<to>Death_of_young_people</to>
 				</connector>
-				<isee:loop_indicator text="R" orientation="counter_clockwise" uid="135" x="1923.79" y="1574.08" width="30" height="30">
+				<isee:loop_indicator text="R" orientation="counter_clockwise" uid="131" x="1933.79" y="1814.08" width="30" height="30">
 					<isee:entities>
 						<item uid="53"/>
 						<item uid="49"/>
-						<item uid="72"/>
-						<item uid="71"/>
+						<item uid="70"/>
+						<item uid="69"/>
 						<item uid="17"/>
 						<item uid="14"/>
 						<item uid="13"/>
@@ -1228,10 +1202,10 @@
 						<entity name="Growing_up"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="136" x="2120.08" y="1118.92" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="132" x="2130.08" y="1358.92" width="30" height="30">
 					<isee:entities>
-						<item uid="129"/>
-						<item uid="126"/>
+						<item uid="125"/>
+						<item uid="122"/>
 						<item uid="32"/>
 						<item uid="33"/>
 						<item uid="20"/>
@@ -1262,9 +1236,9 @@
 						<entity name="Gold_from_trade_with_Coalpeak"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="137" x="2150.08" y="1172.92" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="133" x="2160.08" y="1412.92" width="30" height="30">
 					<isee:entities>
-						<item uid="134"/>
+						<item uid="130"/>
 						<item uid="25"/>
 						<item uid="59"/>
 						<item uid="54"/>
@@ -1273,7 +1247,7 @@
 						<item uid="37"/>
 						<item uid="39"/>
 						<item uid="40"/>
-						<item uid="129"/>
+						<item uid="125"/>
 						<entity name="Total_amount_of_citizens"/>
 						<entity name="Cottonbog's_Gold"/>
 						<entity name="Deathrate"/>
@@ -1285,19 +1259,19 @@
 						<entity name="Gold_from_trade_with_Coalpeak"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="138" x="4504.37" y="690.833" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="134" x="4514.37" y="930.833" width="30" height="30">
 					<isee:entities>
-						<item uid="105"/>
-						<item uid="104"/>
+						<item uid="103"/>
 						<item uid="102"/>
-						<item uid="76"/>
-						<item uid="77"/>
+						<item uid="100"/>
+						<item uid="74"/>
 						<item uid="75"/>
+						<item uid="73"/>
+						<item uid="76"/>
 						<item uid="78"/>
-						<item uid="80"/>
-						<item uid="79"/>
-						<item uid="83"/>
-						<item uid="84"/>
+						<item uid="77"/>
+						<item uid="81"/>
+						<item uid="82"/>
 						<entity name="Becoming_active"/>
 						<entity name="Active_bandits"/>
 						<entity name="Bandits_out_raiding_road_to_Goldford"/>
@@ -1308,26 +1282,26 @@
 						<entity name="Bandits_gold_Storage"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<connector uid="139" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="27.5682">
+				<connector uid="135" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="27.5682">
 					<from>Bandits_gold_Storage</from>
 					<to>New_bandits_joining</to>
 				</connector>
-				<alias font_style="italic" uid="72" x="1398.25" y="704.5" width="45" height="19">
+				<alias font_style="italic" uid="70" x="1408.25" y="944.5" width="45" height="19">
 					<of>Births</of>
 				</alias>
-				<alias font_style="italic" uid="74" x="962.458" y="476.643" width="97" height="61">
+				<alias font_style="italic" uid="72" x="972.458" y="716.643" width="97" height="61">
 					<of>Total_amount_of_fertile_people</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="105" x="4771.17" y="428.166" width="93" height="40">
+				<alias color="blue" font_style="italic" uid="103" x="4781.17" y="668.166" width="93" height="40">
 					<of>Bandits_gold_Storage</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="110" x="4120.66" y="1706.92" width="134" height="19">
+				<alias color="blue" font_style="italic" uid="107" x="4130.66" y="1946.92" width="134" height="19">
 					<of>Buying_equipment</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="113" x="3353.25" y="650.833" width="123" height="40">
+				<alias color="blue" font_style="italic" uid="109" x="3363.25" y="890.833" width="123" height="40">
 					<of>Returning_from_a_successful_raid</of>
 				</alias>
-				<alias font_style="italic" uid="117" x="1587.67" y="1178.83" width="104" height="61">
+				<alias font_style="italic" uid="113" x="1597.67" y="1418.83" width="104" height="61">
 					<of>Killing_of_traders_in_bandit_raids</of>
 				</alias>
 			</view>
