@@ -183,6 +183,9 @@
 			<aux name="Deathrate">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Price of\ncotton">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Cotton_grown_in_Cottonbog">
 					<in>Cotton_picking</in>
@@ -293,12 +296,14 @@
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Coalpeak</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Gold_from_trade_with_Goldford">
 					<in>Bandit_raid</in>
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Goldford</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Gold_from_trade_with_Slagtown">
 					<in>Road_toll_Expenses</in>
@@ -306,6 +311,7 @@
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Slagtown</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Bandit_raid">
 					<in>Guards_on_road_to_Slagtown</in>
@@ -397,6 +403,9 @@
 				<var name="Deathrate">
 					<in>Cottonbog&apos;s_Gold</in>
 				</var>
+				<var name="Price_of_cotton">
+					<in>Cotton_picked_in_Cottonbog</in>
+				</var>
 			</isee:dependencies>
 		</variables>
 		<views>
@@ -439,7 +448,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="2078" isee:scroll_y="597" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1123" page_height="793" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="1881.25" isee:scroll_y="215" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1304,6 +1313,23 @@
 				<alias font_style="italic" uid="113" x="1597.67" y="1418.83" width="104" height="61">
 					<of>Killing_of_traders_in_bandit_raids</of>
 				</alias>
+				<aux x="2148.58" y="767.857" width="58" height="38" name="Price of\ncotton"/>
+				<connector uid="136" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="150.582">
+					<from>Cotton_picked_in_Cottonbog</from>
+					<to>Price_of_cotton</to>
+				</connector>
+				<connector uid="137" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="340.133">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="138" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="348.189">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="139" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="1.11563">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
 			</view>
 		</views>
 	</model>
