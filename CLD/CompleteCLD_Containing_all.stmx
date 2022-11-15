@@ -448,7 +448,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="1841.67" isee:scroll_y="300" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_y="600" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -621,9 +621,9 @@
 					<from>Killing_of_traders_in_bandit_raids</from>
 					<to>Deaths</to>
 				</connector>
-				<aux font_size="28pt" x="2637.75" y="1143.75" width="155" height="66" name="Cottonbog's\nGold"/>
-				<aux x="2676" y="1716.25" width="71" height="58" name="Cotton\npicking\nexpenses"/>
-				<connector uid="30" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="89.6221">
+				<aux color="blue" background="white" font_size="28pt" x="2637.75" y="1143.75" width="155" height="66" name="Cottonbog's\nGold"/>
+				<aux x="2679.75" y="1729" width="71" height="58" name="Cotton\npicking\nexpenses"/>
+				<connector uid="30" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90">
 					<from>Cotton_picking_expenses</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
@@ -770,7 +770,7 @@
 					<from>Total_amount_of_citizens</from>
 					<to>Purchase_of_food_and_amenities</to>
 				</connector>
-				<connector uid="60" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0.570367">
+				<connector uid="60" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
 					<from>Cotton_pickers</from>
 					<to>Cotton_picking_expenses</to>
 				</connector>
@@ -1312,22 +1312,22 @@
 					<from>Price_of_cotton</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<alias font_style="italic" uid="70" x="1408.25" y="944.5" width="45" height="19">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="70" x="1406.25" y="945" width="49" height="18">
 					<of>Births</of>
 				</alias>
-				<alias font_style="italic" uid="72" x="972.458" y="716.643" width="97" height="61">
+				<alias color="#AA007F" background="white" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="72" x="969.458" y="716.476" width="103" height="58">
 					<of>Total_amount_of_fertile_people</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="103" x="4781.17" y="668.166" width="93" height="40">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="103" x="4779.17" y="669.166" width="97" height="38">
 					<of>Bandits_gold_Storage</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="107" x="4130.66" y="1946.92" width="134" height="19">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="107" x="4127.66" y="1947.42" width="140" height="18">
 					<of>Buying_equipment</of>
 				</alias>
-				<alias color="blue" font_style="italic" uid="109" x="3363.25" y="890.833" width="123" height="40">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="109" x="3359.25" y="891.833" width="131" height="38">
 					<of>Returning_from_a_successful_raid</of>
 				</alias>
-				<alias font_style="italic" uid="113" x="1597.67" y="1418.83" width="104" height="61">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="113" x="1594.67" y="1420.33" width="110" height="58">
 					<of>Killing_of_traders_in_bandit_raids</of>
 				</alias>
 			</view>
