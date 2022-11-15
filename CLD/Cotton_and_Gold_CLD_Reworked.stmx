@@ -81,6 +81,9 @@
 			<aux name="Returning from a\nsuccessful raid">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Price of\ncotton">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Cotton_grown_in_Cottonbog">
 					<in>Cotton_picking</in>
@@ -133,12 +136,14 @@
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Coalpeak</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Gold_from_trade_with_Goldford">
 					<in>Bandit_raid</in>
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Goldford</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Gold_from_trade_with_Slagtown">
 					<in>Road_toll_Expenses</in>
@@ -146,9 +151,13 @@
 					<in>Purchase_of_food_and_amenities</in>
 					<in>Sale_of_cotton_in_Slagtown</in>
 					<in>Returning_from_a_successful_raid</in>
+					<in>Price_of_cotton</in>
 				</var>
 				<var name="Bandit_raid">
 					<in>Guards_on_road_to_Slagtown</in>
+				</var>
+				<var name="Price_of_cotton">
+					<in>Cotton_picked_in_Cottonbog</in>
 				</var>
 			</isee:dependencies>
 		</variables>
@@ -192,7 +201,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="416.25" isee:scroll_y="561.25" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="416.25" isee:scroll_y="636.25" zoom="80" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -228,9 +237,9 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux x="1219.96" y="571.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
-				<aux x="1223.96" y="678.5" width="104" height="18" name="Cotton picking"/>
-				<aux x="1217.46" y="752.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
+				<aux x="1208.96" y="740.75" width="112" height="38" name="Cotton grown in\nCottonbog"/>
+				<aux x="1212.96" y="847.5" width="104" height="18" name="Cotton picking"/>
+				<aux x="1206.46" y="921.416" width="117" height="38" name="Cotton picked in\nCottonbog"/>
 				<connector uid="1" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" angle="219.039">
 					<from>Cotton_grown_in_Cottonbog</from>
 					<to>Cotton_picking</to>
@@ -239,8 +248,8 @@
 					<from>Cotton_picking</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<aux x="931.46" y="914.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
-				<aux x="910.08" y="1060.86" width="183" height="18" name="Sale of cotton in Slagtown"/>
+				<aux x="920.46" y="1083.67" width="143" height="38" name="Traveling with cotton\nto SlagTown"/>
+				<aux x="899.08" y="1229.86" width="183" height="18" name="Sale of cotton in Slagtown"/>
 				<connector uid="3" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" angle="178.065">
 					<from>Cotton_picked_in_Cottonbog</from>
 					<to>Traveling_with_cotton_to_SlagTown</to>
@@ -253,8 +262,8 @@
 					<from>Traveling_with_cotton_to_SlagTown</from>
 					<to>Sale_of_cotton_in_Slagtown</to>
 				</connector>
-				<aux x="1494.05" y="914.67" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
-				<aux x="1472.05" y="1065.86" width="187" height="18" name="Sale of cotton in Coalpeak"/>
+				<aux x="1483.05" y="1083.67" width="143" height="38" name="Traveling with cotton\nto Coalpeak"/>
+				<aux x="1461.05" y="1234.86" width="187" height="18" name="Sale of cotton in Coalpeak"/>
 				<connector uid="6" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="inside" delay_mark="true" angle="270">
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Sale_of_cotton_in_Coalpeak</to>
@@ -267,8 +276,8 @@
 					<from>Traveling_with_cotton_to_Coalpeak</from>
 					<to>Cotton_picked_in_Cottonbog</to>
 				</connector>
-				<aux x="1203.75" y="914.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
-				<aux x="1185.75" y="1065.86" width="179" height="18" name="Sale of cotton in Goldford"/>
+				<aux x="1192.75" y="1083.67" width="143" height="38" name="Traveling with cotton\nto Goldford"/>
+				<aux x="1174.75" y="1234.86" width="179" height="18" name="Sale of cotton in Goldford"/>
 				<connector uid="9" color="#FFAA00" font_color="#FFAA00" font_size="14pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="270">
 					<from>Traveling_with_cotton_to_Goldford</from>
 					<to>Sale_of_cotton_in_Goldford</to>
@@ -285,23 +294,23 @@
 					<from>Cotton_picking</from>
 					<to>Cotton_grown_in_Cottonbog</to>
 				</connector>
-				<aux font_size="28pt" x="1197.75" y="1426.75" width="155" height="66" name="Cottonbog's\nGold"/>
-				<aux x="1236" y="1600.5" width="71" height="58" name="Cotton\npicking\nexpenses"/>
-				<connector uid="13" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="88.7344">
+				<aux font_size="28pt" x="1186.75" y="1595.75" width="155" height="66" name="Cottonbog's\nGold"/>
+				<aux x="1225" y="1748.25" width="71" height="58" name="Cotton\npicking\nexpenses"/>
+				<connector uid="13" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="88.5534">
 					<from>Cotton_picking_expenses</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="948.96" y="1440.75" width="108" height="38" name="Gold for\ntoll to Slagtown"/>
+				<aux x="937.96" y="1609.75" width="108" height="38" name="Gold for\ntoll to Slagtown"/>
 				<connector uid="14" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="0">
 					<from>Gold_for_toll_to_Slagtown</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="966.46" y="1327.33" width="73" height="38" name="Road toll\nExpenses"/>
+				<aux x="955.46" y="1496.33" width="73" height="38" name="Road toll\nExpenses"/>
 				<connector uid="15" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Road_toll_Expenses</from>
 					<to>Gold_for_toll_to_Slagtown</to>
 				</connector>
-				<aux x="1529.55" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nCoalpeak"/>
+				<aux x="1518.55" y="1333.83" width="72" height="58" name="Gold from\ntrade with\nCoalpeak"/>
 				<connector uid="16" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="222.491">
 					<from>Gold_from_trade_with_Coalpeak</from>
 					<to>Cottonbog&apos;s_Gold</to>
@@ -310,17 +319,17 @@
 					<from>Road_toll_Expenses</from>
 					<to>Gold_from_trade_with_Slagtown</to>
 				</connector>
-				<aux x="1239.25" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nGoldford"/>
+				<aux x="1228.25" y="1333.83" width="72" height="58" name="Gold from\ntrade with\nGoldford"/>
 				<connector uid="18" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
 					<from>Gold_from_trade_with_Goldford</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="965.58" y="1164.83" width="72" height="58" name="Gold from\ntrade with\nSlagtown"/>
+				<aux x="954.58" y="1333.83" width="72" height="58" name="Gold from\ntrade with\nSlagtown"/>
 				<connector uid="19" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="315.823">
 					<from>Gold_from_trade_with_Slagtown</from>
 					<to>Cottonbog&apos;s_Gold</to>
 				</connector>
-				<aux x="1820.33" y="1050.86" width="49" height="38" name="Bandit\nraid"/>
+				<aux x="1809.33" y="1219.86" width="49" height="38" name="Bandit\nraid"/>
 				<connector uid="20" color="#FF8B3D" font_color="#FF8B3D" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="183.832">
 					<from>Bandit_raid</from>
 					<to>Gold_from_trade_with_Slagtown</to>
@@ -333,7 +342,7 @@
 					<from>Bandit_raid</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<aux x="695" y="1164.83" width="87" height="58" name="Purchase of\nfood and\namenities"/>
+				<aux x="684" y="1333.83" width="87" height="58" name="Purchase of\nfood and\namenities"/>
 				<connector uid="23" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="335.761">
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Slagtown</to>
@@ -346,7 +355,7 @@
 					<from>Purchase_of_food_and_amenities</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<aux x="1806.83" y="1317.33" width="76" height="58" name="Guards on\nroad to\nSlagtown"/>
+				<aux x="1795.83" y="1486.33" width="76" height="58" name="Guards on\nroad to\nSlagtown"/>
 				<connector uid="26" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="90">
 					<from>Guards_on_road_to_Slagtown</from>
 					<to>Bandit_raid</to>
@@ -391,7 +400,7 @@
 					<from>Returning_from_a_successful_raid</from>
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="37" x="1260.96" y="624.667" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="37" x="1249.96" y="793.667" width="30" height="30">
 					<isee:entities>
 						<item uid="12"/>
 						<item uid="1"/>
@@ -399,7 +408,7 @@
 						<entity name="Cotton_picking"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="1111.43" y="815.857" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="38" x="1100.43" y="984.857" width="30" height="30">
 					<isee:entities>
 						<item uid="3"/>
 						<item uid="4"/>
@@ -407,7 +416,7 @@
 						<entity name="Traveling_with_cotton_to_SlagTown"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="39" x="1405" y="822.003" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="39" x="1394" y="991.003" width="30" height="30">
 					<isee:entities>
 						<item uid="7"/>
 						<item uid="8"/>
@@ -415,7 +424,7 @@
 						<entity name="Cotton_picked_in_Cottonbog"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="40" x="1260.96" y="833.714" width="30" height="30">
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="40" x="1249.96" y="1002.71" width="30" height="30">
 					<isee:entities>
 						<item uid="11"/>
 						<item uid="10"/>
@@ -423,7 +432,24 @@
 						<entity name="Traveling_with_cotton_to_Goldford"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="1925.75" y="1174.83" width="118" height="38" name="Returning from a\nsuccessful raid"/>
+				<aux x="698.5" y="1219.86" width="58" height="38" name="Price of\ncotton"/>
+				<connector uid="41" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="178.745">
+					<from>Cotton_picked_in_Cottonbog</from>
+					<to>Price_of_cotton</to>
+				</connector>
+				<connector uid="42" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="349.75">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="43" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="350.234">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="44" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="351.475">
+					<from>Price_of_cotton</from>
+					<to>Gold_from_trade_with_Coalpeak</to>
+				</connector>
+				<aux color="blue" x="1914.75" y="1343.83" width="118" height="38" name="Returning from a\nsuccessful raid"/>
 			</view>
 		</views>
 	</model>
