@@ -430,11 +430,11 @@
 						<entity name="Growing_up"/>
 					</isee:entities>
 				</isee:loop_indicator>
-				<aux x="1148.59" y="1405" width="102" height="58" name="Killing of\ntraders\nin bandit raids"/>
-				<alias font_style="italic" uid="34" x="958.167" y="929.167" width="45" height="19">
+				<aux color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" x="1144.59" y="1405" width="110" height="58" name="Killing of\ntraders\nin bandit raids"/>
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="34" x="956.167" y="929.667" width="49" height="18">
 					<of>Births</of>
 				</alias>
-				<alias font_style="italic" uid="36" x="522.377" y="701.31" width="97" height="61">
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="36" x="519.377" y="702.81" width="103" height="58">
 					<of>Total_amount_of_fertile_people</of>
 				</alias>
 			</view>
