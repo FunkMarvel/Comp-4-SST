@@ -1,0 +1,2294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee" uses_conveyor=""/>
+		<name>CombinedWithoutCaptives</name>
+		<uuid>03d8bdbb-3a73-40d2-a0a3-9780ded9b49e</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.000249952" method="Euler" time_units="weeks" isee:instantaneous_flows="false">
+		<start>0</start>
+		<stop>5200</stop>
+		<dt reciprocal="true">1</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units>
+		<unit name="Weeks">
+			<eqn/>
+			<alias>wk</alias>
+			<alias>week</alias>
+		</unit>
+	</model_units>
+	<model>
+		<variables>
+			<stock name="People too young to work">
+				<eqn>10000</eqn>
+				<inflow>Births</inflow>
+				<outflow>young&apos;uns_growing_older</outflow>
+				<outflow>Death_of_young&apos;uns</outflow>
+				<conveyor exponential_leak="true">
+					<len>16*52</len>
+				</conveyor>
+			</stock>
+			<flow name="Births">
+				<eqn>ROUND(Sum_of_working_people*Birthrate/52)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Death of young'uns">
+				<eqn>0.9/52*Death_rate_due_to_poverty</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<flow name="young'uns\ngrowing older" access="output">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Traders">
+				<eqn>35</eqn>
+				<inflow>become_trader</inflow>
+				<outflow>trader_growing_old</outflow>
+				<outflow>Traders_killed_in_bandits_raid</outflow>
+				<outflow>Death_of_traders</outflow>
+				<conveyor exponential_leak="true">
+					<len>51*52</len>
+					<capacity>500</capacity>
+				</conveyor>
+			</stock>
+			<stock name="Other workers">
+				<eqn>12000</eqn>
+				<inflow>become_other_worker</inflow>
+				<outflow>other_workers_growing_old</outflow>
+				<outflow>Death_of_working_people</outflow>
+				<conveyor exponential_leak="true">
+					<len>51*52</len>
+				</conveyor>
+			</stock>
+			<stock name="Cotton pickers">
+				<eqn>1500</eqn>
+				<inflow>become_cotton_picker</inflow>
+				<outflow>cotton_pickers_growing_old</outflow>
+				<outflow>Death_of_cotton_pickers</outflow>
+				<conveyor exponential_leak="true">
+					<len>51*52</len>
+				</conveyor>
+			</stock>
+			<flow name="become trader">
+				<eqn>young&apos;uns_growing_older</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="become other worker">
+				<eqn>Percentage_becoming_other_workers</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="become cotton picker">
+				<eqn>Percentage_who_becomes_cotton_pickers</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="People too old to work">
+				<eqn>6465</eqn>
+				<inflow>trader_growing_old</inflow>
+				<inflow>cotton_pickers_growing_old</inflow>
+				<inflow>other_workers_growing_old</inflow>
+				<outflow>Death_of_old_people</outflow>
+				<outflow>Extra_death_of_old_people</outflow>
+				<conveyor exponential_leak="true">
+					<len>RANDOM(10, 20)*52</len>
+				</conveyor>
+			</stock>
+			<flow name="trader growing\nold">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="other workers\ngrowing old">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="cotton pickers\ngrowing old">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Traders killed in bandits raid">
+				<eqn>0.65*Success_or_fail</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<flow name="Death of working people">
+				<eqn>0.5/52*Death_rate_due_to_poverty</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<flow name="Death of traders">
+				<eqn>0.5/52*Death_rate_due_to_poverty</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<flow name="Death of cotton pickers">
+				<eqn>0.5/52*Death_rate_due_to_poverty</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<flow name="Death of old people">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Sum of working\npeople">
+				<eqn>Cotton_pickers + Other_workers + Traders</eqn>
+				<isee:summing/>
+			</aux>
+			<aux name="Birthrate">
+				<eqn>Gold_per_citizen</eqn>
+				<gf>
+					<xscale min="0" max="10000"/>
+					<yscale min="0" max="5"/>
+					<ypts>5,3.8545,3.849,3.8435,3.838,3.7852,3.7764,3.7676,3.7588,3.75,3.7445,3.739,3.7335,3.728,3.7192,3.7104,3.7016,3.6928,3.684,3.6565,3.651,3.6455,3.64,3.627,3.614,3.601,3.588,3.575,3.5365,3.52,3.5035,3.487,3.4815,3.476,3.4705,3.465,3.4342,3.4254,3.4166,3.4078,3.399,3.388,3.377,3.366,3.355,3.3286,3.3242,3.3198,3.3154,3.311,3.3055,3.3,3.2945,3.289,3.2636,3.2592,3.2548,3.2504,3.246,3.2405,3.235,3.2295,3.224,3.213,3.202,3.191,3.18,3.1536,3.1492,3.1448,3.1404,3.136,3.125,3.114,3.103,3.092,3.0876,3.0832,3.0788,3.0744,3.07,3.059,3.048,3.037,3.026,3.02111111111111,3.01622222222222,3.01133333333333,3.00644444444444,3.00155555555556,2.99666666666667,2.99177777777778,2.98688888888889,2.982,2.97675,2.9715,2.96625,2.961,2.9566,2.9522,2.9478,2.9434,2.939,2.9335,2.928,2.9225,2.917,2.9126,2.9082,2.9038,2.8994,2.895,2.87025,2.8675,2.86475,2.862,2.85925,2.8565,2.85375,2.851,2.8422,2.8334,2.8246,2.8158,2.807,2.80455555555556,2.80211111111111,2.79966666666667,2.79722222222222,2.79477777777778,2.79233333333333,2.78988888888889,2.78744444444444,2.785,2.774,2.763,2.752,2.741,2.73855555555556,2.73611111111111,2.73366666666667,2.73122222222222,2.72877777777778,2.72633333333333,2.72388888888889,2.72144444444444,2.719,2.71411111111111,2.70922222222222,2.70433333333333,2.69944444444444,2.69455555555556,2.68966666666667,2.68477777777778,2.67988888888889,2.675,2.67022222222222,2.66544444444444,2.66066666666667,2.65588888888889,2.65111111111111,2.64633333333333,2.64155555555556,2.63677777777778,2.632,2.621,2.61,2.599,2.588,2.58555555555556,2.58311111111111,2.58066666666667,2.57822222222222,2.57577777777778,2.57333333333333,2.57088888888889,2.56844444444444,2.566,2.5605,2.555,2.5495,2.544,2.53911111111111,2.53422222222222,2.52933333333333,2.52444444444444,2.51955555555556,2.51466666666667,2.50977777777778,2.50488888888889,2.5,2.4956,2.4912,2.4868,2.4824,2.478,2.467,2.456,2.445,2.434,2.43155555555556,2.42911111111111,2.42666666666667,2.42422222222222,2.42177777777778,2.41933333333333,2.41688888888889,2.41444444444444,2.412,2.40711111111111,2.40222222222222,2.39733333333333,2.39244444444444,2.38755555555556,2.38266666666667,2.37777777777778,2.37288888888889,2.368,2.36322222222222,2.35844444444444,2.35366666666667,2.34888888888889,2.34411111111111,2.33933333333333,2.33455555555556,2.32977777777778,2.325,2.32161538461539,2.31823076923077,2.31484615384615,2.31146153846154,2.30807692307692,2.30469230769231,2.30130769230769,2.29792307692308,2.29453846153846,2.29115384615385,2.28776923076923,2.28438461538462,2.281,2.27366666666667,2.26633333333333,2.259,2.25166666666667,2.24433333333333,2.237,2.22966666666667,2.22233333333333,2.215,2.21330769230769,2.21161538461538,2.20992307692308,2.20823076923077,2.20653846153846,2.20484615384615,2.20315384615385,2.20146153846154,2.19976923076923,2.19807692307692,2.19638461538462,2.19469230769231,2.193,2.18566666666667,2.17833333333333,2.171,2.16366666666667,2.15633333333333,2.149,2.14166666666667,2.13433333333333,2.127,2.12211111111111,2.11722222222222,2.11233333333333,2.10744444444444,2.10255555555556,2.09766666666667,2.09277777777778,2.08788888888889,2.083,2.07811111111111,2.07322222222222,2.06833333333333,2.06344444444444,2.05855555555556,2.05366666666667,2.04877777777778,2.04388888888889,2.039,2.033625,2.02825,2.022875,2.0175,2.012125,2.00675,2.001375,1.996,1.99111111111111,1.98622222222222,1.98133333333333,1.97644444444444,1.97155555555556,1.96666666666667,1.96177777777778,1.95688888888889,1.952,1.94711111111111,1.94222222222222,1.93733333333333,1.93244444444444,1.92755555555556,1.92266666666667,1.91777777777778,1.91288888888889,1.908,1.90555555555556,1.90311111111111,1.90066666666667,1.89822222222222,1.89577777777778,1.89333333333333,1.89088888888889,1.88844444444444,1.886,1.88355555555556,1.88111111111111,1.87866666666667,1.87622222222222,1.87377777777778,1.87133333333333,1.86888888888889,1.86644444444444,1.864,1.8585,1.853,1.8475,1.842,1.8376,1.8332,1.8288,1.8244,1.82,1.82,1.82,1.82,1.82,1.82,1.82,1.82,1.82,1.82,1.79525,1.7925,1.78975,1.787,1.78425,1.7815,1.77875,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.776,1.7705,1.765,1.7595,1.754,1.754,1.754,1.754,1.754,1.754,1.754,1.754,1.754,1.754,1.75230769230769,1.75061538461538,1.74892307692308,1.74723076923077,1.74553846153846,1.74384615384615,1.74215384615385,1.74046153846154,1.73876923076923,1.73707692307692,1.73538461538462,1.73369230769231,1.732,1.72892857142857,1.72585714285714,1.72278571428571,1.71971428571429,1.71664285714286,1.71357142857143,1.7105,1.70742857142857,1.70435714285714,1.70128571428571,1.69821428571429,1.69514285714286,1.69207142857143,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.689,1.68561538461538,1.68223076923077,1.67884615384615,1.67546153846154,1.67207692307692,1.66869230769231,1.66530769230769,1.66192307692308,1.65853846153846,1.65515384615385,1.65176923076923,1.64838461538462,1.645,1.64255555555556,1.64011111111111,1.63766666666667,1.63522222222222,1.63277777777778,1.63033333333333,1.62788888888889,1.62544444444444,1.623,1.62055555555556,1.61811111111111,1.61566666666667,1.61322222222222,1.61077777777778,1.60833333333333,1.60588888888889,1.60344444444444,1.601,1.59930769230769,1.59761538461538,1.59592307692308,1.59423076923077,1.59253846153846,1.59084615384615,1.58915384615385,1.58746153846154,1.58576923076923,1.58407692307692,1.58238461538462,1.58069230769231,1.579,1.5735,1.568,1.5625,1.557,1.55455555555556,1.55211111111111,1.54966666666667,1.54722222222222,1.54477777777778,1.54233333333333,1.53988888888889,1.53744444444444,1.535,1.53185714285714,1.52871428571429,1.52557142857143,1.52242857142857,1.51928571428571,1.51614285714286,1.513,1.50985714285714,1.50671428571429,1.50357142857143,1.50042857142857,1.49728571428571,1.49414285714286,1.491,1.48825,1.4855,1.48275,1.48,1.47725,1.4745,1.47175,1.469,1.469,1.469,1.469,1.469,1.469,1.46655555555556,1.46411111111111,1.46166666666667,1.45922222222222,1.45677777777778,1.45433333333333,1.45188888888889,1.44944444444444,1.447,1.44455555555556,1.44211111111111,1.43966666666667,1.43722222222222,1.43477777777778,1.43233333333333,1.42988888888889,1.42744444444444,1.425,1.41425,1.4035,1.39275,1.382,1.382,1.382,1.382,1.382,1.382,1.382,1.382,1.382,1.382,1.3765,1.371,1.3655,1.36,1.36,1.36,1.36,1.36,1.36,1.36,1.36,1.36,1.36,1.35755555555556,1.35511111111111,1.35266666666667,1.35022222222222,1.34777777777778,1.34533333333333,1.34288888888889,1.34044444444444,1.338,1.33311111111111,1.32822222222222,1.32333333333333,1.31844444444444,1.31355555555556,1.30866666666667,1.30377777777778,1.29888888888889,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.294,1.29155555555556,1.28911111111111,1.28666666666667,1.28422222222222,1.28177777777778,1.27933333333333,1.27688888888889,1.27444444444444,1.272,1.26955555555556,1.26711111111111,1.26466666666667,1.26222222222222,1.25977777777778,1.25733333333333,1.25488888888889,1.25244444444444,1.25,1.24830769230769,1.24661538461538,1.24492307692308,1.24323076923077,1.24153846153846,1.23984615384615,1.23815384615385,1.23646153846154,1.23476923076923,1.23307692307692,1.23138461538462,1.22969230769231,1.228,1.22555555555556,1.22311111111111,1.22066666666667,1.21822222222222,1.21577777777778,1.21333333333333,1.21088888888889,1.20844444444444,1.206,1.20355555555556,1.20111111111111,1.19866666666667,1.19622222222222,1.19377777777778,1.19133333333333,1.18888888888889,1.18644444444444,1.184,1.18230769230769,1.18061538461538,1.17892307692308,1.17723076923077,1.17553846153846,1.17384615384615,1.17215384615385,1.17046153846154,1.16876923076923,1.16707692307692,1.16538461538462,1.16369230769231,1.162,1.16030769230769,1.15861538461538,1.15692307692308,1.15523076923077,1.15353846153846,1.15184615384615,1.15015384615385,1.14846153846154,1.14676923076923,1.14507692307692,1.14338461538462,1.14169230769231,1.14,1.13511111111111,1.13022222222222,1.12533333333333,1.12044444444444,1.11555555555556,1.11066666666667,1.10577777777778,1.10088888888889,1.096,1.09438461538462,1.09276923076923,1.09115384615385,1.08953846153846,1.08792307692308,1.08630769230769,1.08469230769231,1.08307692307692,1.08146153846154,1.07984615384615,1.07823076923077,1.07661538461538,1.075,1.07185714285714,1.06871428571429,1.06557142857143,1.06242857142857,1.05928571428571,1.05614285714286,1.053,1.04985714285714,1.04671428571429,1.04357142857143,1.04042857142857,1.03728571428571,1.03414285714286,1.031,1.02930769230769,1.02761538461538,1.02592307692308,1.02423076923077,1.02253846153846,1.02084615384615,1.01915384615385,1.01746153846154,1.01576923076923,1.01407692307692,1.01238461538462,1.01069230769231,1.009,1.00730769230769,1.00561538461538,1.00392307692308,1.00223076923077,1.00053846153846,0.998846153846154,0.997153846153846,0.995461538461539,0.993769230769231,0.992076923076923,0.990384615384615,0.988692307692308,0.987,0.984555555555556,0.982111111111111,0.979666666666667,0.977222222222222,0.974777777777778,0.972333333333333,0.969888888888889,0.967444444444444,0.965,0.962555555555556,0.960111111111111,0.957666666666667,0.955222222222222,0.952777777777778,0.950333333333333,0.947888888888889,0.945444444444445,0.943,0.941307692307692,0.939615384615385,0.937923076923077,0.936230769230769,0.934538461538462,0.932846153846154,0.931153846153846,0.929461538461539,0.927769230769231,0.926076923076923,0.924384615384616,0.922692307692308,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.921,0.916111111111111,0.911222222222222,0.906333333333333,0.901444444444445,0.896555555555556,0.891666666666667,0.886777777777778,0.881888888888889,0.877,0.877,0.877,0.877,0.877,0.877,0.877,0.877,0.877,0.877,0.8726,0.8682,0.8638,0.8594,0.855,0.8495,0.844,0.8385,0.833,0.833,0.833,0.833,0.833,0.833,0.833,0.833,0.833,0.833,0.8275,0.822,0.8165,0.811,0.8066,0.8022,0.7978,0.7934,0.789,0.789,0.789,0.789,0.789,0.7848,0.7806,0.7764,0.7722,0.768,0.76525,0.7625,0.75975,0.757,0.75425,0.7515,0.74875,0.746,0.746,0.746,0.746,0.746,0.746,0.7405,0.735,0.7295,0.724,0.724,0.724,0.724,0.724,0.724,0.7185,0.713,0.7075,0.702,0.6976,0.6932,0.6888,0.6844,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.68,0.6756,0.6712,0.6668,0.6624,0.658,0.658,0.658,0.658,0.658,0.656777777777778,0.655555555555556,0.654333333333333,0.653111111111111,0.651888888888889,0.650666666666667,0.649444444444445,0.648222222222222,0.647,0.645777777777778,0.644555555555556,0.643333333333333,0.642111111111111,0.640888888888889,0.639666666666667,0.638444444444445,0.637222222222222,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.636,0.6316,0.6272,0.6228,0.6184,0.614,0.614,0.614,0.614,0.614,0.614,0.614,0.614,0.614,0.614,0.6085,0.603,0.5975,0.592,0.592,0.592,0.592,0.592,0.592,0.592,0.592,0.592,0.592,0.5865,0.581,0.5755,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.57,0.572444444444445,0.574888888888889,0.577333333333333,0.579777777777778,0.582222222222222,0.584666666666667,0.587111111111111,0.589555555555556,0.592,0.596888888888889,0.601777777777778,0.606666666666667,0.611555555555556,0.616444444444445,0.621333333333333,0.626222222222222,0.631111111111111,0.636</ypts>
+				</gf>
+			</aux>
+			<stock name="Deaths">
+				<eqn>0</eqn>
+				<inflow>Death_from_all</inflow>
+				<non_negative/>
+			</stock>
+			<flow name="Death from all">
+				<eqn>Sum_of_yearly_deaths</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Percentage becoming\nother workers">
+				<eqn>young&apos;uns_growing_older-become_trader-Percentage_who_becomes_cotton_pickers</eqn>
+			</aux>
+			<aux name="Percentage who becomes\ncotton pickers">
+				<eqn>young&apos;uns_growing_older*0.4</eqn>
+			</aux>
+			<group name="Cottonbog population dynamics" run="false">
+				<entity name="Percentage_who_becomes_cotton_pickers"/>
+				<entity name="People_too_old_to_work"/>
+				<entity name="become_trader"/>
+				<entity name="Death_of_cotton_pickers"/>
+				<entity name="Births"/>
+				<entity name="become_other_worker"/>
+				<entity name="People_too_young_to_work"/>
+				<entity name="Extra_death_of_old_people"/>
+				<entity name="Death_from_all"/>
+				<entity name="Percentage_becoming_other_workers"/>
+				<entity name="Death_of_young'uns"/>
+				<entity name="Death_of_traders"/>
+				<entity name="Death_of_old_people"/>
+				<entity name="Sum_of_yearly_deaths"/>
+				<entity name="Death_of_working_people"/>
+				<entity name="Gold_per_citizen"/>
+				<entity name="trader_growing_old"/>
+				<entity name="Traders_killed_in_bandits_raid"/>
+				<entity name="Deaths"/>
+				<entity name="Birthrate"/>
+				<entity name="other_workers_growing_old"/>
+				<entity name="Sum_of_working_people"/>
+				<entity name="Other_workers"/>
+				<entity name="cotton_pickers_growing_old"/>
+				<entity name="Cotton_pickers"/>
+				<entity name="Death_rate_due_to_poverty"/>
+				<entity name="become_cotton_picker"/>
+				<entity name="Traders"/>
+				<entity name="young'uns_growing_older"/>
+			</group>
+			<aux name="Sum of yearly deaths">
+				<eqn>Death_of_cotton_pickers + Death_of_old_people + Death_of_traders + Death_of_working_people + Death_of_young&apos;uns + Traders_killed_in_bandits_raid</eqn>
+				<isee:summing/>
+			</aux>
+			<stock name="Cotton picked in Cottonbog">
+				<eqn>0</eqn>
+				<inflow>Cotton_picking</inflow>
+				<outflow>Amount_of_cotton_to_transport_to_Slagtown</outflow>
+				<outflow>Amount_of_cotton_to_transport_to_Coalpeak</outflow>
+				<outflow>Amount_of_cotton_to_transport_to_Goldford</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Cotton picking">
+				<eqn>Cotton_picked_per_worker*Number_of_cotton_pickers</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Cotton grown in Cottonbog">
+				<eqn>25000</eqn>
+				<inflow>Cotton_growing</inflow>
+				<outflow>Cotton_picking</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Amount of\ncotton to transport\nto Slagtown">
+				<eqn>Amount_of_cotton_to_slagtown*Sending_caravans</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Amount of\ncotton to transport\nto Goldford">
+				<eqn>Amount_of_cotton_to_Goldford*Sending_caravans</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Amount of\ncotton to transport\nto Coalpeak">
+				<eqn>Amount_of_cotton_to_Coalpeak*Sending_caravans</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Amount of cotton\nto slagtown">
+				<eqn>Tons_to_send*Send_to_slagtown</eqn>
+			</aux>
+			<aux name="Amount of cotton\nto Coalpeak">
+				<eqn>Tons_to_send*Send_to_coalpeak</eqn>
+			</aux>
+			<aux name="Amount of cotton\nto Goldford">
+				<eqn>Tons_to_send*Send_to_Goldford</eqn>
+			</aux>
+			<flow name="Cotton growing">
+				<eqn>25000/52*Cotton_growth_rate*(1-Cotton_blight)+
+25000/52*Cotton_growth_rate*Cotton_blight*0</eqn>
+				<non_negative/>
+			</flow>
+			<group name="Cotton dynamics" run="false">
+				<entity name="Blight_start_time"/>
+				<entity name="Cotton_blight"/>
+				<entity name="Amount_of_cotton_to_slagtown"/>
+				<entity name="Cotton_picked_in_Cottonbog"/>
+				<entity name="Cotton_picking"/>
+				<entity name="Cotton_sold_in_Coalpeak"/>
+				<entity name="Amount_of_cotton_to_Goldford"/>
+				<entity name="Cotton_sold_Goldford"/>
+				<entity name="Cotton_picked_per_worker"/>
+				<entity name="Amount_of_cotton_to_transport_to_Goldford"/>
+				<entity name="Amount_of_cotton_to_transport_to_Slagtown"/>
+				<entity name="Amount_of_cotton_to_transport_to_Coalpeak"/>
+				<entity name="Cotton_growing"/>
+				<entity name="Cotton_grown_in_Cottonbog"/>
+				<entity name="Blight_duration"/>
+				<entity name="Amount_of_cotton_to_Coalpeak"/>
+				<entity name="Cotton_sold_in_Slagtown"/>
+				<entity name="Number_of_cotton_pickers"/>
+				<entity name="Cotton_growth_rate"/>
+			</group>
+			<aux name="Cotton picked per\nworker">
+				<eqn>(25000/52)/1500</eqn>
+			</aux>
+			<aux name="Number of\ncotton pickers">
+				<eqn>Cotton_pickers</eqn>
+				<isee:summing/>
+			</aux>
+			<stock name="Bandits' gold">
+				<eqn>50000</eqn>
+				<inflow>Sale_of_stolen_goods</inflow>
+				<inflow>Bandit_theft</inflow>
+				<outflow>Bandit_living_expenses</outflow>
+				<outflow>Bandit_equipment_costs</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Bandit living expenses">
+				<eqn>Total_amount_of_bandits*Living_cost_per_Bandit</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Bandit equipment costs">
+				<eqn>Per_bandit_equipment_cost*Bandits_who_need_new_equipment</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Sale of stolen goods">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Bandit theft">
+				<eqn>Stolen_from_trade_with_Coalpeak+Stolen_from_trade_with_Slagtown+Stolen_from_trade_with_Goldford</eqn>
+				<non_negative/>
+			</flow>
+			<group name="Bandits gold section" run="false">
+				<entity name="Total_amount_of_bandits"/>
+				<entity name="Bandit_equipment_costs"/>
+				<entity name="Bandits'_gold"/>
+				<entity name="Per_bandit_equipment_cost"/>
+				<entity name="Bandit_living_expenses"/>
+				<entity name="Stolen_from_trade_with_Goldford"/>
+				<entity name="Sale_of_stolen_goods"/>
+				<entity name="Living_cost_per_Bandit"/>
+				<entity name="Bandit_theft"/>
+				<entity name="Stolen_from_trade_with_Coalpeak"/>
+				<entity name="Stolen_from_trade_with_Slagtown"/>
+				<entity name="Bandits_who_need_new_equipment"/>
+			</group>
+			<aux name="Stolen from trade with Goldford">
+				<eqn>Amount_of_cotton_to_Goldford*4*Nominal_Cotton_price*Success_or_fail</eqn>
+			</aux>
+			<aux name="Stolen from trade with Coalpeak">
+				<eqn>Amount_of_cotton_to_Coalpeak*3*Nominal_Cotton_price*Success_or_fail</eqn>
+			</aux>
+			<aux name="Stolen from trade with Slagtown">
+				<eqn>Amount_of_cotton_to_slagtown*Nominal_Cotton_price*Success_or_fail</eqn>
+			</aux>
+			<stock name="Cottonbogs' gold">
+				<eqn>100000</eqn>
+				<inflow>Gold_from_trade</inflow>
+				<outflow>Money_from_Cottonbog_to_pay_toll_expenses</outflow>
+				<outflow>Cotton_picking_expenses</outflow>
+				<outflow>Tax_to_road_construction</outflow>
+				<non_negative/>
+				<units>Gold</units>
+			</stock>
+			<flow name="Gold from trade">
+				<eqn>Sum_of_gold_from_trade*Sending_caravans</eqn>
+				<units>Gold/weeks</units>
+			</flow>
+			<flow name="Money from Cottonbog\nto pay toll expenses">
+				<eqn>100*Sending_caravans*Send_to_slagtown</eqn>
+				<non_negative/>
+				<units>Gold/weeks</units>
+			</flow>
+			<group name="Cottonbogs gold section" run="false">
+				<entity name="Tax_to_road_construction"/>
+				<entity name="Sum_of_gold_from_trade"/>
+				<entity name="Cotton_picking_expenses"/>
+				<entity name="Gold_for_toll_on_return"/>
+				<entity name="Gold_from_selling_cotton_in_Goldford"/>
+				<entity name="Money_from_Cottonbog_to_pay_toll_expenses"/>
+				<entity name="Total_living_cost_per_route"/>
+				<entity name="Gold_from_trade"/>
+				<entity name="Nominal_Cotton_price"/>
+				<entity name="Total_gold_collected_for_road"/>
+				<entity name="Cottonbogs'_gold"/>
+				<entity name="Gold_from_selling_cotton_in_Coalpeak"/>
+				<entity name="Total_amount_of_people"/>
+				<entity name="Gold_from_selling_cotton_in_Slagtown"/>
+				<entity name="Yearly_tax_rate"/>
+				<entity name="Per_person_living_cost"/>
+			</group>
+			<flow name="Cotton picking\nexpenses">
+				<eqn>300/52*Cotton_pickers</eqn>
+				<non_negative/>
+				<units>Gold/weeks</units>
+			</flow>
+			<aux name="Cotton sold\nin Slagtown">
+				<eqn>Amount_of_cotton_to_slagtown*(1-Success_or_fail)</eqn>
+			</aux>
+			<aux name="Cotton sold\nin Coalpeak">
+				<eqn>Amount_of_cotton_to_Coalpeak*(1-Success_or_fail)</eqn>
+			</aux>
+			<aux name="Cotton sold\nGoldford">
+				<eqn>Amount_of_cotton_to_Goldford*(1-Success_or_fail)</eqn>
+			</aux>
+			<aux name="Gold from selling cotton\nin Slagtown">
+				<eqn>(Nominal_Cotton_price*Cotton_sold_in_Slagtown-Gold_for_toll_on_return - Total_living_cost_per_route)*Send_to_slagtown</eqn>
+			</aux>
+			<aux name="Gold from selling cotton\nin Coalpeak">
+				<eqn>(Cotton_sold_in_Coalpeak*4*Nominal_Cotton_price-Total_living_cost_per_route)*Send_to_coalpeak</eqn>
+			</aux>
+			<aux name="Gold from selling cotton\nin Goldford">
+				<eqn>(Cotton_sold_Goldford*3*Nominal_Cotton_price-Total_living_cost_per_route)*Send_to_Goldford</eqn>
+			</aux>
+			<aux name="Gold for toll\non return">
+				<eqn>100</eqn>
+			</aux>
+			<aux name="Sum of gold\nfrom trade">
+				<eqn>Gold_from_selling_cotton_in_Coalpeak + Gold_from_selling_cotton_in_Goldford + Gold_from_selling_cotton_in_Slagtown</eqn>
+				<isee:summing/>
+			</aux>
+			<aux name="Sending caravans">
+				<eqn>PULSE(1, 2, Travel_time)*(Cotton_picked_in_Cottonbog&gt;0)</eqn>
+			</aux>
+			<aux name="Nominal Cotton price">
+				<eqn>Tons_to_send</eqn>
+				<gf>
+					<xscale min="0" max="2000000"/>
+					<yscale min="1" max="500"/>
+					<ypts>500,296.5,287.7,281.1,272.4,259.3,252.7,243.9,233,219.9,206.7,193.6,173.9,154.2,147.6,136.7,132.3,127.9,125.75,123.6,119.2,114.8,112.6,108.2,103.9,99.5,95.1,90.7,86.4,84.2,79.8,75.4,66.7,62.3,57.9,53.5,47,42.6,42.6,39.3,38.2,36,36,33.8,31.6,30.55,29.5,28.4,27.3,22.9,22.1666666666667,21.4333333333333,20.7,18.5,18.5,15.2,14.1,9.8,7.6,5.4,3.2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1</ypts>
+				</gf>
+			</aux>
+			<aux name="Traders per cart">
+				<eqn>2</eqn>
+			</aux>
+			<aux name="Carts per caravan">
+				<eqn>5</eqn>
+			</aux>
+			<aux name="Tons per cart">
+				<eqn>13</eqn>
+			</aux>
+			<aux name="Tons to send">
+				<eqn>Carts_per_caravan*Tons_per_cart*Number_of_carvans/Number_of_trade_routes</eqn>
+			</aux>
+			<aux name="Number of\ncarvans">
+				<eqn>Traders/Carts_per_caravan*Traders_per_cart</eqn>
+			</aux>
+			<stock name="Bandits Idle in camp">
+				<eqn>150</eqn>
+				<inflow>New_bandits_joining</inflow>
+				<inflow>Returning_from_raid</inflow>
+				<outflow>Bandits_that_leave</outflow>
+				<outflow>Bandits_becoming_active</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Bandits that leave">
+				<eqn>0.2/52*Bandits_Idle_in_camp</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="New bandits joining">
+				<eqn>ROUND(200/52*(Bandits&apos;_gold/(Bandits&apos;_gold+50000)))</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Bandits becoming active">
+				<eqn>ROUND((Bandits_Idle_in_camp&gt;5)*(Bandits&apos;_gold&lt;500)*Num_bandits_per_raid)</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Active bandits">
+				<eqn>150</eqn>
+				<inflow>Bandits_becoming_active</inflow>
+				<outflow>Bandits_killed_in_raid</outflow>
+				<outflow>Bandits_returning_from_raid</outflow>
+				<non_negative/>
+			</stock>
+			<aux name="Num bandits per raid">
+				<eqn>50</eqn>
+			</aux>
+			<flow name="Bandits killed\nin raid">
+				<eqn>ROUND((1-Success_or_fail)*Active_bandits*(Raid_occuring&gt;0)*0.25)</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Bandits returning from raid">
+				<eqn>Success_or_fail*Active_bandits*(Success_or_fail&gt;0)</eqn>
+				<non_negative/>
+			</flow>
+			<stock name="Recovering">
+				<eqn>0</eqn>
+				<inflow>Bandits_returning_from_raid</inflow>
+				<outflow>Finished_recovering</outflow>
+				<conveyor discrete="true">
+					<len>2</len>
+				</conveyor>
+			</stock>
+			<flow name="Finished recovering">
+				<eqn>0</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Returning from raid">
+				<eqn>Finished_recovering</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Raid occuring">
+				<eqn>PULSE(RANDOM(0, 1), 2, Travel_time)*Sending_caravans*(Bandits&apos;_gold&lt;5000000)*(Active_bandits&gt;=1)</eqn>
+			</aux>
+			<aux name="Success or fail">
+				<eqn>(Raid_occurs &lt;= Chance_of_succesful_raid)*(Raid_occurs&gt;0)</eqn>
+			</aux>
+			<aux name="Send to slagtown">
+				<eqn>0</eqn>
+			</aux>
+			<aux name="Send to coalpeak">
+				<eqn>1</eqn>
+			</aux>
+			<aux name="Send to Goldford">
+				<eqn>0</eqn>
+			</aux>
+			<aux name="Total amount of bandits">
+				<eqn>Active_bandits + Bandits_Idle_in_camp + Recovering</eqn>
+				<isee:summing/>
+			</aux>
+			<aux name="Living cost per\nBandit">
+				<eqn>SAFEDIV((0.25*Bandits&apos;_gold-Bandit_equipment_costs),  Total_amount_of_bandits, 0)</eqn>
+			</aux>
+			<aux name="Per bandit equipment\ncost">
+				<eqn>25</eqn>
+			</aux>
+			<aux name="Total amount\nof people">
+				<eqn>Cotton_pickers + Other_workers + People_too_old_to_work + People_too_young_to_work + Traders</eqn>
+				<isee:summing/>
+			</aux>
+			<aux name="Per person living\ncost">
+				<eqn>500/52</eqn>
+			</aux>
+			<aux name="Death rate due\nto poverty">
+				<eqn>1-MIN(1,  MAX(0,  Gold_per_citizen/(Gold_per_citizen+1)))</eqn>
+			</aux>
+			<flow name="Extra death of\nold people">
+				<eqn>Death_rate_due_to_poverty*0.9</eqn>
+				<non_negative/>
+				<leak/>
+				<leak_integers/>
+			</flow>
+			<group name="Bandit and raid dynamic" run="false">
+				<entity name="Success_or_fail"/>
+				<entity name="Base_chance_of_success"/>
+				<entity name="Bandits_becoming_active"/>
+				<entity name="Chance_of_succesful_raid"/>
+				<entity name="Num_bandits_per_raid"/>
+				<entity name="Recovering"/>
+				<entity name="Bandits_killed_in_raid"/>
+				<entity name="Returning_from_raid"/>
+				<entity name="Raid_occuring"/>
+				<entity name="Bandits_Idle_in_camp"/>
+				<entity name="Finished_recovering"/>
+				<entity name="Bandits_returning_from_raid"/>
+				<entity name="Fail_count"/>
+				<entity name="Empty_count"/>
+				<entity name="Bandits_that_leave"/>
+				<entity name="Chance_of_raid_to_Goldford"/>
+				<entity name="Raid_occurs"/>
+				<entity name="New_bandits_joining"/>
+				<entity name="Increase_counter"/>
+				<entity name="Active_bandits"/>
+			</group>
+			<group name="Trade dynamics" run="false">
+				<entity name='"Include_Blight?"'/>
+				<entity name="Number_of_carvans"/>
+				<entity name="Tons_to_send"/>
+				<entity name="Tons_per_cart"/>
+				<entity name="Construction_time_in_years"/>
+				<entity name="New_road_constructed"/>
+				<entity name="Send_to_slagtown"/>
+				<entity name='"Build_road?"'/>
+				<entity name="Carts_per_caravan"/>
+				<entity name="Number_of_trade_routes"/>
+				<entity name="Sending_caravans"/>
+				<entity name="Send_to_coalpeak"/>
+				<entity name="Send_to_Goldford"/>
+				<entity name="Traders_per_cart"/>
+				<entity name="Travel_time"/>
+			</group>
+			<aux name="Chance of succesful raid">
+				<eqn>MIN(1,  MAX(0, 10*(
+0.4*Send_to_slagtown+
+0.6*Send_to_coalpeak+
+Chance_of_raid_to_Goldford*
+Send_to_Goldford
+)*Base_chance_of_success*(Active_bandits/(Active_bandits+1))))/Number_of_trade_routes</eqn>
+			</aux>
+			<aux name="Bandits who need new\nequipment">
+				<eqn>New_bandits_joining + Returning_from_raid</eqn>
+				<isee:summing/>
+			</aux>
+			<aux name="Cotton growth rate">
+				<eqn>(COSWAVE(1, 5*52) + 1)</eqn>
+				<gf>
+					<xscale min="0" max="2"/>
+					<yscale min="0" max="2"/>
+					<ypts>0.14,0.421,0.491,0.36,0.263,0.228,0.237,0.298,0.412,0.404,0.342</ypts>
+				</gf>
+			</aux>
+			<aux name="Gold per\ncitizen">
+				<eqn>DELAY(SAFEDIV(Cottonbogs&apos;_gold, Sum_of_working_people, 0), 52, 200)</eqn>
+			</aux>
+			<aux name="Number of trade routes">
+				<eqn>Send_to_Goldford + Send_to_coalpeak + Send_to_slagtown</eqn>
+				<isee:summing/>
+			</aux>
+			<stock name="Fail count">
+				<eqn>0</eqn>
+				<inflow>Increase_counter</inflow>
+				<outflow>Empty_count</outflow>
+				<non_negative/>
+			</stock>
+			<flow name="Increase counter">
+				<eqn>1-Success_or_fail</eqn>
+				<non_negative/>
+			</flow>
+			<flow name="Empty count">
+				<eqn>Fail_count*Success_or_fail</eqn>
+				<non_negative/>
+			</flow>
+			<aux name="Base chance of success">
+				<eqn>Fail_count</eqn>
+				<gf>
+					<xscale min="0" max="100"/>
+					<yscale min="0.1" max="1"/>
+					<ypts>0.1,0.1,0.1039,0.1158,0.1237,0.1276,0.1355,0.1355,0.1434,0.1474,0.1474,0.152666666666667,0.157933333333333,0.1671,0.1711,0.1789,0.1789,0.1868,0.1947,0.2026,0.2145,0.2224,0.2303,0.2382,0.25,0.25395,0.2579,0.2697,0.2776,0.2855,0.2934,0.2974,0.3013,0.3053,0.3132,0.325,0.325,0.335533333333333,0.346066666666667,0.3566,0.3645,0.3724,0.3803,0.3882,0.4,0.4079,0.4118,0.4276,0.4316,0.4395,0.4434,0.4513,0.4592,0.4632,0.475,0.4868,0.4908,0.4987,0.5105,0.5184,0.5224,0.5342,0.5461,0.5539,0.5618,0.5697,0.5816,0.5875,0.5934,0.6053,0.6171,0.625,0.6329,0.6566,0.6605,0.6645,0.6763,0.6882,0.6961,0.7079,0.7118,0.7237,0.7276,0.7355,0.7434,0.7513,0.7711,0.775,0.7829,0.8026,0.8066,0.8184,0.8382,0.85,0.8539,0.8658,0.8776,0.8816,0.8875,0.8974,0.925</ypts>
+				</gf>
+			</aux>
+			<aux name="Raid occurs">
+				<eqn>PULSE(RANDOM(0, 1), 2, Travel_time)*(Raid_occuring &lt; (Active_bandits/(Active_bandits+1)))</eqn>
+			</aux>
+			<aux name="Total living cost\nper route">
+				<eqn>Total_amount_of_people*Per_person_living_cost/Number_of_trade_routes</eqn>
+			</aux>
+			<aux name="Travel time">
+				<eqn>2*Send_to_slagtown+
+8*Send_to_coalpeak+
+4*Send_to_Goldford+
+1</eqn>
+			</aux>
+			<aux name="New road\nconstructed">
+				<eqn>DELAY(1, Construction_time_in_years*52, 0)*Send_to_Goldford*&quot;Build_road?&quot;</eqn>
+			</aux>
+			<aux name="Construction time\nin years">
+				<eqn>10</eqn>
+			</aux>
+			<aux name="Chance of raid\nto Goldford">
+				<eqn>0.9*(1-New_road_constructed) + New_road_constructed*0.1</eqn>
+			</aux>
+			<flow name="Tax to road construction">
+				<eqn>Yearly_tax_rate/52*(1-New_road_constructed)*&quot;Build_road?&quot;</eqn>
+				<non_negative/>
+				<units>Gold/weeks</units>
+			</flow>
+			<aux name="Yearly tax rate">
+				<eqn>100000/Construction_time_in_years</eqn>
+			</aux>
+			<stock name="Total gold collected for road">
+				<eqn>0</eqn>
+				<inflow>Tax_to_road_construction</inflow>
+				<non_negative/>
+				<units>Gold</units>
+			</stock>
+			<aux name="Cotton blight">
+				<eqn>DELAY(0, Blight_start_time*52+Blight_duration*52, 1)*DELAY(1,  Blight_start_time*52, 0)*&quot;Include_Blight?&quot;</eqn>
+			</aux>
+			<aux name="Blight start time">
+				<eqn>50</eqn>
+			</aux>
+			<aux name="Blight duration">
+				<eqn>RANDOM(2, 5)</eqn>
+			</aux>
+			<aux name="Build road?">
+				<eqn>1*Send_to_Goldford</eqn>
+			</aux>
+			<aux name="Include\nBlight?">
+				<eqn>0</eqn>
+			</aux>
+			<isee:dependencies>
+				<var name="Births">
+					<in>Sum_of_working_people</in>
+					<in>Birthrate</in>
+				</var>
+				<var name="Death_of_young'uns">
+					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="become_trader">
+					<in>young&apos;uns_growing_older</in>
+				</var>
+				<var name="become_other_worker">
+					<in>Percentage_becoming_other_workers</in>
+				</var>
+				<var name="become_cotton_picker">
+					<in>Percentage_who_becomes_cotton_pickers</in>
+				</var>
+				<var name="Traders_killed_in_bandits_raid">
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Death_of_working_people">
+					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="Death_of_traders">
+					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="Death_of_cotton_pickers">
+					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="Sum_of_working_people">
+					<in>Cotton_pickers</in>
+					<in>Other_workers</in>
+					<in>Traders</in>
+				</var>
+				<var name="Birthrate">
+					<in>Gold_per_citizen</in>
+				</var>
+				<var name="Death_from_all">
+					<in>Sum_of_yearly_deaths</in>
+				</var>
+				<var name="Percentage_becoming_other_workers">
+					<in>young&apos;uns_growing_older</in>
+					<in>Percentage_who_becomes_cotton_pickers</in>
+					<in>become_trader</in>
+				</var>
+				<var name="Percentage_who_becomes_cotton_pickers">
+					<in>young&apos;uns_growing_older</in>
+				</var>
+				<var name="Sum_of_yearly_deaths">
+					<in>Death_of_cotton_pickers</in>
+					<in>Death_of_old_people</in>
+					<in>Death_of_traders</in>
+					<in>Death_of_working_people</in>
+					<in>Death_of_young&apos;uns</in>
+					<in>Traders_killed_in_bandits_raid</in>
+				</var>
+				<var name="Cotton_picking">
+					<in>Cotton_picked_per_worker</in>
+					<in>Number_of_cotton_pickers</in>
+				</var>
+				<var name="Amount_of_cotton_to_transport_to_Slagtown">
+					<in>Amount_of_cotton_to_slagtown</in>
+					<in>Sending_caravans</in>
+				</var>
+				<var name="Amount_of_cotton_to_transport_to_Goldford">
+					<in>Amount_of_cotton_to_Goldford</in>
+					<in>Sending_caravans</in>
+				</var>
+				<var name="Amount_of_cotton_to_transport_to_Coalpeak">
+					<in>Sending_caravans</in>
+					<in>Amount_of_cotton_to_Coalpeak</in>
+				</var>
+				<var name="Amount_of_cotton_to_slagtown">
+					<in>Tons_to_send</in>
+					<in>Send_to_slagtown</in>
+				</var>
+				<var name="Amount_of_cotton_to_Coalpeak">
+					<in>Tons_to_send</in>
+					<in>Send_to_coalpeak</in>
+				</var>
+				<var name="Amount_of_cotton_to_Goldford">
+					<in>Tons_to_send</in>
+					<in>Send_to_Goldford</in>
+				</var>
+				<var name="Cotton_growing">
+					<in>Cotton_growth_rate</in>
+					<in>Cotton_blight</in>
+				</var>
+				<var name="Number_of_cotton_pickers">
+					<in>Cotton_pickers</in>
+				</var>
+				<var name="Bandit_living_expenses">
+					<in>Total_amount_of_bandits</in>
+					<in>Living_cost_per_Bandit</in>
+				</var>
+				<var name="Bandit_equipment_costs">
+					<in>Per_bandit_equipment_cost</in>
+					<in>Bandits_who_need_new_equipment</in>
+				</var>
+				<var name="Bandit_theft">
+					<in>Stolen_from_trade_with_Goldford</in>
+					<in>Stolen_from_trade_with_Slagtown</in>
+					<in>Stolen_from_trade_with_Coalpeak</in>
+				</var>
+				<var name="Stolen_from_trade_with_Goldford">
+					<in>Amount_of_cotton_to_Goldford</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Stolen_from_trade_with_Coalpeak">
+					<in>Amount_of_cotton_to_Coalpeak</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Stolen_from_trade_with_Slagtown">
+					<in>Amount_of_cotton_to_slagtown</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Gold_from_trade">
+					<in>Sum_of_gold_from_trade</in>
+					<in>Sending_caravans</in>
+				</var>
+				<var name="Money_from_Cottonbog_to_pay_toll_expenses">
+					<in>Send_to_slagtown</in>
+					<in>Sending_caravans</in>
+				</var>
+				<var name="Cotton_picking_expenses">
+					<in>Cotton_pickers</in>
+				</var>
+				<var name="Cotton_sold_in_Slagtown">
+					<in>Amount_of_cotton_to_slagtown</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Cotton_sold_in_Coalpeak">
+					<in>Success_or_fail</in>
+					<in>Amount_of_cotton_to_Coalpeak</in>
+				</var>
+				<var name="Cotton_sold_Goldford">
+					<in>Amount_of_cotton_to_Goldford</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Gold_from_selling_cotton_in_Slagtown">
+					<in>Cotton_sold_in_Slagtown</in>
+					<in>Gold_for_toll_on_return</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Total_living_cost_per_route</in>
+					<in>Send_to_slagtown</in>
+				</var>
+				<var name="Gold_from_selling_cotton_in_Coalpeak">
+					<in>Cotton_sold_in_Coalpeak</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Total_living_cost_per_route</in>
+					<in>Send_to_coalpeak</in>
+				</var>
+				<var name="Gold_from_selling_cotton_in_Goldford">
+					<in>Cotton_sold_Goldford</in>
+					<in>Nominal_Cotton_price</in>
+					<in>Total_living_cost_per_route</in>
+					<in>Send_to_Goldford</in>
+				</var>
+				<var name="Sum_of_gold_from_trade">
+					<in>Gold_from_selling_cotton_in_Coalpeak</in>
+					<in>Gold_from_selling_cotton_in_Goldford</in>
+					<in>Gold_from_selling_cotton_in_Slagtown</in>
+				</var>
+				<var name="Sending_caravans">
+					<in>Cotton_picked_in_Cottonbog</in>
+					<in>Travel_time</in>
+				</var>
+				<var name="Nominal_Cotton_price">
+					<in>Tons_to_send</in>
+				</var>
+				<var name="Tons_to_send">
+					<in>Tons_per_cart</in>
+					<in>Carts_per_caravan</in>
+					<in>Number_of_carvans</in>
+					<in>Number_of_trade_routes</in>
+				</var>
+				<var name="Number_of_carvans">
+					<in>Traders_per_cart</in>
+					<in>Carts_per_caravan</in>
+					<in>Traders</in>
+				</var>
+				<var name="Bandits_that_leave">
+					<in>Bandits_Idle_in_camp</in>
+				</var>
+				<var name="New_bandits_joining">
+					<in>Bandits&apos;_gold</in>
+				</var>
+				<var name="Bandits_becoming_active">
+					<in>Num_bandits_per_raid</in>
+					<in>Bandits&apos;_gold</in>
+					<in>Bandits_Idle_in_camp</in>
+				</var>
+				<var name="Bandits_killed_in_raid">
+					<in>Active_bandits</in>
+					<in>Success_or_fail</in>
+					<in>Raid_occuring</in>
+				</var>
+				<var name="Bandits_returning_from_raid">
+					<in>Success_or_fail</in>
+					<in>Active_bandits</in>
+				</var>
+				<var name="Returning_from_raid">
+					<in>Finished_recovering</in>
+				</var>
+				<var name="Raid_occuring">
+					<in>Sending_caravans</in>
+					<in>Active_bandits</in>
+					<in>Bandits&apos;_gold</in>
+					<in>Travel_time</in>
+				</var>
+				<var name="Success_or_fail">
+					<in>Chance_of_succesful_raid</in>
+					<in>Raid_occurs</in>
+				</var>
+				<var name="Total_amount_of_bandits">
+					<in>Active_bandits</in>
+					<in>Bandits_Idle_in_camp</in>
+					<in>Recovering</in>
+				</var>
+				<var name="Living_cost_per_Bandit">
+					<in>Bandits&apos;_gold</in>
+					<in>Total_amount_of_bandits</in>
+					<in>Bandit_equipment_costs</in>
+				</var>
+				<var name="Total_amount_of_people">
+					<in>Cotton_pickers</in>
+					<in>Other_workers</in>
+					<in>People_too_old_to_work</in>
+					<in>People_too_young_to_work</in>
+					<in>Traders</in>
+				</var>
+				<var name="Death_rate_due_to_poverty">
+					<in>Gold_per_citizen</in>
+				</var>
+				<var name="Extra_death_of_old_people">
+					<in>Death_rate_due_to_poverty</in>
+				</var>
+				<var name="Chance_of_succesful_raid">
+					<in>Send_to_slagtown</in>
+					<in>Send_to_coalpeak</in>
+					<in>Send_to_Goldford</in>
+					<in>Active_bandits</in>
+					<in>Base_chance_of_success</in>
+					<in>Number_of_trade_routes</in>
+					<in>Chance_of_raid_to_Goldford</in>
+				</var>
+				<var name="Bandits_who_need_new_equipment">
+					<in>New_bandits_joining</in>
+					<in>Returning_from_raid</in>
+				</var>
+				<var name="Gold_per_citizen">
+					<in>Cottonbogs&apos;_gold</in>
+					<in>Sum_of_working_people</in>
+				</var>
+				<var name="Number_of_trade_routes">
+					<in>Send_to_Goldford</in>
+					<in>Send_to_coalpeak</in>
+					<in>Send_to_slagtown</in>
+				</var>
+				<var name="Increase_counter">
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Empty_count">
+					<in>Fail_count</in>
+					<in>Success_or_fail</in>
+				</var>
+				<var name="Base_chance_of_success">
+					<in>Fail_count</in>
+				</var>
+				<var name="Raid_occurs">
+					<in>Raid_occuring</in>
+					<in>Active_bandits</in>
+					<in>Travel_time</in>
+				</var>
+				<var name="Total_living_cost_per_route">
+					<in>Total_amount_of_people</in>
+					<in>Per_person_living_cost</in>
+					<in>Number_of_trade_routes</in>
+				</var>
+				<var name="Travel_time">
+					<in>Send_to_slagtown</in>
+					<in>Send_to_coalpeak</in>
+					<in>Send_to_Goldford</in>
+				</var>
+				<var name="New_road_constructed">
+					<in>Construction_time_in_years</in>
+					<in>Send_to_Goldford</in>
+					<in>&quot;Build_road?&quot;</in>
+				</var>
+				<var name="Chance_of_raid_to_Goldford">
+					<in>New_road_constructed</in>
+				</var>
+				<var name="Tax_to_road_construction">
+					<in>Yearly_tax_rate</in>
+					<in>New_road_constructed</in>
+					<in>&quot;Build_road?&quot;</in>
+				</var>
+				<var name="Yearly_tax_rate">
+					<in>Construction_time_in_years</in>
+				</var>
+				<var name="Cotton_blight">
+					<in>Blight_start_time</in>
+					<in>Blight_duration</in>
+					<in>&quot;Include_Blight?&quot;</in>
+				</var>
+				<var name='"Build_road?"'>
+					<in>Send_to_Goldford</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" page_width="1123" page_height="793" isee:page_cols="4" isee:page_rows="4" isee:scroll_y="1774" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock x="397.232" y="708.729" width="146.042" height="87.7083" name="People too young to work"/>
+				<flow x="239.429" y="722.123" width="18" height="18" name="Births">
+					<pts>
+						<pt x="99.625" y="731.123"/>
+						<pt x="397.232" y="731.123"/>
+					</pts>
+				</flow>
+				<flow x="466.75" y="857.97" name="Death of young'uns">
+					<pts>
+						<pt x="466.75" y="796.437"/>
+						<pt x="466.75" y="940.503"/>
+					</pts>
+				</flow>
+				<flow label_side="bottom" x="624.764" y="724" name="young'uns\ngrowing older">
+					<pts>
+						<pt x="543.274" y="724"/>
+						<pt x="730.253" y="724"/>
+					</pts>
+				</flow>
+				<stock x="1034" y="520" width="114.167" height="80" name="Traders"/>
+				<stock x="1040.16" y="784.47" width="114.167" height="80" name="Other workers"/>
+				<stock x="1016.5" y="1083.24" width="114.167" height="80" name="Cotton pickers"/>
+				<flow x="945.04" y="570.083" name="become trader">
+					<pts>
+						<pt x="856.083" y="570.083"/>
+						<pt x="1034" y="570.083"/>
+					</pts>
+				</flow>
+				<flow x="961.58" y="822.75" name="become other worker">
+					<pts>
+						<pt x="883" y="822.75"/>
+						<pt x="1040.16" y="822.75"/>
+					</pts>
+				</flow>
+				<flow x="949.627" y="1120.08" name="become cotton picker">
+					<pts>
+						<pt x="882.753" y="1120.08"/>
+						<pt x="1016.5" y="1120.08"/>
+					</pts>
+				</flow>
+				<connector uid="1" angle="40.4523">
+					<from>young&apos;uns_growing_older</from>
+					<to>become_trader</to>
+				</connector>
+				<connector uid="2" angle="21.0369">
+					<from>young&apos;uns_growing_older</from>
+					<to>Percentage_becoming_other_workers</to>
+				</connector>
+				<connector uid="3" angle="309.358">
+					<from>young&apos;uns_growing_older</from>
+					<to>Percentage_who_becomes_cotton_pickers</to>
+				</connector>
+				<stock x="1520.58" y="374.043" width="210" height="835.417" name="People too old to work"/>
+				<flow x="1328.37" y="545.083" name="trader growing\nold">
+					<pts>
+						<pt x="1148.16" y="545.083"/>
+						<pt x="1520.58" y="545.083"/>
+					</pts>
+				</flow>
+				<flow x="1331.45" y="820.083" name="other workers\ngrowing old">
+					<pts>
+						<pt x="1154.33" y="820.083"/>
+						<pt x="1520.58" y="820.083"/>
+					</pts>
+				</flow>
+				<flow x="1319.62" y="1117.58" name="cotton pickers\ngrowing old">
+					<pts>
+						<pt x="1130.67" y="1117.58"/>
+						<pt x="1520.58" y="1117.58"/>
+					</pts>
+				</flow>
+				<flow label_side="left" x="1058.17" y="416.792" name="Traders killed in bandits raid">
+					<pts>
+						<pt x="1058.17" y="520"/>
+						<pt x="1058.17" y="292.583"/>
+					</pts>
+				</flow>
+				<flow x="1097.24" y="923.735" name="Death of working people">
+					<pts>
+						<pt x="1097.24" y="864.47"/>
+						<pt x="1097.24" y="1004"/>
+					</pts>
+				</flow>
+				<flow x="1091.08" y="631.417" name="Death of traders">
+					<pts>
+						<pt x="1091.08" y="600"/>
+						<pt x="1091.08" y="683.833"/>
+					</pts>
+				</flow>
+				<flow x="1064.5" y="1288.74" name="Death of cotton pickers">
+					<pts>
+						<pt x="1064.5" y="1163.24"/>
+						<pt x="1064.5" y="1435.25"/>
+					</pts>
+				</flow>
+				<flow x="1697.58" y="1311.86" name="Death of old people">
+					<pts>
+						<pt x="1697.58" y="1209.46"/>
+						<pt x="1697.58" y="1435.25"/>
+					</pts>
+				</flow>
+				<aux x="466.75" y="1092.99" name="Sum of working\npeople"/>
+				<connector uid="4" angle="161.443">
+					<from>Sum_of_working_people</from>
+					<to>Births</to>
+				</connector>
+				<aux x="112.179" y="867.595" width="16.75" height="16.75" name="Birthrate"/>
+				<connector uid="5" angle="62.1173">
+					<from>Birthrate</from>
+					<to>Births</to>
+				</connector>
+				<stock x="602.583" y="341.92" name="Deaths"/>
+				<flow x="446.726" y="341.92" name="Death from all">
+					<pts>
+						<pt x="313.369" y="341.92"/>
+						<pt x="580.083" y="341.92"/>
+					</pts>
+				</flow>
+				<stacked_container uid="6" x="2146.83" y="1.0835" width="697.5" height="535">
+					<graph x="2146.83" y="1.0835" width="697.5" height="535" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="3" title="People in Cottonbog" isee:fill_intensity="0.1" left_axis_title="People" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_title="People" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="People_too_young_to_work"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Sum_of_working_people"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="People_too_old_to_work"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Deaths"/>
+						</plot>
+						<plot color="#FF7F00" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Total_amount_of_people"/>
+						</plot>
+					</graph>
+					<graph x="2146.83" y="1.0835" width="697.5" height="535" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Graph" isee:fill_intensity="0.1" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Cotton_pickers"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Traders"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Other_workers"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<aux x="834.286" y="643.417" name="Percentage becoming\nother workers"/>
+				<connector uid="7" angle="305.368">
+					<from>Percentage_becoming_other_workers</from>
+					<to>become_other_worker</to>
+				</connector>
+				<aux x="738.714" y="1096.14" name="Percentage who becomes\ncotton pickers"/>
+				<connector uid="8" angle="60.2551">
+					<from>Percentage_who_becomes_cotton_pickers</from>
+					<to>Percentage_becoming_other_workers</to>
+				</connector>
+				<connector uid="9" angle="20.2249">
+					<from>Percentage_who_becomes_cotton_pickers</from>
+					<to>become_cotton_picker</to>
+				</connector>
+				<connector uid="10" angle="213.51">
+					<from>become_trader</from>
+					<to>Percentage_becoming_other_workers</to>
+				</connector>
+				<group locked="true" x="10.5" y="37.5" width="2052.5" height="1446.85" name="Cottonbog population dynamics">
+					<item uid="11"/>
+					<item uid="12"/>
+					<item uid="13"/>
+					<item uid="14"/>
+					<item uid="15"/>
+				</group>
+				<aux x="174.75" y="336" name="Sum of yearly deaths"/>
+				<connector uid="16" angle="57.7244">
+					<from>Sum_of_yearly_deaths</from>
+					<to>Death_from_all</to>
+				</connector>
+				<stock label_side="top" x="736.776" y="2019.61" name="Cotton picked in Cottonbog"/>
+				<flow x="737.332" y="1910.76" name="Cotton picking">
+					<pts>
+						<pt x="737.332" y="1831.42"/>
+						<pt x="737.332" y="2002.11"/>
+					</pts>
+				</flow>
+				<stock x="737.332" y="1813.92" name="Cotton grown in Cottonbog"/>
+				<flow x="629.054" y="2021.83" name="Amount of\ncotton to transport\nto Slagtown">
+					<pts>
+						<pt x="714.276" y="2021.83"/>
+						<pt x="519.832" y="2021.83"/>
+					</pts>
+				</flow>
+				<flow x="736.776" y="2119.95" name="Amount of\ncotton to transport\nto Goldford">
+					<pts>
+						<pt x="736.776" y="2037.11"/>
+						<pt x="736.776" y="2223.78"/>
+					</pts>
+				</flow>
+				<flow x="848.663" y="2019.61" name="Amount of\ncotton to transport\nto Coalpeak">
+					<pts>
+						<pt x="759.276" y="2019.61"/>
+						<pt x="962.05" y="2019.61"/>
+					</pts>
+				</flow>
+				<aux x="504.832" y="1880.17" name="Amount of cotton\nto slagtown"/>
+				<connector uid="17" angle="343.61">
+					<from>Amount_of_cotton_to_slagtown</from>
+					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
+				</connector>
+				<aux label_side="bottom" x="952.83" y="1850.83" name="Amount of cotton\nto Coalpeak"/>
+				<aux x="424.832" y="2185.17" name="Amount of cotton\nto Goldford"/>
+				<connector uid="18" angle="11.8099">
+					<from>Amount_of_cotton_to_Goldford</from>
+					<to>Amount_of_cotton_to_transport_to_Goldford</to>
+				</connector>
+				<flow x="737.332" y="1718.96" name="Cotton growing">
+					<pts>
+						<pt x="737.332" y="1641.5"/>
+						<pt x="737.332" y="1796.42"/>
+					</pts>
+				</flow>
+				<group locked="true" x="6.165" y="1528.5" width="1149.17" height="752.667" name="Cotton dynamics">
+					<item uid="19"/>
+					<item uid="20"/>
+					<item uid="21"/>
+					<item uid="22"/>
+					<item uid="23"/>
+					<item uid="24"/>
+					<item uid="25"/>
+					<item uid="26"/>
+					<item uid="27"/>
+					<item uid="28"/>
+				</group>
+				<aux x="504.832" y="1765.75" name="Cotton picked per\nworker"/>
+				<connector uid="29" angle="328.047">
+					<from>Cotton_picked_per_worker</from>
+					<to>Cotton_picking</to>
+				</connector>
+				<aux x="533.75" y="1677.75" name="Number of\ncotton pickers"/>
+				<connector uid="30" angle="332.784">
+					<from>Number_of_cotton_pickers</from>
+					<to>Cotton_picking</to>
+				</connector>
+				<stock x="2126" y="1727.71" width="105" height="246.25" name="Bandits' gold"/>
+				<flow x="2376.59" y="1765.5" name="Bandit living expenses">
+					<pts>
+						<pt x="2231" y="1765.5"/>
+						<pt x="2546.17" y="1765.5"/>
+					</pts>
+				</flow>
+				<flow label_side="bottom" x="2375.96" y="1843" name="Bandit equipment costs">
+					<pts>
+						<pt x="2231" y="1843"/>
+						<pt x="2544.92" y="1843"/>
+					</pts>
+				</flow>
+				<flow x="2031.34" y="1759" name="Sale of stolen goods">
+					<pts>
+						<pt x="1936.67" y="1759"/>
+						<pt x="2126" y="1759"/>
+					</pts>
+				</flow>
+				<flow x="2016" y="1849" name="Bandit theft">
+					<pts>
+						<pt x="1906" y="1849"/>
+						<pt x="2126" y="1849"/>
+					</pts>
+				</flow>
+				<connector uid="31" angle="354.427">
+					<from>Stolen_from_trade_with_Goldford</from>
+					<to>Bandit_theft</to>
+				</connector>
+				<connector uid="32" angle="339.444">
+					<from>Stolen_from_trade_with_Slagtown</from>
+					<to>Bandit_theft</to>
+				</connector>
+				<connector uid="33" angle="2.86435">
+					<from>Stolen_from_trade_with_Coalpeak</from>
+					<to>Bandit_theft</to>
+				</connector>
+				<group locked="true" x="1322.92" y="1669.67" width="1368" height="453" name="Bandits gold section">
+					<item uid="34"/>
+					<item uid="35"/>
+					<item uid="36"/>
+					<item uid="37"/>
+					<item uid="38"/>
+				</group>
+				<aux label_side="left" x="1619.67" y="1810.33" name="Stolen from trade with Goldford"/>
+				<aux label_side="left" x="1619.67" y="1868.83" name="Stolen from trade with Coalpeak"/>
+				<aux label_side="left" x="1628" y="1759" name="Stolen from trade with Slagtown"/>
+				<stock label_side="top" x="3147.47" y="724.294" width="173.056" height="555.833" name="Cottonbogs' gold"/>
+				<flow label_side="bottom" x="3028.23" y="784.044" name="Gold from trade">
+					<pts>
+						<pt x="2897" y="784.044"/>
+						<pt x="3147.47" y="784.044"/>
+					</pts>
+				</flow>
+				<flow x="3134.86" y="1388.29" name="Money from Cottonbog\nto pay toll expenses">
+					<pts>
+						<pt x="3293.42" y="1280.13"/>
+						<pt x="3293.42" y="1388.29"/>
+						<pt x="2952.29" y="1388.29"/>
+					</pts>
+				</flow>
+				<group locked="true" x="2210.75" y="647.5" width="1805.17" height="944.5" name="Cottonbogs gold section">
+					<item uid="39"/>
+					<item uid="40"/>
+					<item uid="41"/>
+					<item uid="42"/>
+					<item uid="43"/>
+					<item uid="44"/>
+					<item uid="45"/>
+					<item uid="46"/>
+					<item uid="47"/>
+					<item uid="48"/>
+					<item uid="49"/>
+					<item uid="50"/>
+					<item uid="51"/>
+					<item uid="52"/>
+					<item uid="53"/>
+				</group>
+				<flow x="3397.89" y="974.67" name="Cotton picking\nexpenses">
+					<pts>
+						<pt x="3320.53" y="974.67"/>
+						<pt x="3499.25" y="974.67"/>
+					</pts>
+				</flow>
+				<aux x="249.082" y="1729.21" name="Cotton sold\nin Slagtown"/>
+				<connector uid="54" angle="127.75">
+					<from>Amount_of_cotton_to_slagtown</from>
+					<to>Cotton_sold_in_Slagtown</to>
+				</connector>
+				<aux x="77.832" y="1898.17" name="Cotton sold\nin Coalpeak"/>
+				<aux x="142.999" y="2179" name="Cotton sold\nGoldford"/>
+				<connector uid="55" angle="170.761">
+					<from>Amount_of_cotton_to_Goldford</from>
+					<to>Cotton_sold_Goldford</to>
+				</connector>
+				<aux x="2521" y="882.625" name="Gold from selling cotton\nin Slagtown"/>
+				<aux x="2528" y="1011" name="Gold from selling cotton\nin Coalpeak"/>
+				<aux x="2529" y="1143" name="Gold from selling cotton\nin Goldford"/>
+				<connector uid="56" angle="0">
+					<from>
+						<alias uid="50"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
+				</connector>
+				<connector uid="57" angle="0">
+					<from>
+						<alias uid="45"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="58" angle="0">
+					<from>
+						<alias uid="46"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Goldford</to>
+				</connector>
+				<aux x="2333.5" y="791.857" name="Gold for toll\non return"/>
+				<connector uid="59" angle="346.908">
+					<from>Gold_for_toll_on_return</from>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
+				</connector>
+				<aux x="2813.71" y="726.901" name="Sum of gold\nfrom trade"/>
+				<connector uid="60" angle="14.9259">
+					<from>Sum_of_gold_from_trade</from>
+					<to>Gold_from_trade</to>
+				</connector>
+				<aux x="553.986" y="2507.75" name="Sending caravans"/>
+				<aux x="2529" y="1334" name="Nominal Cotton price"/>
+				<connector uid="61" angle="30.3956">
+					<from>Nominal_Cotton_price</from>
+					<to>Gold_from_selling_cotton_in_Goldford</to>
+				</connector>
+				<connector uid="62" angle="19.8407">
+					<from>Nominal_Cotton_price</from>
+					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="63" angle="351.634">
+					<from>Nominal_Cotton_price</from>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
+				</connector>
+				<aux x="283.75" y="2383.42" name="Traders per cart"/>
+				<aux x="262.1" y="2456.68" name="Carts per caravan"/>
+				<aux x="194.1" y="2537.25" name="Tons per cart"/>
+				<aux label_side="bottom" x="301.75" y="2573.19" name="Tons to send"/>
+				<connector uid="64" angle="275.374">
+					<from>Traders_per_cart</from>
+					<to>Number_of_carvans</to>
+				</connector>
+				<connector uid="65" angle="315.497">
+					<from>Carts_per_caravan</from>
+					<to>Number_of_carvans</to>
+				</connector>
+				<connector uid="66" angle="341.538">
+					<from>Tons_per_cart</from>
+					<to>Tons_to_send</to>
+				</connector>
+				<connector uid="67" angle="78.1248">
+					<from>
+						<alias uid="68"/>
+					</from>
+					<to>Number_of_carvans</to>
+				</connector>
+				<connector uid="69" angle="39.5265">
+					<from>
+						<alias uid="23"/>
+					</from>
+					<to>Amount_of_cotton_to_Goldford</to>
+				</connector>
+				<aux x="385.89" y="2503.25" name="Number of\ncarvans"/>
+				<connector uid="70" angle="288.794">
+					<from>Carts_per_caravan</from>
+					<to>Tons_to_send</to>
+				</connector>
+				<connector uid="71" angle="203.145">
+					<from>
+						<alias uid="21"/>
+					</from>
+					<to>Amount_of_cotton_to_slagtown</to>
+				</connector>
+				<connector uid="72" angle="168.077">
+					<from>
+						<alias uid="25"/>
+					</from>
+					<to>Amount_of_cotton_to_Coalpeak</to>
+				</connector>
+				<stock x="3416.75" y="1812.75" width="51.6667" height="227.5" name="Bandits Idle in camp"/>
+				<flow x="3564.33" y="1834.42" name="Bandits that leave">
+					<pts>
+						<pt x="3468.42" y="1834.42"/>
+						<pt x="3684.25" y="1834.42"/>
+					</pts>
+				</flow>
+				<flow x="3298.42" y="1837.75" name="New bandits joining">
+					<pts>
+						<pt x="3180.08" y="1837.75"/>
+						<pt x="3416.75" y="1837.75"/>
+					</pts>
+				</flow>
+				<flow x="3593.83" y="1989" name="Bandits becoming active">
+					<pts>
+						<pt x="3468.42" y="1989"/>
+						<pt x="3731.25" y="1989"/>
+					</pts>
+				</flow>
+				<stock label_side="top" x="3731.25" y="1932.13" width="181.25" height="113.75" name="Active bandits"/>
+				<aux x="3593.83" y="2188" name="Num bandits per raid"/>
+				<connector uid="73" angle="73.0092">
+					<from>Num_bandits_per_raid</from>
+					<to>Bandits_becoming_active</to>
+				</connector>
+				<flow x="3885" y="1839.57" name="Bandits killed\nin raid">
+					<pts>
+						<pt x="3885" y="1932.13"/>
+						<pt x="3885" y="1726"/>
+					</pts>
+				</flow>
+				<flow x="3885" y="2117.19" name="Bandits returning from raid">
+					<pts>
+						<pt x="3885" y="2045.88"/>
+						<pt x="3885" y="2200.5"/>
+					</pts>
+				</flow>
+				<stock x="3885" y="2218" name="Recovering"/>
+				<flow x="3885" y="2278.75" name="Finished recovering">
+					<pts>
+						<pt x="3885" y="2235.5"/>
+						<pt x="3885" y="2343"/>
+					</pts>
+				</flow>
+				<flow x="3314.38" y="1923.13" name="Returning from raid">
+					<pts>
+						<pt x="3212" y="1923.13"/>
+						<pt x="3416.75" y="1923.13"/>
+					</pts>
+				</flow>
+				<connector uid="74" angle="27.2553">
+					<from>
+						<alias uid="75"/>
+					</from>
+					<to>Returning_from_raid</to>
+				</connector>
+				<aux x="4163" y="2124" name="Raid occuring"/>
+				<aux x="3992" y="1993" name="Success or fail"/>
+				<connector uid="76" angle="181.461">
+					<from>Raid_occuring</from>
+					<to>Raid_occurs</to>
+				</connector>
+				<connector uid="77" angle="235.709">
+					<from>Number_of_carvans</from>
+					<to>Tons_to_send</to>
+				</connector>
+				<connector uid="78" angle="282.443">
+					<from>
+						<alias uid="79"/>
+					</from>
+					<to>Raid_occuring</to>
+				</connector>
+				<aux x="116.726" y="2646.96" width="17" height="17" name="Send to slagtown"/>
+				<aux x="124.726" y="2730.19" name="Send to coalpeak"/>
+				<aux x="124.726" y="2790.96" name="Send to Goldford"/>
+				<connector uid="80" angle="146.659">
+					<from>
+						<alias uid="27"/>
+					</from>
+					<to>Cotton_sold_in_Slagtown</to>
+				</connector>
+				<connector uid="81" angle="156.316">
+					<from>
+						<alias uid="27"/>
+					</from>
+					<to>Cotton_sold_in_Coalpeak</to>
+				</connector>
+				<connector uid="82" angle="248.199">
+					<from>
+						<alias uid="27"/>
+					</from>
+					<to>Cotton_sold_Goldford</to>
+				</connector>
+				<connector uid="83" angle="109.203">
+					<from>
+						<alias uid="34"/>
+					</from>
+					<to>Stolen_from_trade_with_Coalpeak</to>
+				</connector>
+				<connector uid="84" angle="336.35">
+					<from>
+						<alias uid="35"/>
+					</from>
+					<to>Stolen_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="85" angle="213.106">
+					<from>
+						<alias uid="36"/>
+					</from>
+					<to>Stolen_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="86" angle="336.107">
+					<from>
+						<alias uid="38"/>
+					</from>
+					<to>Stolen_from_trade_with_Coalpeak</to>
+				</connector>
+				<connector uid="87" angle="26.0757">
+					<from>
+						<alias uid="38"/>
+					</from>
+					<to>Stolen_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="88" angle="36.9536">
+					<from>
+						<alias uid="38"/>
+					</from>
+					<to>Stolen_from_trade_with_Slagtown</to>
+				</connector>
+				<connector uid="89" angle="47.1747">
+					<from>
+						<alias uid="37"/>
+					</from>
+					<to>Stolen_from_trade_with_Coalpeak</to>
+				</connector>
+				<connector uid="90" angle="70.641">
+					<from>
+						<alias uid="37"/>
+					</from>
+					<to>Stolen_from_trade_with_Goldford</to>
+				</connector>
+				<connector uid="91" angle="90">
+					<from>
+						<alias uid="37"/>
+					</from>
+					<to>Stolen_from_trade_with_Slagtown</to>
+				</connector>
+				<aux x="2575.5" y="1716.83" name="Total amount of bandits"/>
+				<connector uid="92" angle="166.638">
+					<from>Total_amount_of_bandits</from>
+					<to>Bandit_living_expenses</to>
+				</connector>
+				<aux x="2317" y="1686.5" name="Living cost per\nBandit"/>
+				<connector uid="93" angle="63.8717">
+					<from>Bandits&apos;_gold</from>
+					<to>Living_cost_per_Bandit</to>
+				</connector>
+				<connector uid="94" angle="140.491">
+					<from>Total_amount_of_bandits</from>
+					<to>Living_cost_per_Bandit</to>
+				</connector>
+				<aux x="2375.96" y="1942.75" name="Per bandit equipment\ncost"/>
+				<connector uid="95" angle="340.201">
+					<from>Living_cost_per_Bandit</from>
+					<to>Bandit_living_expenses</to>
+				</connector>
+				<connector uid="96" angle="78.9265">
+					<from>Per_bandit_equipment_cost</from>
+					<to>Bandit_equipment_costs</to>
+				</connector>
+				<aux x="2934.5" y="882.625" name="Total amount\nof people"/>
+				<aux x="2678.59" y="788.167" name="Per person living\ncost"/>
+				<connector uid="97" angle="188.476">
+					<from>Total_amount_of_people</from>
+					<to>Total_living_cost_per_route</to>
+				</connector>
+				<connector uid="98" angle="320.23">
+					<from>Per_person_living_cost</from>
+					<to>Total_living_cost_per_route</to>
+				</connector>
+				<connector uid="99" angle="192.4">
+					<from>
+						<alias uid="47"/>
+					</from>
+					<to>Cotton_picking_expenses</to>
+				</connector>
+				<aux x="239.167" y="1135.58" name="Death rate due\nto poverty"/>
+				<connector uid="100" angle="96.4025">
+					<from>
+						<alias uid="15"/>
+					</from>
+					<to>Death_of_traders</to>
+				</connector>
+				<connector uid="101" angle="163.766">
+					<from>
+						<alias uid="15"/>
+					</from>
+					<to>Death_of_working_people</to>
+				</connector>
+				<connector uid="102" angle="239.734">
+					<from>
+						<alias uid="15"/>
+					</from>
+					<to>Death_of_cotton_pickers</to>
+				</connector>
+				<connector uid="103" angle="157.068">
+					<from>
+						<alias uid="13"/>
+					</from>
+					<to>Death_of_young&apos;uns</to>
+				</connector>
+				<flow x="1564" y="1297.23" name="Extra death of\nold people">
+					<pts>
+						<pt x="1564" y="1209.46"/>
+						<pt x="1564" y="1406"/>
+					</pts>
+				</flow>
+				<connector uid="104" angle="318.132">
+					<from>
+						<alias uid="15"/>
+					</from>
+					<to>Extra_death_of_old_people</to>
+				</connector>
+				<group locked="true" x="2820.5" y="1705" width="1472.5" height="775.25" name="Bandit and raid dynamic">
+					<item uid="105"/>
+					<item uid="106"/>
+					<item uid="107"/>
+					<item uid="108"/>
+					<item uid="109"/>
+					<item uid="110"/>
+					<item uid="111"/>
+					<item uid="79"/>
+					<item uid="112"/>
+					<item uid="75"/>
+				</group>
+				<group locked="true" x="21.75" y="2330" width="657.5" height="514" name="Trade dynamics">
+					<item uid="113"/>
+					<item uid="68"/>
+					<item uid="114"/>
+				</group>
+				<connector uid="115" angle="54.4623">
+					<from>
+						<alias uid="28"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Slagtown</to>
+				</connector>
+				<connector uid="116" angle="11.7297">
+					<from>
+						<alias uid="28"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
+				</connector>
+				<connector uid="117" angle="352.887">
+					<from>
+						<alias uid="28"/>
+					</from>
+					<to>Amount_of_cotton_to_transport_to_Goldford</to>
+				</connector>
+				<connector uid="118" angle="157.209">
+					<from>
+						<alias uid="26"/>
+					</from>
+					<to>Amount_of_cotton_to_slagtown</to>
+				</connector>
+				<connector uid="119" angle="203.429">
+					<from>
+						<alias uid="22"/>
+					</from>
+					<to>Amount_of_cotton_to_Goldford</to>
+				</connector>
+				<connector uid="120" angle="35.1915">
+					<from>
+						<alias uid="24"/>
+					</from>
+					<to>Amount_of_cotton_to_Coalpeak</to>
+				</connector>
+				<aux x="3313.55" y="2354.58" name="Chance of succesful raid"/>
+				<connector uid="121" angle="323.679">
+					<from>
+						<alias uid="110"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="122" angle="319.399">
+					<from>
+						<alias uid="112"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="123" angle="301.675">
+					<from>
+						<alias uid="109"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="124" angle="170.523">
+					<from>
+						<alias uid="105"/>
+					</from>
+					<to>Success_or_fail</to>
+				</connector>
+				<connector uid="125" angle="294.146">
+					<from>Success_or_fail</from>
+					<to>Bandits_returning_from_raid</to>
+				</connector>
+				<connector uid="126" angle="320.342">
+					<from>Active_bandits</from>
+					<to>Bandits_returning_from_raid</to>
+				</connector>
+				<connector uid="127" angle="39.9403">
+					<from>Active_bandits</from>
+					<to>Bandits_killed_in_raid</to>
+				</connector>
+				<connector uid="128" angle="113.431">
+					<from>
+						<alias uid="107"/>
+					</from>
+					<to>Bandits_becoming_active</to>
+				</connector>
+				<connector uid="129" angle="290.548">
+					<from>Bandits_Idle_in_camp</from>
+					<to>Bandits_becoming_active</to>
+				</connector>
+				<aux x="2567.17" y="1916" name="Bandits who need new\nequipment"/>
+				<connector uid="130" angle="170.44">
+					<from>Bandits_who_need_new_equipment</from>
+					<to>Bandit_equipment_costs</to>
+				</connector>
+				<connector uid="131" angle="110.643">
+					<from>Bandit_equipment_costs</from>
+					<to>Living_cost_per_Bandit</to>
+				</connector>
+				<connector uid="132" angle="45.3696">
+					<from>Bandits_Idle_in_camp</from>
+					<to>Bandits_that_leave</to>
+				</connector>
+				<connector uid="133" angle="323.267">
+					<from>
+						<alias uid="14"/>
+					</from>
+					<to>Traders_killed_in_bandits_raid</to>
+				</connector>
+				<connector uid="134" angle="162.474">
+					<from>
+						<alias uid="43"/>
+					</from>
+					<to>Money_from_Cottonbog_to_pay_toll_expenses</to>
+				</connector>
+				<connector uid="135" angle="165.379">
+					<from>
+						<alias uid="41"/>
+					</from>
+					<to>Money_from_Cottonbog_to_pay_toll_expenses</to>
+				</connector>
+				<connector uid="136" angle="59.0362">
+					<from>
+						<alias uid="113"/>
+					</from>
+					<to>Sending_caravans</to>
+				</connector>
+				<aux x="913.75" y="1608.75" name="Cotton growth rate"/>
+				<connector uid="137" angle="241.821">
+					<from>Cotton_growth_rate</from>
+					<to>Cotton_growing</to>
+				</connector>
+				<aux x="126.862" y="1252.5" name="Gold per\ncitizen"/>
+				<connector uid="138" angle="265.148">
+					<from>
+						<alias uid="12"/>
+					</from>
+					<to>Gold_per_citizen</to>
+				</connector>
+				<connector uid="139" angle="46.1534">
+					<from>Gold_per_citizen</from>
+					<to>Death_rate_due_to_poverty</to>
+				</connector>
+				<connector uid="140" angle="66.1207">
+					<from>Gold_per_citizen</from>
+					<to>Birthrate</to>
+				</connector>
+				<aux x="377.54" y="2628" name="Number of trade routes"/>
+				<connector uid="141" angle="137.326">
+					<from>Number_of_trade_routes</from>
+					<to>Tons_to_send</to>
+				</connector>
+				<stock x="4144" y="2434" name="Fail count"/>
+				<flow x="4065.25" y="2441" name="Increase counter">
+					<pts>
+						<pt x="4009" y="2441"/>
+						<pt x="4121.5" y="2441"/>
+					</pts>
+				</flow>
+				<flow x="4205.75" y="2440" name="Empty count">
+					<pts>
+						<pt x="4166.5" y="2440"/>
+						<pt x="4269" y="2440"/>
+					</pts>
+				</flow>
+				<connector uid="142" angle="313.025">
+					<from>Success_or_fail</from>
+					<to>Increase_counter</to>
+				</connector>
+				<connector uid="143" angle="40.6013">
+					<from>Fail_count</from>
+					<to>Empty_count</to>
+				</connector>
+				<connector uid="144" angle="345.069">
+					<from>Success_or_fail</from>
+					<to>Empty_count</to>
+				</connector>
+				<connector uid="145" angle="167.574">
+					<from>Fail_count</from>
+					<to>Base_chance_of_success</to>
+				</connector>
+				<aux x="3321" y="2434" name="Base chance of success"/>
+				<aux x="4023" y="2127.57" name="Raid occurs"/>
+				<connector uid="146" angle="102.973">
+					<from>Raid_occurs</from>
+					<to>Success_or_fail</to>
+				</connector>
+				<connector uid="147" angle="215.723">
+					<from>Active_bandits</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="148" angle="95.3616">
+					<from>Base_chance_of_success</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="149" angle="338.41">
+					<from>Active_bandits</from>
+					<to>Raid_occuring</to>
+				</connector>
+				<connector uid="150" angle="202.657">
+					<from>
+						<alias uid="107"/>
+					</from>
+					<to>New_bandits_joining</to>
+				</connector>
+				<connector uid="151" angle="340.709">
+					<from>Active_bandits</from>
+					<to>Raid_occurs</to>
+				</connector>
+				<aux x="2813.71" y="900.625" name="Total living cost\nper route"/>
+				<connector uid="152" angle="161.426">
+					<from>Total_living_cost_per_route</from>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
+				</connector>
+				<connector uid="153" angle="158.199">
+					<from>
+						<alias uid="49"/>
+					</from>
+					<to>Total_living_cost_per_route</to>
+				</connector>
+				<connector uid="154" angle="233.512">
+					<from>Total_living_cost_per_route</from>
+					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="155" angle="266.738">
+					<from>Total_living_cost_per_route</from>
+					<to>Gold_from_selling_cotton_in_Goldford</to>
+				</connector>
+				<connector uid="156" angle="285.507">
+					<from>
+						<alias uid="52"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Slagtown</to>
+				</connector>
+				<connector uid="157" angle="95.0916">
+					<from>
+						<alias uid="51"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Goldford</to>
+				</connector>
+				<connector uid="158" angle="193.028">
+					<from>
+						<alias uid="53"/>
+					</from>
+					<to>Gold_from_selling_cotton_in_Coalpeak</to>
+				</connector>
+				<connector uid="159" angle="14.8044">
+					<from>
+						<alias uid="108"/>
+					</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<connector uid="160" angle="111.801">
+					<from>Success_or_fail</from>
+					<to>Bandits_killed_in_raid</to>
+				</connector>
+				<connector uid="161" angle="123.69">
+					<from>Raid_occuring</from>
+					<to>Bandits_killed_in_raid</to>
+				</connector>
+				<connector uid="162" angle="312.737">
+					<from>
+						<alias uid="107"/>
+					</from>
+					<to>Raid_occuring</to>
+				</connector>
+				<stacked_container uid="163" x="2878.33" y="3.75" width="711.329" height="529.667">
+					<graph x="2878.33" y="3.75" width="711.329" height="529.667" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Trade" isee:fill_intensity="0.1" left_axis_title="Gold staters" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_title="Tonnes of cotton" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Cottonbogs'_gold"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Cotton_picked_in_Cottonbog"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="164" x="3637" y="0.0833333" width="711.329" height="529.667">
+					<graph x="3637" y="0.0833333" width="711.329" height="529.667" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Bandit camp" isee:fill_intensity="0.1" left_axis_title="Gold staters" left_axis_multi_scale="false" left_axis_auto_scale="true" right_axis_title="Number of bandits" right_axis_multi_scale="false" right_axis_auto_scale="true">
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Bandits'_gold"/>
+						</plot>
+						<plot color="#008F44" pen_style="dashed" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Total_amount_of_bandits"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<aux x="344.547" y="2769.71" name="Travel time"/>
+				<connector uid="165" angle="332.484">
+					<from>Send_to_slagtown</from>
+					<to>Travel_time</to>
+				</connector>
+				<connector uid="166" angle="349.806">
+					<from>Send_to_coalpeak</from>
+					<to>Travel_time</to>
+				</connector>
+				<connector uid="167" angle="353.248">
+					<from>Send_to_Goldford</from>
+					<to>Travel_time</to>
+				</connector>
+				<connector uid="168" angle="258.996">
+					<from>
+						<alias uid="114"/>
+					</from>
+					<to>Sending_caravans</to>
+				</connector>
+				<connector uid="169" angle="225">
+					<from>
+						<alias uid="106"/>
+					</from>
+					<to>Raid_occuring</to>
+				</connector>
+				<connector uid="170" angle="194.421">
+					<from>
+						<alias uid="106"/>
+					</from>
+					<to>Raid_occurs</to>
+				</connector>
+				<aux x="474.571" y="2694.43" name="New road\nconstructed"/>
+				<aux x="483.321" y="2783.96" name="Construction time\nin years"/>
+				<connector uid="171" angle="84.1193">
+					<from>Construction_time_in_years</from>
+					<to>New_road_constructed</to>
+				</connector>
+				<alias color="blue" background="white" font_style="italic" uid="50" x="2316.13" y="873.625" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Cotton_sold_in_Slagtown</of>
+				</alias>
+				<alias font_style="italic" uid="45" x="2306.5" y="1002" width="18" height="18">
+					<of>Cotton_sold_in_Coalpeak</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="46" x="2306.5" y="1134" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Cotton_sold_Goldford</of>
+				</alias>
+				<alias font_style="italic" uid="68" x="45.1" y="2448.25" width="114.167" height="80">
+					<of>Traders</of>
+				</alias>
+				<alias font_style="italic" uid="25" x="1061" y="1866.57" width="18" height="18">
+					<of>Tons_to_send</of>
+				</alias>
+				<alias font_style="italic" uid="23" x="350.54" y="2230.04" width="18" height="18">
+					<of>Tons_to_send</of>
+				</alias>
+				<alias font_style="italic" uid="21" x="571.75" y="1838.71" width="18" height="18">
+					<of>Tons_to_send</of>
+				</alias>
+				<alias font_style="italic" uid="107" x="3706.25" y="2269" width="34" height="37.25">
+					<of>Bandits&apos;_gold</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="75" x="3068" y="1889" width="18" height="18">
+					<of>Finished_recovering</of>
+				</alias>
+				<alias font_style="italic" uid="79" x="4107" y="1902" width="18" height="18">
+					<of>Sending_caravans</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="26" x="449.833" y="1964.29" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_slagtown</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="24" x="844.833" y="1856.71" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_coalpeak</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="22" x="529.714" y="2212.04" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_Goldford</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="27" x="240.082" y="1964.29" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Success_or_fail</of>
+				</alias>
+				<alias font_style="italic" uid="35" x="1440.5" y="1671.83" width="18" height="18">
+					<of>Amount_of_cotton_to_slagtown</of>
+				</alias>
+				<alias font_style="italic" uid="36" x="1781.67" y="1689.83" width="18" height="18">
+					<of>Amount_of_cotton_to_Goldford</of>
+				</alias>
+				<alias font_style="italic" uid="34" x="1660.5" y="1988.66" width="18" height="18">
+					<of>Amount_of_cotton_to_Coalpeak</of>
+				</alias>
+				<alias font_style="italic" uid="38" x="1338.17" y="1801.33" width="18" height="18">
+					<of>Nominal_Cotton_price</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="37" x="1424" y="1975" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Success_or_fail</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="14" x="849" y="322.104" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Success_or_fail</of>
+				</alias>
+				<alias font_style="italic" uid="47" x="3703.42" y="780.667" width="70.0003" height="49.1667">
+					<of>Cotton_pickers</of>
+				</alias>
+				<alias font_style="italic" uid="12" x="48.139" y="1026.92" width="69.7227" height="47.4997">
+					<of>Cottonbogs&apos;_gold</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="13" x="571.833" y="866.97" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Death_rate_due_to_poverty</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="15" x="1258" y="932.735" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Death_rate_due_to_poverty</of>
+				</alias>
+				<alias font_style="italic" uid="28" x="495.832" y="2082" width="18" height="18">
+					<of>Sending_caravans</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="110" x="3064" y="2168.75" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_slagtown</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="112" x="3062.75" y="2241.25" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_coalpeak</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="109" x="3062.75" y="2306.25" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Send_to_Goldford</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="105" x="4209.75" y="1834.13" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Chance_of_succesful_raid</of>
+				</alias>
+				<alias font_style="italic" uid="43" x="3342.25" y="1417.25" width="18" height="18">
+					<of>Send_to_slagtown</of>
+				</alias>
+				<alias font_style="italic" uid="41" x="3401" y="1329.75" width="18" height="18">
+					<of>Sending_caravans</of>
+				</alias>
+				<alias font_style="italic" uid="113" x="533.75" y="2572.5" width="45" height="35">
+					<of>Cotton_picked_in_Cottonbog</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="49" x="2965" y="1002" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Number_of_trade_routes</of>
+				</alias>
+				<alias font_style="italic" uid="52" x="2512" y="761.167" width="18" height="18">
+					<of>Send_to_slagtown</of>
+				</alias>
+				<alias font_style="italic" uid="53" x="2585" y="947.67" width="18" height="18">
+					<of>Send_to_coalpeak</of>
+				</alias>
+				<alias font_style="italic" uid="51" x="2523" y="1216.67" width="18" height="18">
+					<of>Send_to_Goldford</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="108" x="3072.17" y="2407" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Number_of_trade_routes</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="114" x="570" y="2427" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Travel_time</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="106" x="4231" y="1938" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Travel_time</of>
+				</alias>
+				<alias font_style="italic" uid="111" x="2947.67" y="2075.63" width="18" height="18">
+					<of>New_road_constructed</of>
+				</alias>
+				<aux x="3099.17" y="2070.83" name="Chance of raid\nto Goldford"/>
+				<connector uid="172" angle="23.5344">
+					<from>
+						<alias uid="111"/>
+					</from>
+					<to>Chance_of_raid_to_Goldford</to>
+				</connector>
+				<connector uid="173" angle="335.056">
+					<from>Chance_of_raid_to_Goldford</from>
+					<to>Chance_of_succesful_raid</to>
+				</connector>
+				<flow x="3451.35" y="1170.83" name="Tax to road construction">
+					<pts>
+						<pt x="3320.53" y="1170.83"/>
+						<pt x="3594.17" y="1170.83"/>
+					</pts>
+				</flow>
+				<aux x="3452.5" y="1243.83" name="Yearly tax rate"/>
+				<alias font_style="italic" uid="44" x="3604.33" y="1205.17" width="18" height="18">
+					<of>New_road_constructed</of>
+				</alias>
+				<connector uid="174" angle="90.9054">
+					<from>Yearly_tax_rate</from>
+					<to>Tax_to_road_construction</to>
+				</connector>
+				<connector uid="175" angle="165.023">
+					<from>
+						<alias uid="44"/>
+					</from>
+					<to>Tax_to_road_construction</to>
+				</connector>
+				<alias font_style="italic" uid="42" x="3604.33" y="1295.17" width="18" height="18">
+					<of>Construction_time_in_years</of>
+				</alias>
+				<connector uid="176" angle="154.722">
+					<from>
+						<alias uid="42"/>
+					</from>
+					<to>Yearly_tax_rate</to>
+				</connector>
+				<stock x="3616.67" y="1167.5" name="Total gold collected for road"/>
+				<connector uid="177" angle="330.022">
+					<from>Send_to_Goldford</from>
+					<to>New_road_constructed</to>
+				</connector>
+				<aux x="1029" y="1680.83" name="Cotton blight"/>
+				<connector uid="178" angle="187.425">
+					<from>Cotton_blight</from>
+					<to>Cotton_growing</to>
+				</connector>
+				<aux x="1064.5" y="1583.75" name="Blight start time"/>
+				<connector uid="179" angle="238.036">
+					<from>Blight_start_time</from>
+					<to>Cotton_blight</to>
+				</connector>
+				<aux x="1108" y="1783.75" name="Blight duration"/>
+				<connector uid="180" angle="125.08">
+					<from>Blight_duration</from>
+					<to>Cotton_blight</to>
+				</connector>
+				<alias font_style="italic" uid="20" x="64" y="1745" width="18" height="18">
+					<of>Amount_of_cotton_to_transport_to_Coalpeak</of>
+				</alias>
+				<alias font_style="italic" uid="40" x="3053" y="852" width="18" height="18">
+					<of>Sending_caravans</of>
+				</alias>
+				<connector uid="181" angle="95.1944">
+					<from>
+						<alias uid="40"/>
+					</from>
+					<to>Gold_from_trade</to>
+				</connector>
+				<alias font_style="italic" uid="11" x="374" y="1307" width="18" height="18">
+					<of>Sum_of_working_people</of>
+				</alias>
+				<connector uid="182" angle="180">
+					<from>
+						<alias uid="11"/>
+					</from>
+					<to>Gold_per_citizen</to>
+				</connector>
+				<connector uid="183" angle="238.318">
+					<from>Amount_of_cotton_to_Coalpeak</from>
+					<to>Amount_of_cotton_to_transport_to_Coalpeak</to>
+				</connector>
+				<connector uid="184" angle="112.507">
+					<from>Amount_of_cotton_to_Coalpeak</from>
+					<to>Cotton_sold_in_Coalpeak</to>
+				</connector>
+				<alias font_style="italic" uid="39" x="2401" y="1385" width="18" height="18">
+					<of>Tons_to_send</of>
+				</alias>
+				<connector uid="185" angle="46.6366">
+					<from>
+						<alias uid="39"/>
+					</from>
+					<to>Nominal_Cotton_price</to>
+				</connector>
+				<aux x="589" y="2697.43" name="Build road?"/>
+				<connector uid="186" angle="152.686">
+					<from>&quot;Build_road?&quot;</from>
+					<to>New_road_constructed</to>
+				</connector>
+				<aux x="607" y="2783.96" name="Include\nBlight?"/>
+				<alias color="blue" background="white" font_style="italic" uid="19" x="1088" y="1668" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>&quot;Include_Blight?&quot;</of>
+				</alias>
+				<connector uid="187" angle="160.974">
+					<from>
+						<alias uid="19"/>
+					</from>
+					<to>Cotton_blight</to>
+				</connector>
+				<connector uid="188" angle="35.0758">
+					<from>Send_to_Goldford</from>
+					<to>&quot;Build_road?&quot;</to>
+				</connector>
+				<alias color="blue" background="white" font_style="italic" uid="48" x="3541" y="1066" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>&quot;Build_road?&quot;</of>
+				</alias>
+				<connector uid="189" angle="168.366">
+					<from>
+						<alias uid="48"/>
+					</from>
+					<to>Tax_to_road_construction</to>
+				</connector>
+			</view>
+		</views>
+	</model>
+</xmile>
+

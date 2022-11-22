@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>Population_CLD_Reworked</name>
+		<uuid>633cae8f-6942-4ddf-b169-a198a33a4e27</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="1.7.1" isee:build_number="1574" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:simulation_delay="0.115385" method="Euler" time_units="Months" isee:instantaneous_flows="false">
+		<start>1</start>
+		<stop>13</stop>
+		<dt reciprocal="true">4</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="cld" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units/>
+	<model>
+		<variables>
+			<aux name="People to young\nto work">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Growing up">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Traders">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Cotton\npickers">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Other workers">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="People to\nold to work">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Growing old">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Births">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Deaths">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Death of\nold people">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Death of\nyoung people">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Killing of\ntraders\nin bandit raids">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Deaths of\nworking\npeople">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Birthrate">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Total amount\nof fertile\npeople">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Purchase of\nfood and\namenities">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Total amount\nof citizens">
+				<isee:delay_aux/>
+			</aux>
+			<aux name="Deathrate">
+				<isee:delay_aux/>
+			</aux>
+			<isee:dependencies>
+				<var name="People_to_young_to_work">
+					<in>Growing_up</in>
+					<in>Death_of_young_people</in>
+					<in>Births</in>
+				</var>
+				<var name="Growing_up">
+					<in>People_to_young_to_work</in>
+				</var>
+				<var name="Traders">
+					<in>Growing_up</in>
+					<in>Growing_old</in>
+					<in>Deaths_of_working_people</in>
+					<in>Killing_of_traders_in_bandit_raids</in>
+				</var>
+				<var name="Cotton_pickers">
+					<in>Growing_up</in>
+					<in>Growing_old</in>
+					<in>Deaths_of_working_people</in>
+				</var>
+				<var name="Other_workers">
+					<in>Growing_up</in>
+					<in>Growing_old</in>
+					<in>Deaths_of_working_people</in>
+				</var>
+				<var name="People_to_old_to_work">
+					<in>Growing_old</in>
+					<in>Death_of_old_people</in>
+				</var>
+				<var name="Growing_old">
+					<in>Traders</in>
+					<in>Cotton_pickers</in>
+					<in>Other_workers</in>
+				</var>
+				<var name="Births">
+					<in>Birthrate</in>
+				</var>
+				<var name="Deaths">
+					<in>Death_of_old_people</in>
+					<in>Death_of_young_people</in>
+					<in>Deaths_of_working_people</in>
+				</var>
+				<var name="Death_of_old_people">
+					<in>Deathrate</in>
+				</var>
+				<var name="Death_of_young_people">
+					<in>Deathrate</in>
+				</var>
+				<var name="Deaths_of_working_people">
+					<in>Deathrate</in>
+				</var>
+				<var name="Birthrate">
+					<in>Total_amount_of_fertile_people</in>
+				</var>
+				<var name="Total_amount_of_fertile_people">
+					<in>Other_workers</in>
+					<in>Cotton_pickers</in>
+					<in>Traders</in>
+				</var>
+				<var name="Purchase_of_food_and_amenities">
+					<in>Total_amount_of_citizens</in>
+				</var>
+				<var name="Total_amount_of_citizens">
+					<in>People_to_young_to_work</in>
+					<in>People_to_old_to_work</in>
+					<in>Total_amount_of_fertile_people</in>
+				</var>
+			</isee:dependencies>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_background_color="#FFFECF"/>
+				<slider color="black" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:always_show_hover_tip="false" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+			</style>
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_y="635" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="16pt" label_side="bottom">
+						<shape type="name_only"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<aux x="922.667" y="1029" width="116" height="38" name="People to young\nto work"/>
+				<aux x="939.167" y="1237.92" width="83" height="18" name="Growing up"/>
+				<aux x="952.167" y="1571.67" width="57" height="18" name="Traders"/>
+				<aux x="953.167" y="1723.67" width="55" height="38" name="Cotton\npickers"/>
+				<aux x="930.167" y="1399.42" width="101" height="18" name="Other workers"/>
+				<aux x="531.377" y="1130.42" width="79" height="38" name="People to\nold to work"/>
+				<aux x="527.377" y="1571.67" width="87" height="18" name="Growing old"/>
+				<connector uid="1" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270.507">
+					<from>Growing_up</from>
+					<to>Traders</to>
+				</connector>
+				<connector uid="2" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270.15">
+					<from>Growing_up</from>
+					<to>Other_workers</to>
+				</connector>
+				<connector uid="3" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Growing_up</from>
+					<to>Cotton_pickers</to>
+				</connector>
+				<connector uid="4" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="18.9046">
+					<from>Growing_up</from>
+					<to>People_to_young_to_work</to>
+				</connector>
+				<connector uid="5" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="270">
+					<from>People_to_young_to_work</from>
+					<to>Growing_up</to>
+				</connector>
+				<connector uid="6" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="168.959">
+					<from>Traders</from>
+					<to>Growing_old</to>
+				</connector>
+				<connector uid="7" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="348.201">
+					<from>Growing_old</from>
+					<to>Traders</to>
+				</connector>
+				<connector uid="8" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="186.279">
+					<from>Cotton_pickers</from>
+					<to>Growing_old</to>
+				</connector>
+				<connector uid="9" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="357.495">
+					<from>Growing_old</from>
+					<to>Cotton_pickers</to>
+				</connector>
+				<connector uid="10" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" delay_mark="true" angle="178.206">
+					<from>Other_workers</from>
+					<to>Growing_old</to>
+				</connector>
+				<connector uid="11" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="357.054">
+					<from>Growing_old</from>
+					<to>Other_workers</to>
+				</connector>
+				<connector uid="12" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90">
+					<from>Growing_old</from>
+					<to>People_to_old_to_work</to>
+				</connector>
+				<aux x="1881.92" y="1952.17" width="44" height="18" name="Births"/>
+				<aux x="1277.88" y="1241.67" width="54" height="18" name="Deaths"/>
+				<aux x="1266.38" y="1130.42" width="77" height="38" name="Death of\nold people"/>
+				<connector uid="13" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180">
+					<from>Death_of_old_people</from>
+					<to>People_to_old_to_work</to>
+				</connector>
+				<connector uid="14" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="270">
+					<from>Death_of_old_people</from>
+					<to>Deaths</to>
+				</connector>
+				<aux x="1256.38" y="1029" width="97" height="38" name="Death of\nyoung people"/>
+				<connector uid="15" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="180">
+					<from>Death_of_young_people</from>
+					<to>People_to_young_to_work</to>
+				</connector>
+				<connector uid="16" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="322.795">
+					<from>Death_of_young_people</from>
+					<to>Deaths</to>
+				</connector>
+				<aux x="1270.42" y="1540.42" width="71" height="58" name="Deaths of\nworking\npeople"/>
+				<connector uid="17" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90.1872">
+					<from>Deaths_of_working_people</from>
+					<to>Deaths</to>
+				</connector>
+				<connector uid="18" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="181.981">
+					<from>Deaths_of_working_people</from>
+					<to>Traders</to>
+				</connector>
+				<connector uid="19" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="184.375">
+					<from>Deaths_of_working_people</from>
+					<to>Cotton_pickers</to>
+				</connector>
+				<connector uid="20" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="180.428">
+					<from>Deaths_of_working_people</from>
+					<to>Other_workers</to>
+				</connector>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="21" x="1009.17" y="1154.42" width="30" height="30">
+					<isee:entities>
+						<item uid="5"/>
+						<item uid="4"/>
+						<entity name="People_to_young_to_work"/>
+						<entity name="Growing_up"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="clockwise" uid="22" x="747.667" y="1655.17" width="30" height="30">
+					<isee:entities>
+						<item uid="9"/>
+						<item uid="8"/>
+						<entity name="Growing_old"/>
+						<entity name="Cotton_pickers"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="23" x="747.667" y="1485.17" width="30" height="30">
+					<isee:entities>
+						<item uid="10"/>
+						<item uid="11"/>
+						<entity name="Other_workers"/>
+						<entity name="Growing_old"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<isee:loop_indicator text="B" orientation="counter_clockwise" uid="24" x="847.667" y="1565.67" width="30" height="30">
+					<isee:entities>
+						<item uid="7"/>
+						<item uid="6"/>
+						<entity name="Traders"/>
+						<entity name="Growing_old"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<aux x="1555.42" y="1952.17" width="63" height="18" name="Birthrate"/>
+				<connector uid="25" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
+					<from>Birthrate</from>
+					<to>Births</to>
+				</connector>
+				<connector uid="26" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="348.149">
+					<from>Other_workers</from>
+					<to>Total_amount_of_fertile_people</to>
+				</connector>
+				<connector uid="27" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="273.997">
+					<from>Cotton_pickers</from>
+					<to>Total_amount_of_fertile_people</to>
+				</connector>
+				<aux x="935.167" y="1932.17" width="91" height="58" name="Total amount\nof fertile\npeople"/>
+				<connector uid="28" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="349.333">
+					<from>Traders</from>
+					<to>Total_amount_of_fertile_people</to>
+				</connector>
+				<connector uid="29" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="0">
+					<from>Total_amount_of_fertile_people</from>
+					<to>Birthrate</to>
+				</connector>
+				<aux x="1684.92" y="866.5" width="87" height="58" name="Purchase of\nfood and\namenities"/>
+				<aux x="525.377" y="873.381" width="91" height="38" name="Total amount\nof citizens"/>
+				<connector uid="30" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="135.69">
+					<from>People_to_young_to_work</from>
+					<to>Total_amount_of_citizens</to>
+				</connector>
+				<connector uid="31" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="90">
+					<from>People_to_old_to_work</from>
+					<to>Total_amount_of_citizens</to>
+				</connector>
+				<connector uid="32" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="359.846">
+					<from>Total_amount_of_citizens</from>
+					<to>Purchase_of_food_and_amenities</to>
+				</connector>
+				<connector uid="33" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="272.386">
+					<from>
+						<alias uid="34"/>
+					</from>
+					<to>People_to_young_to_work</to>
+				</connector>
+				<connector uid="35" color="#5500FF" font_color="#5500FF" angle="270">
+					<from>
+						<alias uid="36"/>
+					</from>
+					<to>Total_amount_of_citizens</to>
+				</connector>
+				<connector uid="37" font_size="16pt" polarity="-" isee:polarity_placement="inside" angle="213.821">
+					<from>Killing_of_traders_in_bandit_raids</from>
+					<to>Traders</to>
+				</connector>
+				<aux x="1550.42" y="1560.42" width="73" height="18" name="Deathrate"/>
+				<connector uid="38" color="#5500FF" font_color="#5500FF" font_size="16pt" polarity="+" isee:polarity_placement="inside" angle="180">
+					<from>Deathrate</from>
+					<to>Deaths_of_working_people</to>
+				</connector>
+				<connector uid="39" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="66.9149">
+					<from>Deathrate</from>
+					<to>Death_of_old_people</to>
+				</connector>
+				<connector uid="40" color="blue" font_color="blue" font_size="16pt" polarity="+" isee:polarity_placement="outside" angle="61.2253">
+					<from>Deathrate</from>
+					<to>Death_of_young_people</to>
+				</connector>
+				<isee:loop_indicator text="R" orientation="counter_clockwise" uid="41" x="1483.71" y="1798.75" width="30" height="30">
+					<isee:entities>
+						<item uid="29"/>
+						<item uid="25"/>
+						<item uid="34"/>
+						<item uid="33"/>
+						<item uid="5"/>
+						<item uid="2"/>
+						<item uid="1"/>
+						<item uid="3"/>
+						<item uid="27"/>
+						<entity name="Other_workers"/>
+						<entity name="Cotton_pickers"/>
+						<entity name="Traders"/>
+						<entity name="Total_amount_of_fertile_people"/>
+						<entity name="Birthrate"/>
+						<entity name="Births"/>
+						<entity name="People_to_young_to_work"/>
+						<entity name="Growing_up"/>
+					</isee:entities>
+				</isee:loop_indicator>
+				<aux color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" x="1144.59" y="1405" width="110" height="58" name="Killing of\ntraders\nin bandit raids"/>
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="34" x="956.167" y="929.667" width="49" height="18">
+					<of>Births</of>
+				</alias>
+				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="36" x="519.377" y="702.81" width="103" height="58">
+					<of>Total_amount_of_fertile_people</of>
+				</alias>
+			</view>
+		</views>
+	</model>
+</xmile>
+
