@@ -186,9 +186,13 @@
 			<aux name="Price of\ncotton">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Cotton Blight">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Cotton_grown_in_Cottonbog">
 					<in>Cotton_picking</in>
+					<in>Cotton_Blight</in>
 				</var>
 				<var name="Cotton_picking">
 					<in>Cotton_grown_in_Cottonbog</in>
@@ -448,7 +452,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" zoom="20" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="6" isee:page_rows="4" isee:scroll_x="2357" isee:scroll_y="458" zoom="200" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1330,6 +1334,11 @@
 				<alias color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" uid="113" x="1594.67" y="1420.33" width="110" height="58">
 					<of>Killing_of_traders_in_bandit_raids</of>
 				</alias>
+				<aux x="2875" y="347.667" width="93" height="18" name="Cotton Blight"/>
+				<connector uid="140" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="140.097">
+					<from>Cotton_Blight</from>
+					<to>Cotton_grown_in_Cottonbog</to>
+				</connector>
 			</view>
 		</views>
 	</model>

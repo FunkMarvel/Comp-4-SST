@@ -84,9 +84,13 @@
 			<aux name="Price of\ncotton">
 				<isee:delay_aux/>
 			</aux>
+			<aux name="Cotton Blight">
+				<isee:delay_aux/>
+			</aux>
 			<isee:dependencies>
 				<var name="Cotton_grown_in_Cottonbog">
 					<in>Cotton_picking</in>
+					<in>Cotton_Blight</in>
 				</var>
 				<var name="Cotton_picking">
 					<in>Cotton_grown_in_Cottonbog</in>
@@ -201,7 +205,7 @@
 				<isee:spatial_map color="black" background="white" font_size="12pt"/>
 				<isee:animation_object color="black" background="white" font_size="12pt"/>
 			</style>
-			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="421.667" isee:scroll_y="475" zoom="60" isee:popup_graphs_are_comparative="true" type="stock_flow">
+			<view isee:show_pages="false" isee:converter_size="name_only" page_width="1091" page_height="761" isee:page_cols="3" isee:page_rows="4" isee:scroll_x="813.889" isee:scroll_y="648.333" zoom="180" isee:popup_graphs_are_comparative="true" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="16pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -450,6 +454,11 @@
 					<to>Gold_from_trade_with_Coalpeak</to>
 				</connector>
 				<aux color="#AA007F" font_style="italic" font_weight="bold" text_decoration="underline" font_color="#AA007F" x="1908.25" y="1343.83" width="131" height="38" name="Returning from a\nsuccessful raid"/>
+				<aux x="1420.94" y="799.667" width="93" height="18" name="Cotton Blight"/>
+				<connector uid="45" color="#FFAA00" font_color="#FFAA00" font_size="16pt" polarity="-" isee:polarity_placement="outside" angle="148.534">
+					<from>Cotton_Blight</from>
+					<to>Cotton_grown_in_Cottonbog</to>
+				</connector>
 			</view>
 		</views>
 	</model>
